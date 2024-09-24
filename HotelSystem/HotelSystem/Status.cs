@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace HotelSystem
 {
-    public class Room
+    public enum BookingStatus
     {
-        private string roomID;
-        private double rate;
-        private Boolean availability;
+       Pending = 0,
+       Confirmed =1,
+       Canceled = 2,
+       Completed = 3,
+       Refunded = 4
     }
+
 }
