@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace HotelSystem
 {
     partial class Form1
     {
