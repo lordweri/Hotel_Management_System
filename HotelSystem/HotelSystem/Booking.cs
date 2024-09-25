@@ -10,17 +10,17 @@ namespace HotelSystem
     {
         public string bookingID {  get; set; }
         public Guest guest { get; set; }
-        public Room roooms { get; set; }
+        public Room rooms { get; set; }
         public DateTime start;
         public DateTime end;
         public double totalPrice;
         public BookingStatus status;
 
-        public Booking(string bookingID, Guest guest, Room roooms, DateTime start, DateTime end)
+        public Booking(string bookingID, Guest guest, Room rooms, DateTime start, DateTime end)
         {
             this.bookingID = bookingID;
             this.guest = guest;
-            this.roooms = roooms;
+            this.rooms = rooms;
             this.start = start;
             this.end = end;
             this.status = BookingStatus.Pending;
