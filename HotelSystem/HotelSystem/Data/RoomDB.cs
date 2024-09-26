@@ -10,7 +10,7 @@ namespace HotelSystem.Data
     public class RoomDB : DB
     {
         #region Data members
-        private string table = "Booking";
+        private string table = "Room";
         private string sqlLocal = "SELECT * FROM Room";
         private Collection<Room> rooms; //stores all rooms in a collection(Similar our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
         #endregion
