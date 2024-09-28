@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelSystem.Data
 {
-    internal class Account
+    internal class AccountDB
     {
     }
 }

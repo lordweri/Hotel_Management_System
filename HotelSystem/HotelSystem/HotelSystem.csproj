@@ -64,11 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Booking.cs" />
-    <Compile Include="Data\Account.cs" />
+    <Compile Include="Data\AccountDB.cs" />
     <Compile Include="Data\BookingDB.cs" />
     <Compile Include="Data\DB.cs" />
     <Compile Include="Data\GuestDB.cs" />
-    <Compile Include="Data\Payment.cs" />
+    <Compile Include="Data\PaymentDB.cs" />
     <Compile Include="Data\RoomDB.cs" />
     <Compile Include="Hotel.cs" />
     <Compile Include="DateRange.cs" />

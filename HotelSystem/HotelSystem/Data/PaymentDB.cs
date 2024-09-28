@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelSystem.Data
 {
-    internal class Payment
+    public class PaymentDB
     {
     }
 }
