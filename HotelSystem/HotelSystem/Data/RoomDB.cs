@@ -70,14 +70,14 @@ namespace HotelSystem.Data
         {
             if (operation == DBOperation.Add)
             {
-                aRow["RoomID"] = aRoom.RoomID;
+                aRow["RoomNumber"] = aRoom.RoomID;
                 aRow["Rate"] = aRoom.Rate;
                 aRow["Status"] = aRoom.Availability;
             }
         }
 
         //Find a row in the dataset
-        private int FindRow(String roomID)
+        private int FindRow(String roomNumber)
         {
             int rowIndex = 0;
             DataRow myRow = null;
@@ -87,7 +87,7 @@ namespace HotelSystem.Data
                 myRow = myRow_loopVariable;
                 if (myRow.RowState != DataRowState.Deleted)
                 {
-                    if (roomID == Convert.ToString(dsMain.Tables[table].Rows[rowIndex]["ID"]))
+                    if (roomNumber == Convert.ToString(dsMain.Tables[table].Rows[rowIndex]["RoomNumber"]))
                     {
                         returnValue = rowIndex;
                     }
