@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace HotelSystem.Data
 {
@@ -27,15 +30,73 @@ namespace HotelSystem.Data
         #endregion
 
         #region Constructor
-        public RoomDB(): base()
+        public RoomDB() : base()
         {
+            rooms = new Collection<Room>();
+            FillDataSet(sqlLocal, table);
+            Add2Collection(table);
         }
         #endregion
 
         #region Utility methods
-        #endregion
+        public DataSet GetDataSet()
+        {
+            return dsMain;
+        }
 
-        #region Database operations CRUD
+        //Adds all rooms to the collection
+        private void Add2Collection(string table)
+        {
+            DataRow myRow;
+            Room room;
+            rooms.Clear();
+
+            foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+            {
+                myRow = myRow_loopVariable;
+                if (!(myRow.RowState == DataRowState.Deleted))
+                {
+                    room = new Room();
+                    room.RoomID = Convert.ToString(myRow["RoomID"]).Trim();
+                    room.Rate = Convert.ToDouble(myRow["Rate"]);
+                    room.Availability = Convert.ToBoolean(myRow["Status"]);
+                    rooms.Add(room);
+                }
+            }
+        }
+
+        //Fill a row in the dataset
+        private void FillRow(DataRow aRow, Room aRoom, DB.DBOperation operation)
+        {
+            if (operation == DBOperation.Add)
+            {
+                aRow["RoomID"] = aRoom.RoomID;
+                aRow["Rate"] = aRoom.Rate;
+                aRow["Status"] = aRoom.Availability;
+            }
+        }
+
+        //Find a row in the dataset
+        private int FindRow(String roomID)
+        {
+            int rowIndex = 0;
+            DataRow myRow = null;
+            int returnValue = -1;
+            foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+            {
+                myRow = myRow_loopVariable;
+                if (myRow.RowState != DataRowState.Deleted)
+                {
+                    if (roomID == Convert.ToString(dsMain.Tables[table].Rows[rowIndex]["ID"]))
+                    {
+                        returnValue = rowIndex;
+                    }
+
+                }
+                rowIndex++;
+            }
+            return returnValue;
+        }
         #endregion
     }
 }
