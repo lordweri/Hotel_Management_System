@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -99,7 +100,6 @@ namespace HotelSystem.Data
             return returnValue;
         }
 
-    }
         #endregion
 
         #region Database operations CRUD
@@ -129,44 +129,103 @@ namespace HotelSystem.Data
         #endregion
 
         #region Build Parameters, Create Commands & Update database
-        private void Build_INSERT_Parameters()
+        private void Build_INSERT_Parameters(Booking booking)
         {
             SqlParameter param = default(SqlParameter);
-            param = new SqlParameter("BookingID", SqlDbType.NVarChar, 50);
-    }
+            param = new SqlParameter("@BookingID", SqlDbType.NVarChar, 50, "BookingID");
+            daMain.InsertCommand.Parameters.Add(param);
 
-        private void Build_UPDATE_Parameters()
+            param = new SqlParameter("@CheckInDate", SqlDbType.Date);
+            param.SourceColumn = "CheckInDate";
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@CheckOutDate", SqlDbType.Date);
+            param.SourceColumn = "CheckOutDate";
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@GuestID", SqlDbType.NVarChar, 50, "GuestID");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@RoomNumber", SqlDbType.NVarChar, 50, "RoomNumber");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@TotalPrice", SqlDbType.Money, 8, "TotalPrice");
+            daMain.InsertCommand.Parameters.Add(param);
+        }
+
+        private void Build_UPDATE_Parameters(Booking booking)
         {
             SqlParameter param = default(SqlParameter);
-            param = new SqlParameter(
+            param = new SqlParameter("BookingID", SqlDbType.NVarChar, 50, "BookingID");
+            param.SourceVersion = DataRowVersion.Original;
+            daMain.UpdateCommand.Parameters.Add(param);
 
+            param = new SqlParameter("CheckInDate", SqlDbType.Date);
+            param.SourceColumn = "CheckInDate";
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.UpdateCommand.Parameters.Add(param);
+
+            param = new SqlParameter("CheckOutDate", SqlDbType.Date);
+            param.SourceColumn = "CheckOutDate";
+            param.SourceVersion = DataRowVersion.Current;
+
+            param = new SqlParameter("GuestID", SqlDbType.NVarChar, 50, "GuestID");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.UpdateCommand.Parameters.Add(param);
+
+            param = new SqlParameter("RoomNumber", SqlDbType.NVarChar, 50, "RoomNumber");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.UpdateCommand.Parameters.Add(param);
+
+            param = new SqlParameter("TotalPrice", SqlDbType.Money, 8, "TotalPrice");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.UpdateCommand.Parameters.Add(param);
         }
 
-        private void Build_DELETE_Parameters()
+        private void Build_DELETE_Parameters(Booking booking)
         {
             SqlParameter param = default(SqlParameter);
-            param = new SqlParameter(
-
+            param = new SqlParameter("@BookingID", SqlDbType.NVarChar, 50, "BookingID");
+            daMain.DeleteCommand.Parameters.Add(param);
         }
 
-        private void Create_INSERT_Command()
+        //Command that used to insert a booking in the database
+        private void Create_INSERT_Command(Booking booking)
         {
-
+            daMain.InsertCommand = new SqlCommand("INSERT into Booking (BookingID, CheckInDate, CheckOutDate, GuestID, RoomNumber, TotalPrice) VALUES (@BookingID, @CheckInDate, @CheckOutDate, @GuestID, @RoomNumber, @TotalPrice)", cnMain);
+            Build_INSERT_Parameters(booking);
         }
 
-        private void Create_UPDATE_Command()
+        private void Create_UPDATE_Command(Booking booking)
         {
-
+            daMain.UpdateCommand = new SqlCommand("UPDATE Booking SET CheckInDate = @CheckInDate, CheckOutDate = @CheckOutDate, GuestID = @GuestID, RoomNumber = @RoomNumber, TotalPrice = @TotalPrice WHERE BookingID = @BookingID", cnMain);
+            Build_UPDATE_Parameters(booking);
         }
 
-        private void Create_DELETE_Command()
+        private void Create_DELETE_Command(Booking booking)
         {
-
+            daMain.DeleteCommand = new SqlCommand("DELETE FROM Booking WHERE BookingID = @BookingID", cnMain);
+            Build_DELETE_Parameters(booking);
         }
 
-        private void UpdateDataSource(string sqlLocal, string table)
+        private bool UpdateDataSource(Booking booking, DB.DBOperation operation)
         {
-
+            bool success = true;
+            switch (operation)
+            {
+                case DB.DBOperation.Add:
+                    Create_INSERT_Command(booking);
+                    break;
+                case DB.DBOperation.Edit:
+                    Create_UPDATE_Command(booking);
+                    break;
+                case DB.DBOperation.Delete:
+                    Create_DELETE_Command(booking);
+                    break;
+            }
+            success = UpdateDataSource(sqlLocal, table);
+            return success;
         }
+        #endregion
     }
 }
