@@ -18,8 +18,8 @@ namespace HotelSystem
         }
         private void EnquiryForm_Load(object sender, EventArgs e)
         {
-            this.guestTableAdapter.Fill(this.HotelDatabaseDataset.Guest);
-            this.roomTableAdapter.Fill(this.HotelDatabaseDataSet.Room);
+            this.guestTableAdapter.Fill(this.hotelDatabaseDataSet.Guest);
+            this.roomTableAdapter.Fill(this.hotelDatabaseDataSet.Room);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -28,12 +28,21 @@ namespace HotelSystem
             var guestID = (int)cmbGuest.SelectedValue;
             var roomNumber = (int)cmbRoom.SelectedValue;
 
-            var bookings = from b in HotelDatabaseDataSet.Booking
+            var bookings = from b in hotelDatabaseDataSet.Booking
                            where b.GuestID == guestID || b.RoomNumber == roomNumber
                            select b;
 
             // Display results in DataGridView
             dataGridViewResults.DataSource = bookings.CopyToDataTable();
+        }
+
+        private void EnquiryForm_Load_1(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'hotelDatabaseDataSet.Room' table. You can move, or remove it, as needed.
+            this.roomTableAdapter.Fill(this.hotelDatabaseDataSet.Room);
+            // TODO: This line of code loads data into the 'hotelDatabaseDataSet.Guest' table. You can move, or remove it, as needed.
+            this.guestTableAdapter.Fill(this.hotelDatabaseDataSet.Guest);
+
         }
     }
 }

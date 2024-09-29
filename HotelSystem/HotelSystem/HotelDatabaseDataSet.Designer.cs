@@ -10,6 +10,8 @@
 
 #pragma warning disable 1591
 
+using System;
+
 namespace HotelSystem {
     
     
@@ -3366,6 +3368,11 @@ SELECT BookingID, CheckInDate, CheckOutDate, GuestID, RoomNumber FROM Booking WH
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(System.DateTime CheckInDate, System.DateTime CheckOutDate, int GuestID, int RoomNumber, int Original_BookingID, System.DateTime Original_CheckInDate, System.DateTime Original_CheckOutDate, int Original_GuestID, int Original_RoomNumber) {
             return this.Update(Original_BookingID, CheckInDate, CheckOutDate, GuestID, RoomNumber, Original_BookingID, Original_CheckInDate, Original_CheckOutDate, Original_GuestID, Original_RoomNumber);
+        }
+
+        internal void Fill(HotelDatabaseDataSet.GuestDataTable guest)
+        {
+            throw new NotImplementedException();
         }
     }
     

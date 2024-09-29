@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cmbGuest = new System.Windows.Forms.ComboBox();
             this.cmbRoom = new System.Windows.Forms.ComboBox();
             this.dtpCheckIn = new System.Windows.Forms.DateTimePicker();
@@ -37,10 +38,22 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.hotelDatabaseDataSet = new HotelSystem.HotelDatabaseDataSet();
+            this.guestBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.guestTableAdapter = new HotelSystem.HotelDatabaseDataSetTableAdapters.GuestTableAdapter();
+            this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.roomTableAdapter = new HotelSystem.HotelDatabaseDataSetTableAdapters.RoomTableAdapter();
+            this.hotelDatabaseDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guestBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbGuest
             // 
+            this.cmbGuest.DataSource = this.guestBindingSource;
+            this.cmbGuest.DisplayMember = "GuestID";
             this.cmbGuest.FormattingEnabled = true;
             this.cmbGuest.Location = new System.Drawing.Point(179, 70);
             this.cmbGuest.Name = "cmbGuest";
@@ -49,6 +62,8 @@
             // 
             // cmbRoom
             // 
+            this.cmbRoom.DataSource = this.roomBindingSource;
+            this.cmbRoom.DisplayMember = "RoomNumber";
             this.cmbRoom.FormattingEnabled = true;
             this.cmbRoom.Location = new System.Drawing.Point(179, 179);
             this.cmbRoom.Name = "cmbRoom";
@@ -115,6 +130,34 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Check Out Date:";
             // 
+            // hotelDatabaseDataSet
+            // 
+            this.hotelDatabaseDataSet.DataSetName = "HotelDatabaseDataSet";
+            this.hotelDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // guestBindingSource
+            // 
+            this.guestBindingSource.DataMember = "Guest";
+            this.guestBindingSource.DataSource = this.hotelDatabaseDataSet;
+            // 
+            // guestTableAdapter
+            // 
+            this.guestTableAdapter.ClearBeforeFill = true;
+            // 
+            // roomBindingSource
+            // 
+            this.roomBindingSource.DataMember = "Room";
+            this.roomBindingSource.DataSource = this.hotelDatabaseDataSet;
+            // 
+            // roomTableAdapter
+            // 
+            this.roomTableAdapter.ClearBeforeFill = true;
+            // 
+            // hotelDatabaseDataSetBindingSource
+            // 
+            this.hotelDatabaseDataSetBindingSource.DataSource = this.hotelDatabaseDataSet;
+            this.hotelDatabaseDataSetBindingSource.Position = 0;
+            // 
             // BookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -131,7 +174,12 @@
             this.Controls.Add(this.cmbGuest);
             this.Name = "BookingForm";
             this.Text = "BookingForm";
+            this.Load += new System.EventHandler(this.BookingForm_Load_1);
             this.Click += new System.EventHandler(this.BookingForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guestBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,5 +196,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private HotelDatabaseDataSet hotelDatabaseDataSet;
+        private System.Windows.Forms.BindingSource guestBindingSource;
+        private HotelDatabaseDataSetTableAdapters.GuestTableAdapter guestTableAdapter;
+        private System.Windows.Forms.BindingSource roomBindingSource;
+        private HotelDatabaseDataSetTableAdapters.RoomTableAdapter roomTableAdapter;
+        private System.Windows.Forms.BindingSource hotelDatabaseDataSetBindingSource;
     }
 }

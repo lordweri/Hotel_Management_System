@@ -28,17 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cmbGuest = new System.Windows.Forms.ComboBox();
             this.cmbRoom = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dataGridViewResults = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.hotelDatabaseDataSet = new HotelSystem.HotelDatabaseDataSet();
+            this.guestBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.guestTableAdapter = new HotelSystem.HotelDatabaseDataSetTableAdapters.GuestTableAdapter();
+            this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.roomTableAdapter = new HotelSystem.HotelDatabaseDataSetTableAdapters.RoomTableAdapter();
+            this.hotelDatabaseDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guestBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbGuest
             // 
+            this.cmbGuest.DataSource = this.guestBindingSource;
             this.cmbGuest.FormattingEnabled = true;
             this.cmbGuest.Location = new System.Drawing.Point(194, 57);
             this.cmbGuest.Name = "cmbGuest";
@@ -47,6 +59,7 @@
             // 
             // cmbRoom
             // 
+            this.cmbRoom.DataSource = this.roomBindingSource;
             this.cmbRoom.FormattingEnabled = true;
             this.cmbRoom.Location = new System.Drawing.Point(194, 192);
             this.cmbRoom.Name = "cmbRoom";
@@ -65,7 +78,9 @@
             // 
             // dataGridViewResults
             // 
+            this.dataGridViewResults.AutoGenerateColumns = false;
             this.dataGridViewResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewResults.DataSource = this.hotelDatabaseDataSetBindingSource;
             this.dataGridViewResults.Location = new System.Drawing.Point(194, 467);
             this.dataGridViewResults.Name = "dataGridViewResults";
             this.dataGridViewResults.RowHeadersWidth = 51;
@@ -91,6 +106,34 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Room:";
             // 
+            // hotelDatabaseDataSet
+            // 
+            this.hotelDatabaseDataSet.DataSetName = "HotelDatabaseDataSet";
+            this.hotelDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // guestBindingSource
+            // 
+            this.guestBindingSource.DataMember = "Guest";
+            this.guestBindingSource.DataSource = this.hotelDatabaseDataSet;
+            // 
+            // guestTableAdapter
+            // 
+            this.guestTableAdapter.ClearBeforeFill = true;
+            // 
+            // roomBindingSource
+            // 
+            this.roomBindingSource.DataMember = "Room";
+            this.roomBindingSource.DataSource = this.hotelDatabaseDataSet;
+            // 
+            // roomTableAdapter
+            // 
+            this.roomTableAdapter.ClearBeforeFill = true;
+            // 
+            // hotelDatabaseDataSetBindingSource
+            // 
+            this.hotelDatabaseDataSetBindingSource.DataSource = this.hotelDatabaseDataSet;
+            this.hotelDatabaseDataSetBindingSource.Position = 0;
+            // 
             // EnquiryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -104,7 +147,12 @@
             this.Controls.Add(this.cmbGuest);
             this.Name = "EnquiryForm";
             this.Text = "EnquiryForm";
+            this.Load += new System.EventHandler(this.EnquiryForm_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guestBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -118,5 +166,11 @@
         private System.Windows.Forms.DataGridView dataGridViewResults;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private HotelDatabaseDataSet hotelDatabaseDataSet;
+        private System.Windows.Forms.BindingSource guestBindingSource;
+        private HotelDatabaseDataSetTableAdapters.GuestTableAdapter guestTableAdapter;
+        private System.Windows.Forms.BindingSource roomBindingSource;
+        private HotelDatabaseDataSetTableAdapters.RoomTableAdapter roomTableAdapter;
+        private System.Windows.Forms.BindingSource hotelDatabaseDataSetBindingSource;
     }
 }

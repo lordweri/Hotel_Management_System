@@ -39,7 +39,6 @@
             this.hotelDatabaseDataSet = new HotelSystem.HotelDatabaseDataSet();
             this.bookingTableAdapter = new HotelSystem.HotelDatabaseDataSetTableAdapters.BookingTableAdapter();
             this.paymentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.paymentTableAdapter = new HotelSystem.HotelDatabaseDataSetTableAdapters.PaymentTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBookings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).BeginInit();
@@ -123,10 +122,6 @@
             this.paymentBindingSource.DataMember = "Payment";
             this.paymentBindingSource.DataSource = this.hotelDatabaseDataSet;
             // 
-            // paymentTableAdapter
-            // 
-            this.paymentTableAdapter.ClearBeforeFill = true;
-            // 
             // ReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -156,6 +151,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn guestIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roomNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource paymentBindingSource;
-        private HotelDatabaseDataSetTableAdapters.PaymentTableAdapter paymentTableAdapter;
     }
 }

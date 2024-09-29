@@ -23,7 +23,7 @@ namespace HotelSystem
             // TODO: This line of code loads data into the 'hotelDatabaseDataSet.Booking' table. You can move, or remove it, as needed.
             this.bookingTableAdapter.Fill(this.hotelDatabaseDataSet.Booking);
 
-            this.guestTableAdapter.Fill(this.hotelDatabaseDataSet.Guest);
+            this.bookingTableAdapter.Fill(this.hotelDatabaseDataSet.Guest);
 
             // Set data sources for report viewer
             // Assuming you're using a DataGridView to show report data
