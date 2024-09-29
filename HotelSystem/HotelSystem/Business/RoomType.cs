@@ -12,7 +12,7 @@ namespace HotelSystem
         public bool IsEnSuite { get; private set; }
         public bool IsCoupleSharingOneBed { get; private set; }
         public bool IsTwoPeopleSeparateBeds { get; private set; }
-        public bool IsFamilyRoom { get; private set; } // For family sharing room with children
+        public bool IsFamilyRoom { get; private set; }
 
         public RoomType(bool isEnSuite, bool isCoupleSharingOneBed, bool isTwoPeopleSeparateBeds, bool isFamilyRoom)
         {
