@@ -11,8 +11,7 @@ namespace HotelSystem
         public string bookingID {  get; set; }
         public Guest guest { get; set; }
         public Room rooms { get; set; }
-        public DateTime start;
-        public DateTime end;
+        public DateRange range { get; set; }
         public double totalPrice;
         public BookingStatus status;
 
@@ -21,9 +20,26 @@ namespace HotelSystem
             this.bookingID = bookingID;
             this.guest = guest;
             this.rooms = rooms;
-            this.start = start;
-            this.end = end;
+            this.range=new DateRange(start, end);
             this.status = BookingStatus.Pending;
+        }
+
+        public double calculateTotalPrice()
+        {
+
+            return rooms.getRate() * range.GetNumberOfDays();
+        }
+
+        public void cancelBooking()
+        {
+            status = BookingStatus.Canceled;
+            rooms.changeAvailability(true);
+        }
+
+        public void confirmBooking()
+        {
+            status=BookingStatus.Confirmed; 
+            rooms.changeAvailability(false);
         }
     }
 }
