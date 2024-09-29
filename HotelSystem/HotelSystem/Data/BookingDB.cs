@@ -50,7 +50,6 @@ namespace HotelSystem.Data
         {
             DataRow myRow = null;
             Booking booking;
-            bookings.Clear();
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 booking = new Booking();

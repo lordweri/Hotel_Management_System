@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace HotelSystem.Data
 {
-    internal class AccountDB
+    public class AccountDB
     {
+        #region Data members
+        #endregion
+
+
     }
 }
