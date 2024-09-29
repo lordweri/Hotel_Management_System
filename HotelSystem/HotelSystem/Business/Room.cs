@@ -30,5 +30,6 @@ namespace HotelSystem
         public string getRoomNo() { return roomNo; }
         public Boolean getAvailability() { return availability; }
         public void setRate(double rate) {  this.rate = rate; }
+
     }
 }
