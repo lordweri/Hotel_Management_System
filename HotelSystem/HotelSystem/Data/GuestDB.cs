@@ -61,6 +61,7 @@ namespace HotelSystem.Data
 
         }
 
+        //TODO: Adjust variable names according to Guest class
         private void FillRow(DataRow row, Guest guest, DB.DBOperation operation)
         {
             if (operation == DBOperation.Add)
@@ -72,11 +73,12 @@ namespace HotelSystem.Data
             }
         }
 
-        private int FindRow(string guestID)
+        private int FindRow(Guest aGuest)
         {
             int rowIndex = 0;
             DataRow myRow = null;
             int returnValue = -1;
+            string guestID = aGuest.guestID;      //TODO adjust according to Guest class
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 myRow = myRow_loopVariable;
@@ -96,7 +98,22 @@ namespace HotelSystem.Data
         #region Database operations CRUD
         public void DataSetChange(Guest aGuest, DB.DBOperation operation)
         {
-            
+            DataRow aRow = null;
+            switch (operation)
+            {
+                case DB.DBOperation.Add:
+                    aRow = dsMain.Tables[table].NewRow();
+                    FillRow(aRow, aGuest, DB.DBOperation.Add);
+                    dsMain.Tables[table].Rows.Add(aRow);
+                    break;
+                case DB.DBOperation.Edit:
+                    aRow = dsMain.Tables[table].Rows[FindRow(aGuest)];
+                    FillRow(aRow, aGuest, DB.DBOperation.Edit);
+                    break;
+                case DB.DBOperation.Delete:
+                    dsMain.Tables[table].Rows[FindRow(aGuest)].Delete();
+                    break;
+            }
         }
 
     }
