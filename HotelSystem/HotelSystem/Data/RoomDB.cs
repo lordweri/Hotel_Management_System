@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace HotelSystem.Data
 {
+    //This class allows to read the Room table from the database
+    //No Update, Insert or Delete operations are allowed on the Room table, only read
     public class RoomDB : DB
     {
         #region Data members
@@ -77,11 +79,12 @@ namespace HotelSystem.Data
         }
 
         //Find a row in the dataset
-        private int FindRow(String roomNumber)
+        private int FindRow(Room aRoom)
         {
             int rowIndex = 0;
             DataRow myRow = null;
             int returnValue = -1;
+            string roomNumber = aRoom.RoomID;     //TODO check later of variable name matchs with Room class
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 myRow = myRow_loopVariable;
@@ -98,5 +101,28 @@ namespace HotelSystem.Data
             return returnValue;
         }
         #endregion
+
+        #region Database operations CRUD
+        public void DataSetChange(Room aRoom, DB.DBOperation operation)
+        {
+            DataRow aRow = null;
+            switch (operation)
+            {
+                case DBOperation.Add:
+                    aRow = dsMain.Tables[table].NewRow();
+                    FillRow(aRow, aRoom, DBOperation.Add);
+                    dsMain.Tables[table].Rows.Add(aRow);
+                    break;
+                case DBOperation.Edit:
+                    aRow = dsMain.Tables[table].Rows[FindRow(aRoom)];
+                    FillRow(aRow, aRoom, DBOperation.Edit);
+                    break;
+                case DBOperation.Delete:
+                    dsMain.Tables[table].Rows[FindRow(aRoom)].Delete();
+                    break;
+            }
+        }
+        #endregion
     }
+
 }

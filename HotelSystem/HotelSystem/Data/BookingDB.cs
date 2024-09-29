@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace HotelSystem.Data
 {
+    //This class allows CRUD operations on the Booking table
     public class BookingDB:DB
     {
         #region Data members
@@ -50,7 +51,6 @@ namespace HotelSystem.Data
         {
             DataRow myRow = null;
             Booking booking;
-            bookings.Clear();
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 booking = new Booking();
@@ -79,11 +79,12 @@ namespace HotelSystem.Data
             }
         }
 
-        private int FindRow(string bookingID)
+        private int FindRow(Booking booking)
         {
             int rowIndex = 0;
             DataRow myRow = null;
             int returnValue = -1;
+            string bookingID = booking.bookingID;     //TODO: check later of variable name matchs with Booking class
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 myRow = myRow_loopVariable;
@@ -106,7 +107,6 @@ namespace HotelSystem.Data
         public void DataSetChange(Booking booking, DB.DBOperation operation)
         {
             DataRow aRow = null;
-            int aRowID = 0;
             switch (operation)
             {
                 case DB.DBOperation.Add:
@@ -115,14 +115,11 @@ namespace HotelSystem.Data
                     dsMain.Tables[table].Rows.Add(aRow);
                     break;
                 case DB.DBOperation.Edit:
-                    aRowID = FindRow(booking.bookingID);
-                    aRow = dsMain.Tables[table].Rows[aRowID];
+                    aRow = dsMain.Tables[table].Rows[FindRow(booking)];
                     FillRow(aRow, booking, DB.DBOperation.Edit);
                     break;
                 case DB.DBOperation.Delete:
-                    aRowID = FindRow(booking.bookingID);
-                    aRow = dsMain.Tables[table].Rows[aRowID];
-                    aRow.Delete();
+                    dsMain.Tables[table].Rows[FindRow(booking)].Delete();
                     break;
             }
         }

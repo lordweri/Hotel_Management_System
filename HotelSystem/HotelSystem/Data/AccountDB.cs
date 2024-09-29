@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace HotelSystem.Data
 {
-    internal class AccountDB
+    //Can remove this class later and remove Account database also, to keep this project simple
+    public class AccountDB
     {
+        #region Data members
+        #endregion
+
+
     }
 }
