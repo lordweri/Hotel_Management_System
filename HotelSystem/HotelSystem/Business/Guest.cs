@@ -12,15 +12,16 @@ namespace HotelSystem
         private string guestID;
         private string email;
         private string telephone;
-        private Boolean check;
+        private string bookingID;
 
 
-        public Guest(string name, string Email, string phone)
+        public Guest(string name, string Email, string phone,string bID)
         {
             this.Name = name;
             this.email = Email;
             this.telephone = phone;
             this.guestID = GenerateGuestID(name);
+            this.bookingID = bID;
         }
         #region utility methods
         private static string GenerateGuestID(string firstName)
@@ -47,6 +48,30 @@ namespace HotelSystem
                                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
         #endregion
+
+        public string getGuestID()
+        {
+            return this.guestID;
+        }
+
+        public string getBookingID()
+        {
+            return this.bookingID;
+        }
+
+        public string getName()
+        {
+            return Name;
+        }
+
+        public string getPhone()
+        {
+            return telephone;
+        }
+        public string getEmail()
+        {
+            return email;
+        }
     }
 
 }

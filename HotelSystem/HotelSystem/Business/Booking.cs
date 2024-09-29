@@ -10,7 +10,7 @@ namespace HotelSystem
     {
         public string bookingID {  get; set; }
         public Guest guest { get; set; }
-        public Room rooms { get; set; }
+        public Room room { get; set; }
         public DateRange range { get; set; }
         public double totalPrice;
         public BookingStatus status;
@@ -19,7 +19,7 @@ namespace HotelSystem
         {
             this.bookingID = bookingID;
             this.guest = guest;
-            this.rooms = rooms;
+            this.room = rooms;
             this.range=new DateRange(start, end);
             this.status = BookingStatus.Pending;
         }

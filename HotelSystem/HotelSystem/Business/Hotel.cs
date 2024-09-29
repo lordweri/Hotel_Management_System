@@ -23,7 +23,9 @@ namespace HotelSystem
             this.rooms = rooms;
             this.occupancyRate = occupancyRate;
         }
-
+        public Room getRoom(int id)
+        {
+        }
         public List<Room> getAvailableRooms(DateRange dateRange)
         {
             return rooms;
