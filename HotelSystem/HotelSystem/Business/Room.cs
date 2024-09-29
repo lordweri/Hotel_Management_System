@@ -11,7 +11,7 @@ namespace HotelSystem
         private string roomNo;
         private double rate;
         private Boolean availability;
-        public 
+        public RoomType roomType;
 
         public Room(string number,double price)
         {
