@@ -8,13 +8,14 @@ namespace HotelSystem
 {
     public class Room
     {
-        private string roomID;
+        private string roomNo;
         private double rate;
         private Boolean availability;
+        public RoomType roomType;
 
-        public Room(string ID,double price)
+        public Room(string number,double price)
         {
-            roomID = ID;
+            roomNo = number;
             rate = price;
             availability = true;
         }
@@ -26,7 +27,9 @@ namespace HotelSystem
 
         
         public double getRate() { return rate; }
-        public string getRoomID() { return roomID; }
+        public string getRoomNo() { return roomNo; }
         public Boolean getAvailability() { return availability; }
+        public void setRate(double rate) {  this.rate = rate; }
+
     }
 }
