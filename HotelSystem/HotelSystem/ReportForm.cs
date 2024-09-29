@@ -19,8 +19,7 @@ namespace HotelSystem
 
         private void ReportForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'hotelDatabaseDataSet.Payment' table. You can move, or remove it, as needed.
-            this.paymentTableAdapter.Fill(this.hotelDatabaseDataSet.Payment);
+            
             // TODO: This line of code loads data into the 'hotelDatabaseDataSet.Booking' table. You can move, or remove it, as needed.
             this.bookingTableAdapter.Fill(this.hotelDatabaseDataSet.Booking);
 
@@ -29,7 +28,7 @@ namespace HotelSystem
             // Set data sources for report viewer
             // Assuming you're using a DataGridView to show report data
             dataGridViewBookings.DataSource = hotelDatabaseDataSet.Booking;
-            dataGridViewPayments.DataSource = hotelDatabaseDataSet.Payment;
+            
         }
     }
 }
