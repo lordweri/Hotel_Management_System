@@ -132,8 +132,8 @@ namespace HotelSystem.Data
         private void Build_INSERT_Parameters()
         {
             SqlParameter param = default(SqlParameter);
-            param = new SqlParameter(
-        }
+            param = new SqlParameter("BookingID", SqlDbType.NVarChar, 50);
+    }
 
         private void Build_UPDATE_Parameters()
         {
