@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace HotelSystem.Data
 {
+    //This class allows CRUD operations on the Booking table
     public class BookingDB:DB
     {
         #region Data members
