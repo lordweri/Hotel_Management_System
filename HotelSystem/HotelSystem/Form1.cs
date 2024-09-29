@@ -16,5 +16,22 @@ namespace HotelSystem
         {
             InitializeComponent();
         }
+        private void btnBooking_Click(object sender, EventArgs e)
+        {
+            BookingForm bookingForm = new BookingForm();
+            bookingForm.Show();
+        }
+
+        private void btnEnquiry_Click(object sender, EventArgs e)
+        {
+            EnquiryForm enquiryForm = new EnquiryForm();
+            enquiryForm.Show();
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            ReportForm reportForm = new ReportForm();
+            reportForm.Show();
+        }
     }
 }

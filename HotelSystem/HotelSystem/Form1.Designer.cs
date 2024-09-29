@@ -28,46 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnBooking = new System.Windows.Forms.Button();
+            this.btnEnquiry = new System.Windows.Forms.Button();
+            this.btnReport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // btnBooking
             // 
-            this.button1.Location = new System.Drawing.Point(88, 541);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 49);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Booking";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnBooking.Location = new System.Drawing.Point(88, 541);
+            this.btnBooking.Name = "btnBooking";
+            this.btnBooking.Size = new System.Drawing.Size(136, 49);
+            this.btnBooking.TabIndex = 0;
+            this.btnBooking.Text = "Booking";
+            this.btnBooking.UseVisualStyleBackColor = true;
+            this.btnBooking.Click += new System.EventHandler(this.btnBooking_Click);
             // 
-            // button2
+            // btnEnquiry
             // 
-            this.button2.Location = new System.Drawing.Point(379, 541);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(136, 49);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Enquiry";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEnquiry.Location = new System.Drawing.Point(379, 541);
+            this.btnEnquiry.Name = "btnEnquiry";
+            this.btnEnquiry.Size = new System.Drawing.Size(136, 49);
+            this.btnEnquiry.TabIndex = 1;
+            this.btnEnquiry.Text = "Enquiry";
+            this.btnEnquiry.UseVisualStyleBackColor = true;
+            this.btnEnquiry.Click += new System.EventHandler(this.btnEnquiry_Click);
             // 
-            // button3
+            // btnReport
             // 
-            this.button3.Location = new System.Drawing.Point(695, 541);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(136, 49);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Report";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnReport.Location = new System.Drawing.Point(695, 541);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(136, 49);
+            this.btnReport.TabIndex = 2;
+            this.btnReport.Text = "Report";
+            this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(918, 702);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnReport);
+            this.Controls.Add(this.btnEnquiry);
+            this.Controls.Add(this.btnBooking);
             this.Name = "Form1";
             this.Text = "MainForm";
             this.ResumeLayout(false);
@@ -76,9 +79,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnBooking;
+        private System.Windows.Forms.Button btnEnquiry;
+        private System.Windows.Forms.Button btnReport;
     }
 }
 
