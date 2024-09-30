@@ -4,9 +4,9 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using HotelSystem.Business;
 
 namespace HotelSystem.Data
 {
@@ -16,6 +16,13 @@ namespace HotelSystem.Data
         #region Data members
         private string table = "Booking";
         private string sqlLocal = "SELECT * FROM Booking";
+
+        private string guestTable = "Guest";
+        private string guestSqlLocal = "SELECT * FROM Booking";
+
+        private string roomTable = "Room";
+        private string roomSqlLocal = "SELECT * FROM Booking";
+
         private Collection<Booking> bookings; //stores all bookings in a collection(Similar our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
         #endregion
 
@@ -49,20 +56,55 @@ namespace HotelSystem.Data
         //Get all bookings from the dataset and add them to the collection
         private void Add2Collection(string table)
         {
-            DataRow myRow = null;
-            Booking booking;
-            foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
+            DataRow bookingRow = null;
+            foreach (DataRow bookingRow_loopVariable in dsMain.Tables[table].Rows)
             {
-                booking = new Booking();
-                booking.BookingID = Convert.ToInt32(myRow["BookingID"]);
-                booking.GuestID = Convert.ToInt32(myRow["GuestID"]);
-                booking.roomNumber = Convert.ToInt32(myRow["RoomNumber"]);
-                booking.start = Convert.ToDateTime(myRow["CheckInDate"]);
-                booking.end = Convert.ToDateTime(myRow["CheckOutDate"]);
-                booking.totalPrice = Convert.ToDouble(myRow["TotalPrice"]);
-                booking.status = (BookingStatus)Enum.Parse(typeof(BookingStatus), myRow["Status"].ToString());
-                bookings.Add(booking);
+                bookingRow = bookingRow_loopVariable;
+                if (!(bookingRow.RowState == DataRowState.Deleted))
+                {
+                    //attributes of Booking table
+                    string bookingID = Convert.ToString(bookingRow["BookingID"]);
+                    string guestID = Convert.ToString(bookingRow["GuestID"]);
+                    string roomNumber = Convert.ToString(bookingRow["RoomNumber"]);
+                    DateTime start = Convert.ToDateTime(bookingRow["CheckInDate"]);
+                    DateTime end = Convert.ToDateTime(bookingRow["CheckOutDate"]);
+                    double totalPrice = Convert.ToDouble(bookingRow["TotalPrice"]);
+                    BookingStatus status = (BookingStatus)Enum.Parse(typeof(BookingStatus), bookingRow["Status"].ToString());
+
+                    Guest guest = FindGuestByID(guestID);
+                    Room room = FindRoomByNumber(roomNumber);
+
+                    Booking booking = new Booking(bookingID, guest, room, start, end);
+                    bookings.Add(booking);
+                }
             }
+        }
+        
+        //Find a guest in the database by ID and return a Guest object
+        private Guest FindGuestByID(string guestID)
+        {
+            DataRow[] guestRows = dsMain.Tables["Guest"].Select($"GuestID = '{guestID}'");
+            if (guestRows.Length > 0)
+            {
+                string name = Convert.ToString(guestRows[0]["Name"]);
+                string email = Convert.ToString(guestRows[0]["Email"]);
+                string telephone = Convert.ToString(guestRows[0]["Telephone"]);
+                return new Guest(guestID, name, email, telephone); //return guest object if found
+            }
+            return null; //return null if not found
+        }
+
+        //Find a room in the database by room number and return a Room object
+        private Room FindRoomByNumber(string roomNumber)
+        {
+            DataRow[] roomRows = dsMain.Tables["Room"].Select($"RoomNumber = '{roomNumber}'");
+            if (roomRows.Length > 0)
+            {
+                double rate = Convert.ToDouble(roomRows[0]["Rate"]);
+                Boolean availability = Convert.ToBoolean(roomRows[0]["Availability"]);  
+                return new Room(roomNumber, rate, availability); //return room object if found
+            }
+            return null; //return null if not found
         }
 
         private void FillRow(DataRow aRow, Booking booking, DB.DBOperation operation)
@@ -70,10 +112,10 @@ namespace HotelSystem.Data
             if (operation == DBOperation.Add)
             {
                 aRow["BookingID"] = booking.bookingID;
-                aRow["GuestID"] = booking.guest.guestID;
-                aRow["RoomNumber"] = booking.roomNumber;
-                aRow["CheckInDate"] = booking.start;
-                aRow["CheckOutDate"] = booking.end;
+                aRow["GuestID"] = booking.guest.GuestID;
+                aRow["RoomNumber"] = booking.room.RoomNo;
+                aRow["CheckInDate"] = booking.range.Start;
+                aRow["CheckOutDate"] = booking.range.End;
                 aRow["TotalPrice"] = booking.totalPrice;
                 aRow["Status"] = booking.status;
             }
@@ -205,6 +247,7 @@ namespace HotelSystem.Data
             Build_DELETE_Parameters(booking);
         }
 
+        //Commit changes to the database
         private bool UpdateDataSource(Booking booking, DB.DBOperation operation)
         {
             bool success = true;

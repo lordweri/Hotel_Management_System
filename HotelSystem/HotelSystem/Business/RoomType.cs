@@ -1,11 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HotelSystem;
 
-namespace HotelSystem
+namespace HotelSystem.Business
 {
     public enum RoomType
     {
@@ -15,5 +14,4 @@ namespace HotelSystem
         FamilyRoom,
         Standard
     }
-
 }

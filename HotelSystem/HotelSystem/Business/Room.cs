@@ -6,33 +6,15 @@ using System.Threading.Tasks;
 
 namespace HotelSystem.Business
 {
+    
     public class Room
     {
         private string roomNo;
         private double rate;
         private Boolean availability;
-        public RoomType roomType;   //Zhentao: Since we assume single room type, I suggest to remove this attribute
+        public RoomType roomType;  
 
-        #region Property methods
-        public string RoomNo
-        {
-            get { return roomNo; }
-            set { roomNo = value; }
-        }
-
-        public double Rate
-        {
-            get { return rate; }
-            set { rate = value; }
-        }
-
-        public Boolean Availability
-        {
-            get { return availability; }
-            set { availability = value; }
-        }
-        #endregion
-
+        #region Constructors
         public Room(string number,double price)
         {
             roomNo = number;
@@ -40,12 +22,16 @@ namespace HotelSystem.Business
             availability = true;
         }
 
+        //This constructor will be used in data layer for reading operation
+        //When performing reading operation, we need to create a room object from the database
+        //and added to the collection
         public Room(string number, double price, Boolean availability)
         {
             roomNo = number;
             rate = price;
             this.availability = availability;
         }
+        #endregion
 
         public void changeAvailability(Boolean available)
         {

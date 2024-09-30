@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HotelSystem;
+using HotelSystem.Data;
 
-namespace HotelSystem
+namespace HotelSystem.Business
 {
     public class Hotel
     {
-        private string hotelID { get; set; }
-        private string name{  get; set; }
-        private string location {  get; set; }
+        private string hotelID;
+        private string name;
+        private string location;
         private List<Room> rooms;
         private double occupancyRate; 
 
@@ -25,26 +26,20 @@ namespace HotelSystem
         }
         public Room getRoom(int id)
         {
+            return rooms[id];
         }
-        public List<Room> getAvailableRooms(DateRange dateRange)
+        public List<Room> GetAvailableRooms(DateRange dateRange)
         {
-            return rooms;
+            List<Room> availableRooms = new List<Room>();
+            foreach (var room in rooms)
+            {
+                if (room.getAvailability())
+                    availableRooms.Add(room);
+            }
+            return availableRooms;
         }
 
-        public Boolean bookRoom(Booking booking)
-        {
-            return true;
-        }
 
-        public void checkIn(Guest guest, Booking booking)
-        {
-
-        }
-
-        public void checkOut(Guest guest, string bookingID)
-        {
-
-        }
         
     }
 }

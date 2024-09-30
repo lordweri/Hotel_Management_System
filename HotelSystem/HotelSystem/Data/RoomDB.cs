@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HotelSystem.Business;
 
 namespace HotelSystem.Data
 {
@@ -50,8 +51,6 @@ namespace HotelSystem.Data
         {
             DataRow myRow;
             Room room;
-            rooms.Clear();
-
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 myRow = myRow_loopVariable;
