@@ -38,6 +38,7 @@ namespace HotelSystem.Data
         #endregion
 
         #region Constructor
+        //Constructor to be used in Controller classes
         public BookingDB() : base()
         {
             bookings = new Collection<Booking>();
@@ -146,20 +147,24 @@ namespace HotelSystem.Data
         #endregion
 
         #region Database operations CRUD
+        //Add, Edit or Delete a booking in the Booking DataSet
         public void DataSetChange(Booking booking, DB.DBOperation operation)
         {
             DataRow aRow = null;
             switch (operation)
             {
+                //Added a booking row to the dataset
                 case DB.DBOperation.Add:
                     aRow = dsMain.Tables[table].NewRow();
                     FillRow(aRow, booking, DB.DBOperation.Add);
                     dsMain.Tables[table].Rows.Add(aRow);
                     break;
+                //Edit a existing booking row in the dataset
                 case DB.DBOperation.Edit:
                     aRow = dsMain.Tables[table].Rows[FindRow(booking)];
                     FillRow(aRow, booking, DB.DBOperation.Edit);
                     break;
+                //Delete a booking row from the dataset
                 case DB.DBOperation.Delete:
                     dsMain.Tables[table].Rows[FindRow(booking)].Delete();
                     break;
@@ -167,6 +172,7 @@ namespace HotelSystem.Data
         }
         #endregion
 
+        //Contains the UpdateDataSource() method to be used in the Controller classes
         #region Build Parameters, Create Commands & Update database
         private void Build_INSERT_Parameters(Booking booking)
         {

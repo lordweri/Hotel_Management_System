@@ -32,6 +32,7 @@ namespace HotelSystem.Data
         #endregion
 
         #region Constructor
+        //Constructor to be used in Controller classes
         public RoomDB() : base()
         {
             rooms = new Collection<Room>();
@@ -46,7 +47,7 @@ namespace HotelSystem.Data
             return dsMain;
         }
 
-        //Adds all rooms to the collection
+        //Adds all rooms from the dataset to the collection
         private void Add2Collection(string table)
         {
             DataRow myRow;
@@ -65,7 +66,7 @@ namespace HotelSystem.Data
             }
         }
 
-        //Fill a row in the dataset
+        //Fill a row in the Room dataset
         private void FillRow(DataRow aRow, Room aRoom, DB.DBOperation operation)
         {
             if (operation == DBOperation.Add)
@@ -76,13 +77,13 @@ namespace HotelSystem.Data
             }
         }
 
-        //Find a row in the dataset
+        //Find a room row in the dataset, using Room object as parameter but searching by room number
         private int FindRow(Room aRoom)
         {
             int rowIndex = 0;
             DataRow myRow = null;
             int returnValue = -1;
-            string roomNumber = aRoom.RoomNo;     //TODO check later of variable name matchs with Room class
+            string roomNumber = aRoom.RoomNo;     
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 myRow = myRow_loopVariable;

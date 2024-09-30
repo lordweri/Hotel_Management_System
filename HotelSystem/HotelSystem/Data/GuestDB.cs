@@ -31,6 +31,7 @@ namespace HotelSystem.Data
         #endregion
 
         #region Constructor
+        //Constructor to be used in Controller classes
         public GuestDB() : base()
         {
             guests = new Collection<Room>();
@@ -45,7 +46,7 @@ namespace HotelSystem.Data
             return dsMain;
         }
 
-        //Adds all rooms to the collection
+        //Adds all guests from the database to guests collection
         private void Add2Collection(string table)
         {
             DataRow myRow = null;
@@ -64,7 +65,7 @@ namespace HotelSystem.Data
 
         }
 
-        //TODO: Adjust variable names according to Guest class and final database
+        //Adjust variable names according to Guest class and final database
         private void FillRow(DataRow row, Guest guest, DB.DBOperation operation)
         {
             if (operation == DBOperation.Add)
@@ -76,6 +77,7 @@ namespace HotelSystem.Data
             }
         }
 
+        //Find a guest in the dataset
         private int FindRow(Guest aGuest)
         {
             int rowIndex = 0;
@@ -120,7 +122,7 @@ namespace HotelSystem.Data
         }
         #endregion
 
-        //TODO might need to adjust attribute names according to the final database and Guest class
+        //Contains the UpdateDataSource() method to be used in the Controller classes
         #region Build Parameters, Create Commands & Update database
         private void Build_INSERT_Parameters(Guest aGuest)
         {
