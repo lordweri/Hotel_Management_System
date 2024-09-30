@@ -9,40 +9,38 @@ namespace HotelSystem.Business
     
     public class Room
     {
-        private string roomNo;
+        private string RoomNo;
         private double rate;
-        private Boolean availability;
+        private Boolean check;
         public RoomType roomType;  
 
         #region Constructors
-        public Room(string number,double price)
+        public Room(string number)
         {
-            roomNo = number;
-            rate = price;
-            availability = true;
+            RoomNo = number;
+            check = false;
         }
 
         //This constructor will be used in data layer for reading operation
         //When performing reading operation, we need to create a room object from the database
         //and added to the collection
+
+
         public Room(string number, double price, Boolean availability)
         {
-            roomNo = number;
+            RoomNo = number;
             rate = price;
-            this.availability = availability;
+            this.check = availability;
         }
         #endregion
 
-        public void changeAvailability(Boolean available)
-        {
-            availability = available;
-        }
-
-        
+        public void checkin() { check= true; }
+        public void checkout() { check = false; }
         public double getRate() { return rate; }
-        public string getRoomNo() { return roomNo; }
-        public Boolean getAvailability() { return availability; }
+        public string getRoomNo() { return RoomNo; }
         public void setRate(double rate) {  this.rate = rate; }
+        public string getType() { return roomType.ToString(); }
+
 
     }
 }

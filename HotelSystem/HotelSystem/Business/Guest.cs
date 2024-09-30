@@ -13,23 +13,22 @@ namespace HotelSystem.Business
         private string guestID;
         private string email;
         private string telephone;
-        private string bookingID;
+        private Booking booking;
 
 
         #region Constructors
-        public Guest(string name, string Email, string phone,string bID)
+        public Guest(string name, string Email, string phone)
         {
             this.name = name;
             this.email = Email;
             this.telephone = phone;
             this.guestID = GenerateGuestID(name);
-            this.bookingID = bID;
         }
 
         //This constructor will be used in BookingDB class to create a guest object from the database
         //when performming reading operation. It will also be used in GuestDB class to create a guest object
         //for each row in the database and added to the collection
-        public Guest(string guestID, string name, string Email, string phone)
+        public Guest(string guestID, string name, string Email, string phone,Booking boooking)
         {
             this.name = name;
             this.email = Email;
