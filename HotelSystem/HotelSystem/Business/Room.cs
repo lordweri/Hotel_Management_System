@@ -6,32 +6,13 @@ using System.Threading.Tasks;
 
 namespace HotelSystem.Business
 {
+    
     public class Room
     {
         private string roomNo;
         private double rate;
         private Boolean availability;
-        public RoomType roomType;   //Zhentao: Since we assume single room type, I suggest to remove this attribute(Delete this line)
-
-        #region Property methods
-        public string RoomNo
-        {
-            get { return roomNo; }
-            set { roomNo = value; }
-        }
-
-        public double Rate
-        {
-            get { return rate; }
-            set { rate = value; }
-        }
-
-        public Boolean Availability
-        {
-            get { return availability; }
-            set { availability = value; }
-        }
-        #endregion
+        public RoomType roomType;  
 
         #region Constructors
         public Room(string number,double price)
