@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HotelSystem.Business;
 
 namespace HotelSystem.Data
 {
@@ -44,20 +45,21 @@ namespace HotelSystem.Data
             return dsMain;
         }
 
-        //TODO: Add2Collection method
         //Adds all rooms to the collection
         private void Add2Collection(string table)
         {
             DataRow myRow = null;
-            Guest guest;
             foreach (DataRow row in dsMain.Tables[table].Rows)
             {
-                string name = row["Name"].ToString();
-                string guestID = row["GuestID"].ToString();
-                string telephone = row["Telephone"].ToString();
-                string email = row["Email"].ToString();
-                guest = new Guest();   //TODO adjust according to Guest class
-                guests.Add(guest);
+                if (row.RowState != DataRowState.Deleted)
+                {
+                    string name = row["Name"].ToString();
+                    string guestID = row["GuestID"].ToString();
+                    string telephone = row["Telephone"].ToString();
+                    string email = row["Email"].ToString();
+                    Guest guest = new Guest(guestID, name, email, telephone); 
+                    guests.Add(guest);
+                }
             }
 
         }
@@ -68,7 +70,6 @@ namespace HotelSystem.Data
             if (operation == DBOperation.Add)
             {
                 row["Name"] = guest.Name;
-                row["Surname"] = guest.Surname;
                 row["GuestID"] = guest.GuestID;
                 row["Telephone"] = guest.Telephone;
                 row["Email"] = guest.Email;
@@ -80,7 +81,7 @@ namespace HotelSystem.Data
             int rowIndex = 0;
             DataRow myRow = null;
             int returnValue = -1;
-            string guestID = aGuest.guestID;      //TODO adjust according to Guest class
+            string guestID = aGuest.GuestID;
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 myRow = myRow_loopVariable;
@@ -130,9 +131,6 @@ namespace HotelSystem.Data
             param = new SqlParameter("@Name", SqlDbType.NVarChar, 50, "Name");
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Surname", SqlDbType.NVarChar, 50, "Surname");
-            daMain.InsertCommand.Parameters.Add(param);
-
             param = new SqlParameter("@Telephone", SqlDbType.NVarChar, 50, "Telephone");
             daMain.InsertCommand.Parameters.Add(param);
 
@@ -148,10 +146,6 @@ namespace HotelSystem.Data
             daMain.UpdateCommand.Parameters.Add(param);
 
             param = new SqlParameter("@Name", SqlDbType.NVarChar, 50, "Name");
-            param.SourceVersion = DataRowVersion.Current;
-            daMain.UpdateCommand.Parameters.Add(param);
-
-            param = new SqlParameter("@Surname", SqlDbType.NVarChar, 50, "Surname");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
@@ -179,7 +173,7 @@ namespace HotelSystem.Data
 
         private void Create_UPDATE_Command(Guest aGuest)
         {
-            daMain.UpdateCommand = new SqlCommand("UPDATE Guest SET Name = @Name, Surname = @Surname, Telephone = @Telephone, Email = @Email WHERE GuestID = @GuestID", cnMain);
+            daMain.UpdateCommand = new SqlCommand("UPDATE Guest SET Name = @Name, Telephone = @Telephone, Email = @Email WHERE GuestID = @GuestID", cnMain);
             Build_UPDATE_Parameters(aGuest);
         }
 
@@ -189,6 +183,7 @@ namespace HotelSystem.Data
             Build_DELETE_Parameters(aGuest);
         }
 
+        //Commit the changes to the database
         public bool UpdateDataSource(Guest guest, DB.DBOperation operation)
         {
             bool success = true;

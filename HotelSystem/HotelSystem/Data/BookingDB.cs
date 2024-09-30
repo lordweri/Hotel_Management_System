@@ -57,26 +57,26 @@ namespace HotelSystem.Data
         private void Add2Collection(string table)
         {
             DataRow bookingRow = null;
-            DataRow guestRow = null;
-            DataRow roomRow = null;
-            Booking booking;
             foreach (DataRow bookingRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 bookingRow = bookingRow_loopVariable;
-                //attributes of Booking table
-                string bookingID = Convert.ToString(bookingRow["BookingID"]);
-                string guestID = Convert.ToString(bookingRow["GuestID"]);
-                string roomNumber = Convert.ToString(bookingRow["RoomNumber"]);
-                DateTime start = Convert.ToDateTime(bookingRow["CheckInDate"]);
-                DateTime end = Convert.ToDateTime(bookingRow["CheckOutDate"]);
-                double totalPrice = Convert.ToDouble(bookingRow["TotalPrice"]);
-                BookingStatus status = (BookingStatus)Enum.Parse(typeof(BookingStatus), bookingRow["Status"].ToString());
+                if (!(bookingRow.RowState == DataRowState.Deleted))
+                {
+                    //attributes of Booking table
+                    string bookingID = Convert.ToString(bookingRow["BookingID"]);
+                    string guestID = Convert.ToString(bookingRow["GuestID"]);
+                    string roomNumber = Convert.ToString(bookingRow["RoomNumber"]);
+                    DateTime start = Convert.ToDateTime(bookingRow["CheckInDate"]);
+                    DateTime end = Convert.ToDateTime(bookingRow["CheckOutDate"]);
+                    double totalPrice = Convert.ToDouble(bookingRow["TotalPrice"]);
+                    BookingStatus status = (BookingStatus)Enum.Parse(typeof(BookingStatus), bookingRow["Status"].ToString());
 
-                Guest guest = FindGuestByID(guestID);
-                Room room = FindRoomByNumber(roomNumber);
+                    Guest guest = FindGuestByID(guestID);
+                    Room room = FindRoomByNumber(roomNumber);
 
-                booking = new Booking(bookingID, guest, room, start, end);
-                bookings.Add(booking);
+                    Booking booking = new Booking(bookingID, guest, room, start, end);
+                    bookings.Add(booking);
+                }
             }
         }
         
@@ -89,8 +89,7 @@ namespace HotelSystem.Data
                 string name = Convert.ToString(guestRows[0]["Name"]);
                 string email = Convert.ToString(guestRows[0]["Email"]);
                 string telephone = Convert.ToString(guestRows[0]["Telephone"]);
-                string bookingID = Convert.ToString(guestRows[0]["BookingID"]);
-                return new Guest(guestID, name, email, telephone, bookingID); //return guest object if found
+                return new Guest(guestID, name, email, telephone); //return guest object if found
             }
             return null; //return null if not found
         }
@@ -248,6 +247,7 @@ namespace HotelSystem.Data
             Build_DELETE_Parameters(booking);
         }
 
+        //Commit changes to the database
         private bool UpdateDataSource(Booking booking, DB.DBOperation operation)
         {
             bool success = true;
