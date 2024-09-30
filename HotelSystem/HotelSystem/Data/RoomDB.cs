@@ -11,13 +11,12 @@ using HotelSystem.Business;
 
 namespace HotelSystem.Data
 {
-    //This class allows to CRUD operation on the Room table from the database
     public class RoomDB : DB
     {
         #region Data members
         private string table = "Room";
         private string sqlLocal = "SELECT * FROM Room";
-        private Collection<Room> rooms; //stores all rooms in a collection(Similar our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
+        private Collection<Room> rooms; //stores all rooms in a collection(Similar our practical workshop, their have a Collection in EmployeeDB.cs that stores all employees)
         #endregion
 
         #region Properties
@@ -32,6 +31,7 @@ namespace HotelSystem.Data
         #endregion
 
         #region Constructor
+        //Constructor to be used in Controller classes
         public RoomDB() : base()
         {
             rooms = new Collection<Room>();
@@ -46,7 +46,7 @@ namespace HotelSystem.Data
             return dsMain;
         }
 
-        //Adds all rooms to the collection
+        //Adds all rooms from the dataset to the collection
         private void Add2Collection(string table)
         {
             DataRow myRow;
@@ -65,24 +65,24 @@ namespace HotelSystem.Data
             }
         }
 
-        //Fill a row in the dataset
+        //Fill a row in the Room dataset
         private void FillRow(DataRow aRow, Room aRoom, DB.DBOperation operation)
         {
             if (operation == DBOperation.Add)
             {
-                aRow["RoomNumber"] = aRoom.RoomNo;
-                aRow["Rate"] = aRoom.Rate;
-                aRow["Status"] = aRoom.Availability;
+                aRow["RoomNumber"] = aRoom.getRoomNo();
+                aRow["Rate"] = aRoom.getRate();
+                aRow["Status"] = aRoom.getAvailability();
             }
         }
 
-        //Find a row in the dataset
+        //Find a room row in the dataset, using Room object as parameter but searching by room number
         private int FindRow(Room aRoom)
         {
             int rowIndex = 0;
             DataRow myRow = null;
             int returnValue = -1;
-            string roomNumber = aRoom.RoomNo;     //TODO check later of variable name matchs with Room class
+            string roomNumber = aRoom.getRoomNo();     
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 myRow = myRow_loopVariable;

@@ -10,18 +10,17 @@ using HotelSystem.Business;
 
 namespace HotelSystem.Data
 {
-    //This class allows CRUD operations on the Guest table in the database
     public class GuestDB : DB
     {
         #region Data members
         private string table = "Guest";
         private string sqlLocal = "SELECT * FROM Guest";
-        private Collection<Room> guests; //stores all rooms in a collection(Similar our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
+        private Collection<Guest> guests; //stores all rooms in a collection(Similar to our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
         #endregion
 
         #region Properties
         //Returns all rooms in a collection
-        public Collection<Room> AllGuests
+        public Collection<Guest> AllGuests
         {
             get
             {
@@ -31,9 +30,10 @@ namespace HotelSystem.Data
         #endregion
 
         #region Constructor
+        //Constructor to be used in Controller classes
         public GuestDB() : base()
         {
-            guests = new Collection<Room>();
+            guests = new Collection<Guest>();
             FillDataSet(sqlLocal, table);
             Add2Collection(table);
         }
@@ -45,7 +45,7 @@ namespace HotelSystem.Data
             return dsMain;
         }
 
-        //Adds all rooms to the collection
+        //Adds all guests from the database to guests collection
         private void Add2Collection(string table)
         {
             DataRow myRow = null;
@@ -64,24 +64,25 @@ namespace HotelSystem.Data
 
         }
 
-        //TODO: Adjust variable names according to Guest class and final database
+        //Adjust variable names according to Guest class and final database
         private void FillRow(DataRow row, Guest guest, DB.DBOperation operation)
         {
             if (operation == DBOperation.Add)
             {
-                row["Name"] = guest.Name;
-                row["GuestID"] = guest.GuestID;
-                row["Telephone"] = guest.Telephone;
-                row["Email"] = guest.Email;
+                row["Name"] = guest.getName();
+                row["GuestID"] = guest.getGuestID();
+                row["Telephone"] = guest.getPhone();
+                row["Email"] = guest.getEmail();
             }
         }
 
+        //Find a guest in the dataset
         private int FindRow(Guest aGuest)
         {
             int rowIndex = 0;
             DataRow myRow = null;
             int returnValue = -1;
-            string guestID = aGuest.GuestID;
+            string guestID = aGuest.getGuestID();
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 myRow = myRow_loopVariable;
@@ -120,7 +121,7 @@ namespace HotelSystem.Data
         }
         #endregion
 
-        //TODO might need to adjust attribute names according to the final database and Guest class
+        //Contains the UpdateDataSource() method to be used in the Controller classes
         #region Build Parameters, Create Commands & Update database
         private void Build_INSERT_Parameters(Guest aGuest)
         {
