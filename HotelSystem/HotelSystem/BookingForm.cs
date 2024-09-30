@@ -27,6 +27,12 @@ namespace HotelSystem
 
         private void btnSaveBooking_Click(object sender, EventArgs e)
         {
+            // Validate required fields
+            if (string.IsNullOrEmpty(txtGuestName.Text) || string.IsNullOrEmpty(txtRoomNumber.Text) || dtpCheckIn.Value == DateTime.MinValue || dtpCheckOut.Value == DateTime.MinValue)
+            {
+                errorLabel.Text = "Please fill in all required fields.";
+                return;
+            }
             // Save new booking information
             try
             {
@@ -46,7 +52,14 @@ namespace HotelSystem
             catch (Exception ex)
             {
                 MessageBox.Show("Error saving booking: " + ex.Message);
+
+                errorLabel.Text = "Booking saved successfully!";
+
             }
+            
+            
+                
+
         }
 
         private void BookingForm_Load_1(object sender, EventArgs e)
@@ -57,6 +70,7 @@ namespace HotelSystem
             this.guestTableAdapter.Fill(this.hotelDatabaseDataSet.Guest);
 
         }
+
     }
 }
 
