@@ -18,7 +18,7 @@ namespace HotelSystem.Business
         #endregion
 
         #region Properties
-        public Collection<Room> AllRooms
+        public Collection<Room> AllRooms      //Use RoomController.AllRooms to get all rooms from the database
         {
             get
             {

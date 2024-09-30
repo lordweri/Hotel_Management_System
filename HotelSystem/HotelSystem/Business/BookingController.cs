@@ -17,7 +17,7 @@ namespace HotelSystem.Business
         #endregion
 
         #region Properties
-        public Collection<Booking> AllBookings
+        public Collection<Booking> AllBookings      //Use BookingController.AllBookings to get all bookings from the database
         {
             get
             {
