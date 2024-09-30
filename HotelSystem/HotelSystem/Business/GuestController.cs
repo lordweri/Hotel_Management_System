@@ -37,6 +37,7 @@ namespace HotelSystem.Business
         #endregion
 
         #region Database communication
+        //This method updates guest DataSet(won't affect the database until FinalizeChanges() is called)
         public void DataMaintenance(Guest aGuest, DB.DBOperation operation)
         {
             int index = 0;
@@ -57,6 +58,7 @@ namespace HotelSystem.Business
             }
         }
 
+        //Finalize changes to the database
         public bool FinalizeChanges(Guest guest, DB.DBOperation operation)
         {
             return guestDB.UpdateDataSource(guest, operation);

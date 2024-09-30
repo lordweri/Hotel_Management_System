@@ -37,7 +37,7 @@ namespace HotelSystem.Business
 
         //Use these method change the availability of a room to True or False
         #region Database communication
-        //This method updates booking DataSet
+        //This method updates booking DataSet(won't affect the database until FinalizeChanges() is called)
         public void DataMaintenance(Booking aBooking, DB.DBOperation operation)
         {
             int index = 0;
