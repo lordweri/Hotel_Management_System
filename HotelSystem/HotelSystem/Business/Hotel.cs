@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HotelSystem;
 
-namespace HotelSystem
+namespace HotelSystem.Business
 {
     public class Hotel
     {

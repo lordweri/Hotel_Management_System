@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelSystem
+namespace HotelSystem.Business
 {
     public class DateRange
     {
