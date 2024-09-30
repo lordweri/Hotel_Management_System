@@ -15,42 +15,11 @@ namespace HotelSystem.Business
         private string telephone;
         private string bookingID;
 
-        #region property methods
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-        public string GuestID
-        {
-            get { return guestID; }
-            set { guestID = value; }
-        }
-
-        public string Email
-        {
-            get { return email; }
-            set { email = value; }
-        }
-
-        public string Telephone
-        {
-            get { return telephone; }
-            set { telephone = value; }
-        }
-
-        public string BookingID
-        {
-            get { return bookingID; }
-            set { bookingID = value; }
-        }
-        #endregion
 
         #region Constructors
         public Guest(string name, string Email, string phone,string bID)
         {
-            this.Name = name;
+            this.name = name;
             this.email = Email;
             this.telephone = phone;
             this.guestID = GenerateGuestID(name);
@@ -62,7 +31,7 @@ namespace HotelSystem.Business
         //for each row in the database and added to the collection
         public Guest(string guestID, string name, string Email, string phone)
         {
-            this.Name = name;
+            this.name = name;
             this.email = Email;
             this.telephone = phone;
             this.guestID = guestID;
@@ -107,7 +76,7 @@ namespace HotelSystem.Business
 
         public string getName()
         {
-            return Name;
+            return name;
         }
 
         public string getPhone()
