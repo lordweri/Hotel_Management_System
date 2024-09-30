@@ -22,6 +22,7 @@ namespace HotelSystem
             // Load data into the combo boxes and data grid view
             this.roomTableAdapter.Fill(this.hotelDatabaseDataSet.Room);
             this.guestTableAdapter.Fill(this.hotelDatabaseDataSet.Guest);
+
         }
 
         private void btnSaveBooking_Click(object sender, EventArgs e)
@@ -29,6 +30,8 @@ namespace HotelSystem
             // Save new booking information
             try
             {
+                var bookingTableAdapter = new BookingTableAdapter();
+                bookingTableAdapter.Update(hotelDatabaseDataSet.Booking);
                 var newBooking = hotelDatabaseDataSet.Booking.NewBookingRow();
                 newBooking.GuestID = (int)cmbGuest.SelectedValue;
                 newBooking.RoomNumber = (int)cmbRoom.SelectedValue;
@@ -36,7 +39,7 @@ namespace HotelSystem
                 newBooking.CheckOutDate = dtpCheckOut.Value;
 
                 hotelDatabaseDataSet.Booking.AddBookingRow(newBooking);
-                BookingTableAdapter.Update(hotelDatabaseDataSet.Booking);
+                bookingTableAdapter.Update(hotelDatabaseDataSet.Booking);
 
                 MessageBox.Show("Booking saved successfully!");
             }
