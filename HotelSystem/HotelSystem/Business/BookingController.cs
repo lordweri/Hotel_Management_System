@@ -18,7 +18,7 @@ namespace HotelSystem.Business
 
         #region Properties
         public Collection<Booking> AllBookings      //Use BookingController.AllBookings to get all bookings from the database
-        {
+        {                                           //Use DataMaintenance() and FinalizeChanges() to add, edit or delete a booking from the database
             get
             {
                 return bookings;
