@@ -67,22 +67,20 @@ namespace HotelSystem.Business
 
         //Use these methods to search for a room
         #region Search Method
-        //searches for a room in the collection by room number
+        //searches for a room in the collection/database by room number
         public Room FindRoom(string roomNumber)
         {
-            int index = 0;
-            bool found = (rooms[index].getRoomNo() == roomNumber);  //check if it is the first record
-            int count = rooms.Count;                       //counts the number of rooms in the collection. For our project, it should be 5
-
-            while ((!(found) && (index < rooms.Count - 1)))
+            foreach (Room room in rooms)
             {
-                index++;
-                found = (rooms[index].getRoomNo() == roomNumber);    //check if it is the next record
+                if (room.getRoomNo() == roomNumber)
+                {
+                    return room;
+                }
             }
-            return rooms[index];
+            return null;
         }
 
-        //This method finds the index of a room in the collection
+        //This method finds the index of a room in the collection, returns -1 if not found
         public int FindIndex(Room room)
         {
             int index = 0;

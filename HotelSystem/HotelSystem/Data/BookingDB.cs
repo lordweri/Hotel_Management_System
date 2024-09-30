@@ -253,7 +253,7 @@ namespace HotelSystem.Data
         }
 
         //Commit changes to the database
-        private bool UpdateDataSource(Booking booking, DB.DBOperation operation)
+        public bool UpdateDataSource(Booking booking, DB.DBOperation operation)
         {
             bool success = true;
             switch (operation)

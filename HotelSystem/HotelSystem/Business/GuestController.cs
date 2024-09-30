@@ -36,9 +36,62 @@ namespace HotelSystem.Business
 
         #endregion
 
-        //TODO
         #region Database communication
+        public void DataMaintenance(Guest aGuest, DB.DBOperation operation)
+        {
+            int index = 0;
+            guestDB.DataSetChange(aGuest, operation);   //add, edit or delete guest in the DataSet
+            switch (operation)
+            {
+                case DB.DBOperation.Add:      //add a guest to the dataset
+                    guests.Add(aGuest);         
+                    break;
+                case DB.DBOperation.Edit:
+                    index = FindIndex(aGuest);
+                    aGuest = guests[index];     //update a guest in the Collection, i.e. replace a old guest object with a new object (NOTE: guestID should remain the same)
+                    break;
+                case DB.DBOperation.Delete:      //delete a guest from the dataset
+                    index = FindIndex(aGuest);
+                    guests.RemoveAt(index);
+                    break;
+            }
+        }
 
+        public bool FinalizeChanges(Guest guest, DB.DBOperation operation)
+        {
+            return guestDB.UpdateDataSource(guest, operation);
+        }
+        #endregion
 
+        //Use these method to search for a guest in the database/Collection
+        #region Search methods
+        //This method searches for a guest in the database by guestID
+        public Guest FindGuest(string guestID)
+        {
+            foreach (Guest guest in guests)
+            {
+                if (guest.getGuestID() == guestID)
+                {
+                    return guest;
+                }
+            }
+            return null;
+        }
+
+        //This method finds the index of a guest in the collection
+        private int FindIndex(Guest aGuest)
+        {
+            int index = 0;
+            foreach (Guest guest in guests)
+            {
+                if (guest.getGuestID() == aGuest.getGuestID())
+                {
+                    break;
+                }
+                index++;
+            }
+            return index;
+        }
+        #endregion
     }
 }
