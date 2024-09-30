@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,15 +57,15 @@ namespace HotelSystem.Business
             this.bookingID = bID;
         }
 
-        //This class will be used in BookingDB class to create a guest object from the database
-        //when performming reading operation
-        public Guest(string guestID, string name, string Email, string phone, string bID)
+        //This constructor will be used in BookingDB class to create a guest object from the database
+        //when performming reading operation. It will also be used in GuestDB class to create a guest object
+        //for each row in the database and added to the collection
+        public Guest(string guestID, string name, string Email, string phone)
         {
             this.Name = name;
             this.email = Email;
             this.telephone = phone;
             this.guestID = guestID;
-            this.bookingID = bID;
         }
         #endregion
 

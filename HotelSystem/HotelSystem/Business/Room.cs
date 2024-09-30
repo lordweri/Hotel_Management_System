@@ -11,7 +11,7 @@ namespace HotelSystem.Business
         private string roomNo;
         private double rate;
         private Boolean availability;
-        public RoomType roomType;   //Zhentao: Since we assume single room type, I suggest to remove this attribute
+        public RoomType roomType;   //Zhentao: Since we assume single room type, I suggest to remove this attribute(Delete this line)
 
         #region Property methods
         public string RoomNo
