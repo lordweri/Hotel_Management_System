@@ -70,6 +70,9 @@
       <DependentUpon>BookingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Business\Booking.cs" />
+    <Compile Include="Business\BookingController.cs" />
+    <Compile Include="Business\GuestController.cs" />
+    <Compile Include="Business\RoomController.cs" />
     <Compile Include="Business\RoomType.cs" />
     <Compile Include="Data\BookingDB.cs" />
     <Compile Include="Data\DB.cs" />

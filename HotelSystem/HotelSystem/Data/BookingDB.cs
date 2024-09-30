@@ -10,7 +10,6 @@ using HotelSystem.Business;
 
 namespace HotelSystem.Data
 {
-    //This class allows CRUD operations on the Booking table
     public class BookingDB:DB
     {
         #region Data members
@@ -23,7 +22,7 @@ namespace HotelSystem.Data
         private string roomTable = "Room";
         private string roomSqlLocal = "SELECT * FROM Booking";
 
-        private Collection<Booking> bookings; //stores all bookings in a collection(Similar our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
+        private Collection<Booking> bookings; //stores all bookings in a collection(Similar to our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
         #endregion
 
         #region Properties
@@ -38,6 +37,7 @@ namespace HotelSystem.Data
         #endregion
 
         #region Constructor
+        //Constructor to be used in Controller classes
         public BookingDB() : base()
         {
             bookings = new Collection<Booking>();
@@ -112,8 +112,8 @@ namespace HotelSystem.Data
             if (operation == DBOperation.Add)
             {
                 aRow["BookingID"] = booking.bookingID;
-                aRow["GuestID"] = booking.guest.GuestID;
-                aRow["RoomNumber"] = booking.room.RoomNo;
+                aRow["GuestID"] = booking.guest.getGuestID();
+                aRow["RoomNumber"] = booking.room.getRoomNo();
                 aRow["CheckInDate"] = booking.range.Start;
                 aRow["CheckOutDate"] = booking.range.End;
                 aRow["TotalPrice"] = booking.totalPrice;
@@ -146,20 +146,24 @@ namespace HotelSystem.Data
         #endregion
 
         #region Database operations CRUD
+        //Add, Edit or Delete a booking in the Booking DataSet
         public void DataSetChange(Booking booking, DB.DBOperation operation)
         {
             DataRow aRow = null;
             switch (operation)
             {
+                //Added a booking row to the dataset
                 case DB.DBOperation.Add:
                     aRow = dsMain.Tables[table].NewRow();
                     FillRow(aRow, booking, DB.DBOperation.Add);
                     dsMain.Tables[table].Rows.Add(aRow);
                     break;
+                //Edit a existing booking row in the dataset
                 case DB.DBOperation.Edit:
                     aRow = dsMain.Tables[table].Rows[FindRow(booking)];
                     FillRow(aRow, booking, DB.DBOperation.Edit);
                     break;
+                //Delete a booking row from the dataset
                 case DB.DBOperation.Delete:
                     dsMain.Tables[table].Rows[FindRow(booking)].Delete();
                     break;
@@ -167,6 +171,7 @@ namespace HotelSystem.Data
         }
         #endregion
 
+        //Contains the UpdateDataSource() method to be used in the Controller classes
         #region Build Parameters, Create Commands & Update database
         private void Build_INSERT_Parameters(Booking booking)
         {
@@ -248,7 +253,7 @@ namespace HotelSystem.Data
         }
 
         //Commit changes to the database
-        private bool UpdateDataSource(Booking booking, DB.DBOperation operation)
+        public bool UpdateDataSource(Booking booking, DB.DBOperation operation)
         {
             bool success = true;
             switch (operation)
