@@ -10,8 +10,7 @@ using System.Windows.Forms;
 
 namespace HotelSystem.Data
 {
-    //This class allows to read the Room table from the database
-    //No Update, Insert or Delete operations are allowed on the Room table, only read
+    //This class allows to CRUD operation on the Room table from the database
     public class RoomDB : DB
     {
         #region Data members
@@ -58,10 +57,10 @@ namespace HotelSystem.Data
                 myRow = myRow_loopVariable;
                 if (!(myRow.RowState == DataRowState.Deleted))
                 {
-                    room = new Room();
-                    room.RoomID = Convert.ToString(myRow["RoomID"]).Trim();
-                    room.Rate = Convert.ToDouble(myRow["Rate"]);
-                    room.Availability = Convert.ToBoolean(myRow["Status"]);
+                    string roomID = Convert.ToString(myRow["RoomID"]).Trim();
+                    double rate = Convert.ToDouble(myRow["Rate"]);
+                    Boolean availability = Convert.ToBoolean(myRow["Status"]);
+                    room = new Room(roomID, rate, availability);  
                     rooms.Add(room);
                 }
             }
@@ -72,7 +71,7 @@ namespace HotelSystem.Data
         {
             if (operation == DBOperation.Add)
             {
-                aRow["RoomNumber"] = aRoom.RoomID;
+                aRow["RoomNumber"] = aRoom.RoomNo;
                 aRow["Rate"] = aRoom.Rate;
                 aRow["Status"] = aRoom.Availability;
             }
@@ -84,7 +83,7 @@ namespace HotelSystem.Data
             int rowIndex = 0;
             DataRow myRow = null;
             int returnValue = -1;
-            string roomNumber = aRoom.RoomID;     //TODO check later of variable name matchs with Room class
+            string roomNumber = aRoom.RoomNo;     //TODO check later of variable name matchs with Room class
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 myRow = myRow_loopVariable;
@@ -121,6 +120,81 @@ namespace HotelSystem.Data
                     dsMain.Tables[table].Rows[FindRow(aRoom)].Delete();
                     break;
             }
+        }
+        #endregion
+
+        #region Build Parameters, Create Commands & Update database
+        private void Build_INSERT_Parameters(Room aRoom)
+        {
+            SqlParameter param = default(SqlParameter);
+            param = new SqlParameter("@RoomNumber", SqlDbType.NVarChar, 50, "RoomNumber");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Rate", SqlDbType.Money, 8, "Rate");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Status", SqlDbType.Int, 10, "Status");
+            daMain.InsertCommand.Parameters.Add(param);
+        }
+
+        private void Build_UPDATE_Parameters(Room aRoom)
+        {
+            SqlParameter param = default(SqlParameter);
+            param = new SqlParameter("@RoomNumber", SqlDbType.NVarChar, 50, "RoomNumber");
+            param.SourceVersion = DataRowVersion.Original;
+            daMain.UpdateCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Rate", SqlDbType.Money, 8, "Rate");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.UpdateCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Status", SqlDbType.Int, 10, "Status");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.UpdateCommand.Parameters.Add(param);
+        }
+
+        private void Build_DELETE_Parameters(Room aRoom)
+        {
+            SqlParameter param;
+            param = new SqlParameter("@RoomNumber", SqlDbType.NVarChar, 50, "RoomNumber");
+            daMain.DeleteCommand.Parameters.Add(param);
+        }
+
+        private void Create_INSERT_Command(Room aRoom)
+        {
+            daMain.InsertCommand = new SqlCommand("INSERT into Room (RoomNumber, Rate, Status) VALUES (@RoomNumber, @Rate, @Status)", cnMain);
+            Build_INSERT_Parameters(aRoom);
+        }
+
+        private void Create_UPDATE_Command(Room aRoom)
+        {
+            daMain.UpdateCommand = new SqlCommand("UPDATE Room SET RoomNumber = @RoomNumber, Rate = @Rate, Status = @Status WHERE RoomNumber = @RoomNumber", cnMain);
+            Build_UPDATE_Parameters(aRoom);
+        }
+
+        private void Create_DELETE_Command(Room aRoom)
+        {
+            daMain.DeleteCommand = new SqlCommand("DELETE FROM Room WHERE RoomNumber = @RoomNumber", cnMain);
+            Build_DELETE_Parameters(aRoom);
+        }
+
+        public bool UpdateDataSource(Room aRoom, DB.DBOperation operation)
+        {
+            bool success = true;
+            switch (operation)
+            {
+                case DB.DBOperation.Add:
+                    Create_INSERT_Command(aRoom);
+                    break;
+                case DBOperation.Edit:
+                    Create_UPDATE_Command(aRoom);
+                    break;
+                case DB.DBOperation.Delete:
+                    Create_DELETE_Command(aRoom);
+                    break;
+            }
+            success = UpdateDataSource(sqlLocal, table);
+            return success;
         }
         #endregion
     }
