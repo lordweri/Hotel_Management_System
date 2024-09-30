@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelSystem
+namespace HotelSystem.Business
 {
     public class Guest
     {
@@ -46,7 +46,7 @@ namespace HotelSystem
         }
         #endregion
 
-
+        #region Constructors
         public Guest(string name, string Email, string phone,string bID)
         {
             this.Name = name;
@@ -55,6 +55,19 @@ namespace HotelSystem
             this.guestID = GenerateGuestID(name);
             this.bookingID = bID;
         }
+
+        //This class will be used in BookingDB class to create a guest object from the database
+        //when performming reading operation
+        public Guest(string guestID, string name, string Email, string phone, string bID)
+        {
+            this.Name = name;
+            this.email = Email;
+            this.telephone = phone;
+            this.guestID = guestID;
+            this.bookingID = bID;
+        }
+        #endregion
+
         #region utility methods
         private static string GenerateGuestID(string firstName)
         {

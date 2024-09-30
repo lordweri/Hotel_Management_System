@@ -33,6 +33,7 @@ namespace HotelSystem.Business
         }
         #endregion
 
+        #region Constructors
         public Room(string number,double price)
         {
             roomNo = number;
@@ -40,12 +41,16 @@ namespace HotelSystem.Business
             availability = true;
         }
 
+        //This constructor will be used in data layer for reading operation
+        //When performing reading operation, we need to create a room object from the database
+        //and added to the collection
         public Room(string number, double price, Boolean availability)
         {
             roomNo = number;
             rate = price;
             this.availability = availability;
         }
+        #endregion
 
         public void changeAvailability(Boolean available)
         {
