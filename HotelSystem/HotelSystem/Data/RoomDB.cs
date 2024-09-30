@@ -11,13 +11,12 @@ using HotelSystem.Business;
 
 namespace HotelSystem.Data
 {
-    //This class allows to CRUD operation on the Room table from the database
     public class RoomDB : DB
     {
         #region Data members
         private string table = "Room";
         private string sqlLocal = "SELECT * FROM Room";
-        private Collection<Room> rooms; //stores all rooms in a collection(Similar our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
+        private Collection<Room> rooms; //stores all rooms in a collection(Similar our practical workshop, their have a Collection in EmployeeDB.cs that stores all employees)
         #endregion
 
         #region Properties
@@ -71,9 +70,9 @@ namespace HotelSystem.Data
         {
             if (operation == DBOperation.Add)
             {
-                aRow["RoomNumber"] = aRoom.RoomNo;
-                aRow["Rate"] = aRoom.Rate;
-                aRow["Status"] = aRoom.Availability;
+                aRow["RoomNumber"] = aRoom.getRoomNo();
+                aRow["Rate"] = aRoom.getRate();
+                aRow["Status"] = aRoom.getAvailability();
             }
         }
 
@@ -83,7 +82,7 @@ namespace HotelSystem.Data
             int rowIndex = 0;
             DataRow myRow = null;
             int returnValue = -1;
-            string roomNumber = aRoom.RoomNo;     
+            string roomNumber = aRoom.getRoomNo();     
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 myRow = myRow_loopVariable;

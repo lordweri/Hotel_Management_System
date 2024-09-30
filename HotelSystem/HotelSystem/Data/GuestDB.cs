@@ -10,18 +10,17 @@ using HotelSystem.Business;
 
 namespace HotelSystem.Data
 {
-    //This class allows CRUD operations on the Guest table in the database
     public class GuestDB : DB
     {
         #region Data members
         private string table = "Guest";
         private string sqlLocal = "SELECT * FROM Guest";
-        private Collection<Room> guests; //stores all rooms in a collection(Similar our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
+        private Collection<Guest> guests; //stores all rooms in a collection(Similar to our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
         #endregion
 
         #region Properties
         //Returns all rooms in a collection
-        public Collection<Room> AllGuests
+        public Collection<Guest> AllGuests
         {
             get
             {
@@ -34,7 +33,7 @@ namespace HotelSystem.Data
         //Constructor to be used in Controller classes
         public GuestDB() : base()
         {
-            guests = new Collection<Room>();
+            guests = new Collection<Guest>();
             FillDataSet(sqlLocal, table);
             Add2Collection(table);
         }
@@ -70,10 +69,10 @@ namespace HotelSystem.Data
         {
             if (operation == DBOperation.Add)
             {
-                row["Name"] = guest.Name;
-                row["GuestID"] = guest.GuestID;
-                row["Telephone"] = guest.Telephone;
-                row["Email"] = guest.Email;
+                row["Name"] = guest.getName();
+                row["GuestID"] = guest.getGuestID();
+                row["Telephone"] = guest.getPhone();
+                row["Email"] = guest.getEmail();
             }
         }
 
@@ -83,7 +82,7 @@ namespace HotelSystem.Data
             int rowIndex = 0;
             DataRow myRow = null;
             int returnValue = -1;
-            string guestID = aGuest.GuestID;
+            string guestID = aGuest.getGuestID();
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 myRow = myRow_loopVariable;

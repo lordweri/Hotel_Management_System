@@ -10,7 +10,6 @@ using HotelSystem.Business;
 
 namespace HotelSystem.Data
 {
-    //This class allows CRUD operations on the Booking table
     public class BookingDB:DB
     {
         #region Data members
@@ -23,7 +22,7 @@ namespace HotelSystem.Data
         private string roomTable = "Room";
         private string roomSqlLocal = "SELECT * FROM Booking";
 
-        private Collection<Booking> bookings; //stores all bookings in a collection(Similar our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
+        private Collection<Booking> bookings; //stores all bookings in a collection(Similar to our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
         #endregion
 
         #region Properties
@@ -113,8 +112,8 @@ namespace HotelSystem.Data
             if (operation == DBOperation.Add)
             {
                 aRow["BookingID"] = booking.bookingID;
-                aRow["GuestID"] = booking.guest.GuestID;
-                aRow["RoomNumber"] = booking.room.RoomNo;
+                aRow["GuestID"] = booking.guest.getGuestID();
+                aRow["RoomNumber"] = booking.room.getRoomNo();
                 aRow["CheckInDate"] = booking.range.Start;
                 aRow["CheckOutDate"] = booking.range.End;
                 aRow["TotalPrice"] = booking.totalPrice;
