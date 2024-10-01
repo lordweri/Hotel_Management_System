@@ -1,4 +1,4 @@
-﻿namespace HotelSystem
+﻿namespace HotelSystem.Presentation
 {
     partial class ReportForm
     {

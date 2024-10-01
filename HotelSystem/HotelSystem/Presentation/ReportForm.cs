@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HotelSystem.Business; 
 
-namespace HotelSystem
+namespace HotelSystem.Presentation
 {
     public partial class ReportForm : Form
     {
