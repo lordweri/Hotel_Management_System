@@ -9,6 +9,8 @@ using HotelSystem.Data;
 namespace HotelSystem.Business
 {
     //Make use of this class to CRUD operation on the Booking table from the database
+    //Initialize this class, and use the AllBookings property to get all bookings from the database, and use DataMaintenance() and FinalizeChanges() to add, edit or delete a booking from the database
+    //Similarly for the RoomController and GuestController
     public class BookingController
     {
         #region Data members
