@@ -20,6 +20,11 @@ namespace HotelSystem
         {
             this.guestTableAdapter.Fill(this.hotelDatabaseDataSet.Guest);
             this.roomTableAdapter.Fill(this.hotelDatabaseDataSet.Room);
+
+            // Set up comboboxes
+            cmbGuest.DataSource = hotelDatabaseDataSet.Guest;
+            cmbRoom.DataSource = hotelDatabaseDataSet.Room;
+            cmbGuest.ValueMember = "GuestID";
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -34,6 +39,9 @@ namespace HotelSystem
 
             // Display results in DataGridView
             dataGridViewResults.DataSource = bookings.CopyToDataTable();
+
+            // Clear results if no bookings found
+
         }
 
         private void EnquiryForm_Load_1(object sender, EventArgs e)

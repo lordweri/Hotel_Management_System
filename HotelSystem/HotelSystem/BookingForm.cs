@@ -161,6 +161,7 @@ namespace HotelSystem
         private string GenerateReferenceNumber()
         {
             return "BK" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            
         }
 
         private void SaveBooking(int guestId, int roomNumber, DateTime checkIn, DateTime checkOut, decimal totalRate, decimal deposit, string referenceNumber)
@@ -173,6 +174,8 @@ namespace HotelSystem
             newBooking.TotalRate = totalRate; // Map to TotalRate field
             hotelDatabaseDataSet.Booking.AddBookingRow(newBooking);
             bookingTableAdapter.Update(hotelDatabaseDataSet.Booking);
+            
+
         }
 
         private void ShowError(string message)
