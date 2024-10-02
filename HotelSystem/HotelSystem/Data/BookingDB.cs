@@ -73,8 +73,9 @@ namespace HotelSystem.Data
 
                     Guest guest = FindGuestByID(guestID);
                     Room room = FindRoomByNumber(roomNumber);
+                    string roomType = room.getType();
 
-                    Booking booking = new Booking(bookingID, guest, room, start, end);
+                    Booking booking = new Booking(bookingID, guest, room.roomType, room, start, end);
                     bookings.Add(booking);
                 }
             }
@@ -89,9 +90,32 @@ namespace HotelSystem.Data
                 string name = Convert.ToString(guestRows[0]["Name"]);
                 string email = Convert.ToString(guestRows[0]["Email"]);
                 string telephone = Convert.ToString(guestRows[0]["Telephone"]);
-                return new Guest(guestID, name, email, telephone); //return guest object if found
+                Booking booking = FindBookingByID(guestID);
+                return new Guest(guestID, name, email, telephone, booking); //return guest object if found
             }
             return null; //return null if not found
+        }
+
+        //Find a booking in the database by booking ID and return a Booking object
+        public Booking FindBookingByID(string bookingID)
+        {
+            DataRow[] bookingRows = dsMain.Tables["Booking"].Select($"BookingID = '{bookingID}'");
+            if (bookingRows.Length > 0)
+            {
+                string guestID = Convert.ToString(bookingRows[0]["GuestID"]);
+                string roomNumber = Convert.ToString(bookingRows[0]["RoomNumber"]);
+                DateTime start = Convert.ToDateTime(bookingRows[0]["CheckInDate"]);
+                DateTime end = Convert.ToDateTime(bookingRows[0]["CheckOutDate"]);
+                double totalPrice = Convert.ToDouble(bookingRows[0]["TotalPrice"]);
+                BookingStatus status = (BookingStatus)Enum.Parse(typeof(BookingStatus), bookingRows[0]["Status"].ToString());
+
+                Guest guest = FindGuestByID(guestID);
+                Room room = FindRoomByNumber(roomNumber);
+                string roomType = room.getType();
+
+                return new Booking(bookingID, guest, room.roomType, room, start, end); //return booking object if found
+            }
+            return null; 
         }
 
         //Find a room in the database by room number and return a Room object
