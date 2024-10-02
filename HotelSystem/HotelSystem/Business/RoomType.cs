@@ -8,7 +8,7 @@ namespace HotelSystem.Business
 {
     public enum RoomType
     {
-        EnSuite,
+        Single,
         CoupleSharingOneBed,
         TwoPeopleSeparateBeds,
         FamilyRoom,
