@@ -82,9 +82,10 @@
             this.cmbRoom.DataSource = this.roomBindingSource;
             this.cmbRoom.DisplayMember = "RoomNumber";
             this.cmbRoom.FormattingEnabled = true;
-            this.cmbRoom.Location = new System.Drawing.Point(118, 258);
+            this.cmbRoom.Location = new System.Drawing.Point(88, 210);
+            this.cmbRoom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbRoom.Name = "cmbRoom";
-            this.cmbRoom.Size = new System.Drawing.Size(200, 24);
+            this.cmbRoom.Size = new System.Drawing.Size(151, 21);
             this.cmbRoom.TabIndex = 1;
             // 
             // roomBindingSource
@@ -94,23 +95,26 @@
             // 
             // dtpCheckIn
             // 
-            this.dtpCheckIn.Location = new System.Drawing.Point(118, 333);
+            this.dtpCheckIn.Location = new System.Drawing.Point(88, 271);
+            this.dtpCheckIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpCheckIn.Name = "dtpCheckIn";
-            this.dtpCheckIn.Size = new System.Drawing.Size(200, 22);
+            this.dtpCheckIn.Size = new System.Drawing.Size(151, 20);
             this.dtpCheckIn.TabIndex = 2;
             // 
             // dtpCheckOut
             // 
-            this.dtpCheckOut.Location = new System.Drawing.Point(118, 401);
+            this.dtpCheckOut.Location = new System.Drawing.Point(88, 326);
+            this.dtpCheckOut.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpCheckOut.Name = "dtpCheckOut";
-            this.dtpCheckOut.Size = new System.Drawing.Size(200, 22);
+            this.dtpCheckOut.Size = new System.Drawing.Size(151, 20);
             this.dtpCheckOut.TabIndex = 3;
             // 
             // btnSaveBooking
             // 
-            this.btnSaveBooking.Location = new System.Drawing.Point(378, 618);
+            this.btnSaveBooking.Location = new System.Drawing.Point(284, 502);
+            this.btnSaveBooking.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSaveBooking.Name = "btnSaveBooking";
-            this.btnSaveBooking.Size = new System.Drawing.Size(202, 51);
+            this.btnSaveBooking.Size = new System.Drawing.Size(152, 41);
             this.btnSaveBooking.TabIndex = 4;
             this.btnSaveBooking.Text = "Save Booking";
             this.btnSaveBooking.UseVisualStyleBackColor = true;
@@ -119,36 +123,40 @@
             // lblGuestName
             // 
             this.lblGuestName.AutoSize = true;
-            this.lblGuestName.Location = new System.Drawing.Point(24, 48);
+            this.lblGuestName.Location = new System.Drawing.Point(18, 39);
+            this.lblGuestName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGuestName.Name = "lblGuestName";
-            this.lblGuestName.Size = new System.Drawing.Size(45, 16);
+            this.lblGuestName.Size = new System.Drawing.Size(38, 13);
             this.lblGuestName.TabIndex = 5;
             this.lblGuestName.Text = "Guest:";
             // 
             // lblRoom
             // 
             this.lblRoom.AutoSize = true;
-            this.lblRoom.Location = new System.Drawing.Point(22, 266);
+            this.lblRoom.Location = new System.Drawing.Point(16, 216);
+            this.lblRoom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRoom.Name = "lblRoom";
-            this.lblRoom.Size = new System.Drawing.Size(47, 16);
+            this.lblRoom.Size = new System.Drawing.Size(38, 13);
             this.lblRoom.TabIndex = 6;
             this.lblRoom.Text = "Room:";
             // 
             // lblCheckIn
             // 
             this.lblCheckIn.AutoSize = true;
-            this.lblCheckIn.Location = new System.Drawing.Point(14, 333);
+            this.lblCheckIn.Location = new System.Drawing.Point(10, 271);
+            this.lblCheckIn.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCheckIn.Name = "lblCheckIn";
-            this.lblCheckIn.Size = new System.Drawing.Size(93, 16);
+            this.lblCheckIn.Size = new System.Drawing.Size(79, 13);
             this.lblCheckIn.TabIndex = 7;
             this.lblCheckIn.Text = "Check In Date:";
             // 
             // lblCheckOut
             // 
             this.lblCheckOut.AutoSize = true;
-            this.lblCheckOut.Location = new System.Drawing.Point(14, 406);
+            this.lblCheckOut.Location = new System.Drawing.Point(10, 330);
+            this.lblCheckOut.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCheckOut.Name = "lblCheckOut";
-            this.lblCheckOut.Size = new System.Drawing.Size(103, 16);
+            this.lblCheckOut.Size = new System.Drawing.Size(87, 13);
             this.lblCheckOut.TabIndex = 8;
             this.lblCheckOut.Text = "Check Out Date:";
             // 
@@ -167,81 +175,91 @@
             // 
             // txtGuestName
             // 
-            this.txtGuestName.Location = new System.Drawing.Point(118, 48);
+            this.txtGuestName.Location = new System.Drawing.Point(88, 39);
+            this.txtGuestName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtGuestName.Name = "txtGuestName";
-            this.txtGuestName.Size = new System.Drawing.Size(200, 22);
+            this.txtGuestName.Size = new System.Drawing.Size(151, 20);
             this.txtGuestName.TabIndex = 9;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(118, 120);
+            this.txtAddress.Location = new System.Drawing.Point(88, 98);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(200, 22);
+            this.txtAddress.Size = new System.Drawing.Size(151, 20);
             this.txtAddress.TabIndex = 10;
             // 
             // errorLabel
             // 
             this.errorLabel.AutoSize = true;
-            this.errorLabel.Location = new System.Drawing.Point(24, 653);
+            this.errorLabel.Location = new System.Drawing.Point(18, 531);
+            this.errorLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(0, 16);
+            this.errorLabel.Size = new System.Drawing.Size(0, 13);
             this.errorLabel.TabIndex = 11;
             // 
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(24, 187);
+            this.lblPhone.Location = new System.Drawing.Point(18, 152);
+            this.lblPhone.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(49, 16);
+            this.lblPhone.Size = new System.Drawing.Size(41, 13);
             this.lblPhone.TabIndex = 12;
             this.lblPhone.Text = "Phone:";
             // 
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(24, 123);
+            this.lblAddress.Location = new System.Drawing.Point(18, 100);
+            this.lblAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(61, 16);
+            this.lblAddress.Size = new System.Drawing.Size(48, 13);
             this.lblAddress.TabIndex = 13;
             this.lblAddress.Text = "Address:";
             // 
             // lblAdults
             // 
             this.lblAdults.AutoSize = true;
-            this.lblAdults.Location = new System.Drawing.Point(24, 489);
+            this.lblAdults.Location = new System.Drawing.Point(18, 397);
+            this.lblAdults.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAdults.Name = "lblAdults";
-            this.lblAdults.Size = new System.Drawing.Size(47, 16);
+            this.lblAdults.Size = new System.Drawing.Size(39, 13);
             this.lblAdults.TabIndex = 14;
             this.lblAdults.Text = "Adults:";
             // 
             // lblChildren
             // 
             this.lblChildren.AutoSize = true;
-            this.lblChildren.Location = new System.Drawing.Point(22, 558);
+            this.lblChildren.Location = new System.Drawing.Point(16, 453);
+            this.lblChildren.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblChildren.Name = "lblChildren";
-            this.lblChildren.Size = new System.Drawing.Size(56, 16);
+            this.lblChildren.Size = new System.Drawing.Size(45, 13);
             this.lblChildren.TabIndex = 15;
             this.lblChildren.Text = "Children";
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(118, 180);
+            this.txtPhone.Location = new System.Drawing.Point(88, 146);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(200, 22);
+            this.txtPhone.Size = new System.Drawing.Size(151, 20);
             this.txtPhone.TabIndex = 16;
             // 
             // nudAdults
             // 
-            this.nudAdults.Location = new System.Drawing.Point(118, 482);
+            this.nudAdults.Location = new System.Drawing.Point(88, 392);
+            this.nudAdults.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nudAdults.Name = "nudAdults";
-            this.nudAdults.Size = new System.Drawing.Size(200, 22);
+            this.nudAdults.Size = new System.Drawing.Size(150, 20);
             this.nudAdults.TabIndex = 17;
             // 
             // nudChildren
             // 
-            this.nudChildren.Location = new System.Drawing.Point(118, 558);
+            this.nudChildren.Location = new System.Drawing.Point(88, 453);
+            this.nudChildren.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nudChildren.Name = "nudChildren";
-            this.nudChildren.Size = new System.Drawing.Size(200, 22);
+            this.nudChildren.Size = new System.Drawing.Size(150, 20);
             this.nudChildren.TabIndex = 18;
             // 
             // dgvBookings
@@ -249,12 +267,14 @@
             this.dgvBookings.AutoGenerateColumns = false;
             this.dgvBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBookings.DataSource = this.hotelDatabaseDataSetBindingSource1;
-            this.dgvBookings.Location = new System.Drawing.Point(617, 145);
+            this.dgvBookings.Location = new System.Drawing.Point(463, 118);
+            this.dgvBookings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvBookings.Name = "dgvBookings";
             this.dgvBookings.RowHeadersWidth = 51;
             this.dgvBookings.RowTemplate.Height = 24;
-            this.dgvBookings.Size = new System.Drawing.Size(399, 390);
+            this.dgvBookings.Size = new System.Drawing.Size(299, 317);
             this.dgvBookings.TabIndex = 19;
+            this.dgvBookings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBookings_CellContentClick);
             // 
             // hotelDatabaseDataSetBindingSource1
             // 
@@ -264,24 +284,26 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(378, 53);
+            this.lblEmail.Location = new System.Drawing.Point(284, 43);
+            this.lblEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(44, 16);
+            this.lblEmail.Size = new System.Drawing.Size(35, 13);
             this.lblEmail.TabIndex = 20;
             this.lblEmail.Text = "Email:";
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(428, 47);
+            this.txtEmail.Location = new System.Drawing.Point(321, 38);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(152, 22);
+            this.txtEmail.Size = new System.Drawing.Size(115, 20);
             this.txtEmail.TabIndex = 21;
             // 
             // BookingForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1047, 725);
+            this.ClientSize = new System.Drawing.Size(785, 589);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.dgvBookings);
@@ -303,6 +325,7 @@
             this.Controls.Add(this.dtpCheckOut);
             this.Controls.Add(this.dtpCheckIn);
             this.Controls.Add(this.cmbRoom);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "BookingForm";
             this.Text = "BookingForm";
             this.Load += new System.EventHandler(this.BookingForm_Load);

@@ -183,6 +183,11 @@ namespace HotelSystem.Presentation
         {
             errorLabel.Text = message;
         }
+
+        private void dgvBookings_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 

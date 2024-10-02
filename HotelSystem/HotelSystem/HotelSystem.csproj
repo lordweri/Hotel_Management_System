@@ -80,6 +80,12 @@
     <Compile Include="Data\RoomDB.cs" />
     <Compile Include="Business\Hotel.cs" />
     <Compile Include="Business\DateRange.cs" />
+    <Compile Include="Presentation\DateCheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\DateCheckForm.Designer.cs">
+      <DependentUpon>DateCheckForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\EnquiryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </Compile>
     <EmbeddedResource Include="Presentation\BookingForm.resx">
       <DependentUpon>BookingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\DateCheckForm.resx">
+      <DependentUpon>DateCheckForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\EnquiryForm.resx">
       <DependentUpon>EnquiryForm.cs</DependentUpon>
