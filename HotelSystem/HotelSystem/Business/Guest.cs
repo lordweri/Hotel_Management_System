@@ -14,6 +14,7 @@ namespace HotelSystem.Business
         private string email;
         private string telephone;
         private Booking booking;
+        private string text;
 
 
         #region Constructors
@@ -34,6 +35,11 @@ namespace HotelSystem.Business
             this.email = Email;
             this.telephone = phone;
             this.guestID = guestID;
+        }
+
+        public Guest(string name, string Email, string phone, string text) : this(name, Email, phone)
+        {
+            this.text = text;
         }
         #endregion
 

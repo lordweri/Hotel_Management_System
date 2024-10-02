@@ -13,7 +13,9 @@ namespace HotelSystem.Business
         private string RoomNo;
         private double rate;
         private Boolean check;
-        public RoomType roomType;  
+        public RoomType roomType;
+
+        public int RoomNumber { get; internal set; }
 
         #region Constructors
         public Room(string number)

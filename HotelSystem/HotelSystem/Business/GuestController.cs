@@ -94,6 +94,11 @@ namespace HotelSystem.Business
             }
             return index;
         }
+
+        internal Guest GetGuestByDetails(string text1, string text2)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }
