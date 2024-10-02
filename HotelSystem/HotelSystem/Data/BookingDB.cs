@@ -16,12 +16,6 @@ namespace HotelSystem.Data
         private string table = "Booking";
         private string sqlLocal = "SELECT * FROM Booking";
 
-        private string guestTable = "Guest";
-        private string guestSqlLocal = "SELECT * FROM Booking";
-
-        private string roomTable = "Room";
-        private string roomSqlLocal = "SELECT * FROM Booking";
-
         private Collection<Booking> bookings; //stores all bookings in a collection(Similar to our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
         #endregion
 
