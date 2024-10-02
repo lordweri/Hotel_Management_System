@@ -63,11 +63,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Presentation\BookingForm.cs">
+    <Compile Include="Presentation\BookForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\BookingForm.Designer.cs">
-      <DependentUpon>BookingForm.cs</DependentUpon>
+    <Compile Include="Presentation\BookForm.Designer.cs">
+      <DependentUpon>BookForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\BookingCancelledForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\BookingCancelledForm.Designer.cs">
+      <DependentUpon>BookingCancelledForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\BookingChangedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\BookingChangedForm.Designer.cs">
+      <DependentUpon>BookingChangedForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Business\Booking.cs" />
     <Compile Include="Business\BookingController.cs" />
@@ -80,17 +92,23 @@
     <Compile Include="Data\RoomDB.cs" />
     <Compile Include="Business\Hotel.cs" />
     <Compile Include="Business\DateRange.cs" />
+    <Compile Include="Presentation\BookingGeneratedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\BookingGeneratedForm.Designer.cs">
+      <DependentUpon>BookingGeneratedForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\ChangeReserveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\ChangeReserveForm.Designer.cs">
+      <DependentUpon>ChangeReserveForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\DateCheckForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation\DateCheckForm.Designer.cs">
       <DependentUpon>DateCheckForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\EnquiryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\EnquiryForm.Designer.cs">
-      <DependentUpon>EnquiryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\MainMenu.cs">
       <SubType>Form</SubType>
@@ -116,6 +134,12 @@
     <Compile Include="Presentation\LogForm.Designer.cs">
       <DependentUpon>LogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\PaymentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\PaymentForm.Designer.cs">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\RegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,14 +156,23 @@
     <Compile Include="Presentation\ReportForm.Designer.cs">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Presentation\BookingForm.resx">
-      <DependentUpon>BookingForm.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation\BookForm.resx">
+      <DependentUpon>BookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\BookingCancelledForm.resx">
+      <DependentUpon>BookingCancelledForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\BookingChangedForm.resx">
+      <DependentUpon>BookingChangedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\BookingGeneratedForm.resx">
+      <DependentUpon>BookingGeneratedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\ChangeReserveForm.resx">
+      <DependentUpon>ChangeReserveForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\DateCheckForm.resx">
       <DependentUpon>DateCheckForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\EnquiryForm.resx">
-      <DependentUpon>EnquiryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
@@ -149,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\LogForm.resx">
       <DependentUpon>LogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\PaymentForm.resx">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\RegistrationForm.resx">
       <DependentUpon>RegistrationForm.cs</DependentUpon>

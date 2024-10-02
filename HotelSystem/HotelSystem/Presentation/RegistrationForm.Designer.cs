@@ -184,11 +184,11 @@
             // 
             this.btnSubmit.BackColor = System.Drawing.Color.LightGreen;
             this.btnSubmit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnSubmit.Location = new System.Drawing.Point(697, 524);
+            this.btnSubmit.Location = new System.Drawing.Point(626, 524);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(86, 35);
+            this.btnSubmit.Size = new System.Drawing.Size(157, 35);
             this.btnSubmit.TabIndex = 14;
-            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.Text = "Generate Booking";
             this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
