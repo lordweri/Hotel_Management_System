@@ -32,7 +32,7 @@
             this.btnMakeReservation.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btnMakeReservation.Image = ((System.Drawing.Image)(resources.GetObject("btnMakeReservation.Image")));
             this.btnMakeReservation.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnMakeReservation.Location = new System.Drawing.Point(26, 274);
+            this.btnMakeReservation.Location = new System.Drawing.Point(11, 274);
             this.btnMakeReservation.Margin = new System.Windows.Forms.Padding(2);
             this.btnMakeReservation.Name = "btnMakeReservation";
             this.btnMakeReservation.Padding = new System.Windows.Forms.Padding(0, 20, 0, 10);
@@ -50,7 +50,7 @@
             this.btnChangeReservation.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btnChangeReservation.Image = ((System.Drawing.Image)(resources.GetObject("btnChangeReservation.Image")));
             this.btnChangeReservation.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnChangeReservation.Location = new System.Drawing.Point(235, 274);
+            this.btnChangeReservation.Location = new System.Drawing.Point(208, 274);
             this.btnChangeReservation.Margin = new System.Windows.Forms.Padding(2);
             this.btnChangeReservation.Name = "btnChangeReservation";
             this.btnChangeReservation.Padding = new System.Windows.Forms.Padding(0, 20, 0, 10);
@@ -68,7 +68,7 @@
             this.btnCancelReservation.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btnCancelReservation.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelReservation.Image")));
             this.btnCancelReservation.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelReservation.Location = new System.Drawing.Point(430, 274);
+            this.btnCancelReservation.Location = new System.Drawing.Point(406, 274);
             this.btnCancelReservation.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelReservation.Name = "btnCancelReservation";
             this.btnCancelReservation.Padding = new System.Windows.Forms.Padding(0, 20, 0, 10);
@@ -86,7 +86,7 @@
             this.btnMonthlyReport.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btnMonthlyReport.Image = ((System.Drawing.Image)(resources.GetObject("btnMonthlyReport.Image")));
             this.btnMonthlyReport.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnMonthlyReport.Location = new System.Drawing.Point(627, 274);
+            this.btnMonthlyReport.Location = new System.Drawing.Point(597, 274);
             this.btnMonthlyReport.Margin = new System.Windows.Forms.Padding(2);
             this.btnMonthlyReport.Name = "btnMonthlyReport";
             this.btnMonthlyReport.Padding = new System.Windows.Forms.Padding(0, 20, 0, 10);
@@ -103,7 +103,7 @@
             this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1, 575);
+            this.button1.Location = new System.Drawing.Point(1, 540);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 23);
             this.button1.TabIndex = 4;
@@ -118,7 +118,7 @@
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.Location = new System.Drawing.Point(1, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(814, 78);
+            this.panel1.Size = new System.Drawing.Size(783, 77);
             this.panel1.TabIndex = 5;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -127,7 +127,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(814, 596);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnMonthlyReport);

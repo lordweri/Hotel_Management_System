@@ -38,7 +38,7 @@ namespace HotelSystem.Presentation
             this.txtUserId.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUserId.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtUserId.ForeColor = System.Drawing.Color.Gray;
-            this.txtUserId.Location = new System.Drawing.Point(385, 274);
+            this.txtUserId.Location = new System.Drawing.Point(273, 274);
             this.txtUserId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUserId.Name = "txtUserId";
             this.txtUserId.Size = new System.Drawing.Size(210, 22);
@@ -53,7 +53,7 @@ namespace HotelSystem.Presentation
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPassword.ForeColor = System.Drawing.Color.Gray;
-            this.txtPassword.Location = new System.Drawing.Point(385, 333);
+            this.txtPassword.Location = new System.Drawing.Point(273, 323);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(210, 22);
@@ -67,7 +67,7 @@ namespace HotelSystem.Presentation
             this.btnSignIn.BackColor = System.Drawing.Color.LightGreen;
             this.btnSignIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSignIn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnSignIn.Location = new System.Drawing.Point(434, 392);
+            this.btnSignIn.Location = new System.Drawing.Point(318, 395);
             this.btnSignIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(112, 32);
@@ -90,7 +90,7 @@ namespace HotelSystem.Presentation
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(407, 165);
+            this.label1.Location = new System.Drawing.Point(293, 152);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(151, 42);
             this.label1.TabIndex = 7;
@@ -100,7 +100,7 @@ namespace HotelSystem.Presentation
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(360, 275);
+            this.pictureBox2.Location = new System.Drawing.Point(248, 274);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(20, 21);
             this.pictureBox2.TabIndex = 9;
@@ -110,7 +110,7 @@ namespace HotelSystem.Presentation
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(360, 333);
+            this.pictureBox3.Location = new System.Drawing.Point(248, 323);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(20, 22);
             this.pictureBox3.TabIndex = 10;
@@ -121,7 +121,7 @@ namespace HotelSystem.Presentation
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(968, 567);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label1);

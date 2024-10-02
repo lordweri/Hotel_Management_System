@@ -46,7 +46,7 @@
             // dateTimePickerStartDate
             // 
             this.dateTimePickerStartDate.CalendarMonthBackground = System.Drawing.SystemColors.ButtonFace;
-            this.dateTimePickerStartDate.Location = new System.Drawing.Point(152, 117);
+            this.dateTimePickerStartDate.Location = new System.Drawing.Point(71, 117);
             this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
             this.dateTimePickerStartDate.Size = new System.Drawing.Size(220, 20);
             this.dateTimePickerStartDate.TabIndex = 2;
@@ -54,7 +54,7 @@
             // dateTimePickerEndDate
             // 
             this.dateTimePickerEndDate.CalendarMonthBackground = System.Drawing.SystemColors.ButtonFace;
-            this.dateTimePickerEndDate.Location = new System.Drawing.Point(420, 117);
+            this.dateTimePickerEndDate.Location = new System.Drawing.Point(386, 117);
             this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
             this.dateTimePickerEndDate.Size = new System.Drawing.Size(225, 20);
             this.dateTimePickerEndDate.TabIndex = 3;
@@ -63,7 +63,7 @@
             // 
             this.btnSearch.BackColor = System.Drawing.Color.LightGreen;
             this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnSearch.Location = new System.Drawing.Point(701, 107);
+            this.btnSearch.Location = new System.Drawing.Point(658, 107);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(100, 40);
             this.btnSearch.TabIndex = 4;
@@ -78,14 +78,14 @@
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.Location = new System.Drawing.Point(-1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(869, 78);
+            this.panel1.Size = new System.Drawing.Size(785, 77);
             this.panel1.TabIndex = 6;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.LightGreen;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.button1.Location = new System.Drawing.Point(-1, 483);
+            this.button1.Location = new System.Drawing.Point(-1, 534);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 29);
             this.button1.TabIndex = 7;
@@ -109,7 +109,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(268, 158);
+            this.listBox1.Location = new System.Drawing.Point(218, 171);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(231, 316);
             this.listBox1.TabIndex = 8;
@@ -118,7 +118,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.LightGreen;
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.button2.Location = new System.Drawing.Point(735, 483);
+            this.button2.Location = new System.Drawing.Point(687, 534);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(97, 29);
             this.button2.TabIndex = 9;
@@ -131,7 +131,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(833, 514);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button1);
