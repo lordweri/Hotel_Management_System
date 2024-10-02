@@ -32,5 +32,17 @@ namespace HotelSystem.Presentation
             // Your logic to check availability goes here
             MessageBox.Show($"Searching availability from {startDate.ToShortDateString()} to {endDate.ToShortDateString()}.", "Searching", MessageBoxButtons.OK);
         }
+
+        private void DateCheckForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'hotelDatabaseDataSet.Booking' table. You can move, or remove it, as needed.
+            this.bookingTableAdapter.Fill(this.hotelDatabaseDataSet.Booking);
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

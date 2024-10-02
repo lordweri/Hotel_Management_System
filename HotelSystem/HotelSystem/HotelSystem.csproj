@@ -92,17 +92,23 @@
     <Compile Include="Presentation\EnquiryForm.Designer.cs">
       <DependentUpon>EnquiryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Form1.cs">
+    <Compile Include="Presentation\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Presentation\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Business\Guest.cs" />
     <Compile Include="HotelDatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HotelDatabaseDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\GuestTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\GuestTypeForm.Designer.cs">
+      <DependentUpon>GuestTypeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\LogForm.cs">
       <SubType>Form</SubType>
@@ -129,8 +135,11 @@
     <EmbeddedResource Include="Presentation\EnquiryForm.resx">
       <DependentUpon>EnquiryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\GuestTypeForm.resx">
+      <DependentUpon>GuestTypeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\LogForm.resx">
       <DependentUpon>LogForm.cs</DependentUpon>
