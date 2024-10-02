@@ -32,12 +32,7 @@ namespace HotelSystem.Presentation
         {
             // Add your logic here
         }
-
-        private void btnMonthlyReport_Click(object sender, EventArgs e)
-        {
-            // Add your logic here
-        }
-
+     
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -49,6 +44,11 @@ namespace HotelSystem.Presentation
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnOccupancyReport_Click(object sender, EventArgs e)
         {
 
         }

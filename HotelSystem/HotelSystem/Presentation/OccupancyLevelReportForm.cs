@@ -28,7 +28,7 @@ namespace HotelSystem.Presentation
 
             // Set data sources for report viewer
             // Assuming you're using a DataGridView to show report data
-            dataGridViewBookings.DataSource = hotelDatabaseDataSet.Booking;
+            dgvOccupancy.DataSource = hotelDatabaseDataSet.Booking;
             
         }
     }
