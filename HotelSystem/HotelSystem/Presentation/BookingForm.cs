@@ -9,17 +9,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HotelSystem.Business;
+using HotelSystem.Data;
 
 namespace HotelSystem.Presentation
 {
     public partial class BookingForm : Form
     {
-        
+        private BookingController bookingController;
+        private RoomController roomController;
+        private GuestController guestController;
+
         public BookingForm()
         {
             InitializeComponent();
-            
+            bookingController = new BookingController();
+            roomController = new RoomController();
+            guestController = new GuestController();
 
+            LoadComboBoxData();
         }
 
         private void BookingForm_Load(object sender, EventArgs e)
@@ -27,11 +34,18 @@ namespace HotelSystem.Presentation
             LoadData();
         }
 
+        private void LoadComboBoxData()
+        {
+            foreach (var room in roomController.AllRooms)
+            {
+               cmbRoom.Items.Add(room.getRoomNo());  // Assuming Room has a property RoomNumber
+            }
+        }
+
         private void LoadData()
         {
-            // Loading data from Room and Guest tables into the ComboBoxes
-            this.roomTableAdapter.Fill(this.hotelDatabaseDataSet.Room);
-            this.guestTableAdapter.Fill(this.hotelDatabaseDataSet.Guest);
+            // Assuming dgvBookings is bound to a booking list, populate it
+            dgvBookings.DataSource = bookingController.AllBookings;
         }
 
         private void btnSaveBooking_Click(object sender, EventArgs e)
@@ -41,28 +55,51 @@ namespace HotelSystem.Presentation
 
             try
             {
-                int guestId = GetOrCreateGuest();
-                if (guestId == -1)
+                // Get or create the guest
+                Guest guest = GetOrCreateGuest();
+                if (guest == null)
                     return;
 
-                int roomNumber = (int)cmbRoom.SelectedValue;
+                int roomNumber = int.Parse(cmbRoom.SelectedItem.ToString());
                 DateTime checkIn = dtpCheckIn.Value;
                 DateTime checkOut = dtpCheckOut.Value;
 
+                // Check room availability
                 if (!IsRoomAvailable(roomNumber, checkIn, checkOut))
                 {
                     ShowError("Selected room is not available for the chosen dates.");
                     return;
                 }
 
-                decimal totalRate = CalculateTotalRate(checkIn, checkOut);
+                decimal totalRate = CalculateTotalRate(roomNumber, checkIn, checkOut);
                 decimal deposit = CalculateDeposit(totalRate);
-
                 string referenceNumber = GenerateReferenceNumber();
 
-                SaveBooking(guestId, roomNumber, checkIn, checkOut, totalRate, deposit, referenceNumber);
+                // Create the booking
+                Booking newBooking = new Booking(
+                    referenceNumber,
+                    guest,
+                    roomController.GetRoomType(roomNumber),
+                    roomController.GetRoomByNumber(roomNumber),
+                    checkIn,
+                    checkOut,
+                    totalRate,
+                    deposit
+                );
 
-                MessageBox.Show($"Booking saved successfully! Reference Number: {referenceNumber}");
+                // Save the booking using controller
+                bookingController.DataMaintenance(newBooking, DB.DBOperation.Add);
+                bool result = bookingController.FinalizeChanges(newBooking, DB.DBOperation.Add);
+
+                if (result)
+                {
+                    MessageBox.Show($"Booking saved successfully! Reference Number: {referenceNumber}");
+                    LoadData(); // Refresh the booking grid
+                }
+                else
+                {
+                    ShowError("Failed to save booking.");
+                }
             }
             catch (Exception ex)
             {
@@ -72,7 +109,7 @@ namespace HotelSystem.Presentation
 
         private bool ValidateInputs()
         {
-            if (string.IsNullOrEmpty(txtGuestName.Text) || cmbRoom.SelectedValue == null ||
+            if (string.IsNullOrEmpty(txtGuestName.Text) || cmbRoom.SelectedItem == null ||
                 dtpCheckIn.Value == DateTime.MinValue || dtpCheckOut.Value == DateTime.MinValue)
             {
                 ShowError("Please fill in all required fields.");
@@ -94,52 +131,62 @@ namespace HotelSystem.Presentation
             return true;
         }
 
-        private int GetOrCreateGuest()
+        private Guest GetOrCreateGuest()
         {
-            var existingGuest = hotelDatabaseDataSet.Guest.FirstOrDefault(g => g.Name == txtGuestName.Text);
+            // Assuming GetGuestByDetails() is used to get a guest based on details like name and email
+            var existingGuest = guestController.GetGuestByDetails(txtGuestName.Text, txtEmail.Text);
             if (existingGuest != null)
-                return existingGuest.GuestID;
+
+                return existingGuest;
 
             try
             {
-                var newGuest = hotelDatabaseDataSet.Guest.NewGuestRow();
-                newGuest.Name = txtGuestName.Text;
-                newGuest.Email = txtEmail.Text; // Use appropriate field for contact
-                newGuest.ContactNumber = txtPhone.Text; // Map to ContactNumber field
-                hotelDatabaseDataSet.Guest.AddGuestRow(newGuest);
-                guestTableAdapter.Update(hotelDatabaseDataSet.Guest);
-                return newGuest.GuestID;
+                // Create a new guest
+                Guest newGuest = new Guest(
+                    txtGuestName.Text,
+                    txtEmail.Text,
+                    txtPhone.Text,
+                    txtAddress.Text
+                );
+
+                guestController.DataMaintenance(newGuest, DB.DBOperation.Add);
+                bool result = guestController.FinalizeChanges(newGuest, DB.DBOperation.Add);
+
+                if (!result)
+                    throw new Exception("Failed to save new guest.");
+
+                return newGuest;
             }
             catch (Exception ex)
             {
                 ShowError("Error creating new guest: " + ex.Message);
-                return -1;
+                return null;
             }
         }
 
         private bool IsRoomAvailable(int roomNumber, DateTime checkIn, DateTime checkOut)
         {
-            var overlappingBookings = hotelDatabaseDataSet.Booking.Where(b =>
-                b.RoomNumber == roomNumber &&
-                !(b.CheckOutDate <= checkIn || b.CheckInDate >= checkOut));
+            var overlappingBookings = bookingController.AllBookings
+                .Where(b => b.room.RoomNumber == roomNumber &&
+                            !(b.CheckOut <= checkIn || b.CheckIn >= checkOut));
 
             return !overlappingBookings.Any();
         }
 
-        private decimal CalculateTotalRate(DateTime checkIn, DateTime checkOut)
+        private decimal CalculateTotalRate(int roomNumber, DateTime checkIn, DateTime checkOut)
         {
             decimal totalRate = 0;
             for (DateTime date = checkIn; date < checkOut; date = date.AddDays(1))
             {
-                totalRate += GetRoomRateForDate(date); // Simplified, based on RoomRate
+                totalRate += roomController.GetRoomRate(roomNumber);
             }
 
             // Apply discounts for children
             int childrenCount = (int)nudChildren.Value;
             if (childrenCount > 0)
             {
-                int freeChildren = Math.Min(childrenCount, 1); // One child under 5 stays free
-                int halfPriceChildren = Math.Max(0, Math.Min(childrenCount - freeChildren, 2)); // Up to two children 5-16 pay half price
+                int freeChildren = Math.Min(childrenCount, 1);
+                int halfPriceChildren = Math.Max(0, Math.Min(childrenCount - freeChildren, 2));
 
                 totalRate -= (freeChildren * totalRate / (int)(nudAdults.Value + nudChildren.Value));
                 totalRate -= (halfPriceChildren * totalRate / (int)(nudAdults.Value + nudChildren.Value) / 2);
@@ -148,42 +195,14 @@ namespace HotelSystem.Presentation
             return totalRate;
         }
 
-        private decimal GetRoomRateForDate(DateTime date)
-        {
-            // Assuming room rate is stored in the Room table
-            var selectedRoom = hotelDatabaseDataSet.Room.FirstOrDefault(r => r.RoomNumber == (int)cmbRoom.SelectedValue);
-            return selectedRoom?.RoomRate ?? 0;
-        }
-
         private decimal CalculateDeposit(decimal totalRate)
         {
-            return totalRate * 0.1m; // 10% deposit
+            return totalRate * 0.1m;
         }
 
         private string GenerateReferenceNumber()
         {
             return "BK" + DateTime.Now.ToString("yyyyMMddHHmmss");
-            
-        }
-
-        private void SaveBooking(int guestId, int roomNumber, DateTime checkIn, DateTime checkOut, decimal totalRate, decimal deposit, string referenceNumber)
-        
-        {
-            var newBooking = hotelDatabaseDataSet.Booking.NewBookingRow();
-            newBooking.GuestID = guestId;
-            newBooking.RoomNumber = roomNumber;
-            newBooking.CheckInDate = checkIn;
-            newBooking.CheckOutDate = checkOut;
-            newBooking.TotalRate = totalRate; // Map to TotalRate field
-            hotelDatabaseDataSet.Booking.AddBookingRow(newBooking);
-            newBooking = hotelDatabaseDataSet.Booking.NewBookingRow();
-
-            hotelDatabaseDataSet.Booking.AddBookingRow(newBooking);
-
-            // Use TableAdapterManager instead of bookingTableAdapter
-            TableAdapterManager tableAdapterManager = new TableAdapterManager();
-            tableAdapterManager.BookingTableAdapter = new BookingTableAdapter();
-            tableAdapterManager.UpdateAll(hotelDatabaseDataSet);
         }
 
         private void ShowError(string message)
@@ -193,8 +212,7 @@ namespace HotelSystem.Presentation
 
         private void dgvBookings_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            // Event handler if you want to allow row selection in the grid
         }
     }
 }
-

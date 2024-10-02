@@ -100,7 +100,22 @@ namespace HotelSystem.Business
                 return -1;
             }
         }
+
+        internal RoomType GetRoomType(int roomNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal object GetRoomByNumber(int roomNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal decimal GetRoomRate(int roomNumber)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }
-}
+
