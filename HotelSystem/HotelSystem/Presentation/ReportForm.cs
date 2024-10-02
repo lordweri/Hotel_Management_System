@@ -11,9 +11,9 @@ using HotelSystem.Business;
 
 namespace HotelSystem.Presentation
 {
-    public partial class ReportForm : Form
+    public partial class OccupancyLevelReportForm : Form
     {
-        public ReportForm()
+        public OccupancyLevelReportForm()
         {
             InitializeComponent();
         }

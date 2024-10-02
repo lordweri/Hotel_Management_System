@@ -1,6 +1,6 @@
 ﻿namespace HotelSystem.Presentation
 {
-    partial class ReportForm
+    partial class OccupancyLevelReportForm
     {
         /// <summary>
         /// Required designer variable.
@@ -122,14 +122,14 @@
             this.paymentBindingSource.DataMember = "Payment";
             this.paymentBindingSource.DataSource = this.hotelDatabaseDataSet;
             // 
-            // ReportForm
+            // OccupancyLevelReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(989, 709);
             this.Controls.Add(this.dataGridViewBookings);
-            this.Name = "ReportForm";
-            this.Text = "ReportForm";
+            this.Name = "OccupancyLevelReportForm";
+            this.Text = "Occupancy Level Report";
             this.Load += new System.EventHandler(this.ReportForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBookings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookingBindingSource)).EndInit();
