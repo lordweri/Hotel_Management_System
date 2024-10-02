@@ -212,7 +212,7 @@ namespace HotelSystem.Presentation
 
         private void dgvBookings_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Event handler if you want to allow row selection in the grid
+            // Event handler if we want to allow row selection in the grid
         }
     }
 }
