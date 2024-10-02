@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace HotelSystem.Business
 {
@@ -40,6 +41,8 @@ namespace HotelSystem.Business
         public string getRoomNo() { return RoomNo; }
         public void setRate(double rate) {  this.rate = rate; }
         public string getType() { return roomType.ToString(); }
+        public bool IsOccupied() { return check; }
+        public void setType(RoomType roomType) { this.roomType = roomType;}
 
 
     }

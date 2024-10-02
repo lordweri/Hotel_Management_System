@@ -68,11 +68,6 @@ namespace HotelSystem.Business
             return this.guestID;
         }
 
-        public string getBookingID()
-        {
-            return this.bookingID;
-        }
-
         public string getName()
         {
             return name;
