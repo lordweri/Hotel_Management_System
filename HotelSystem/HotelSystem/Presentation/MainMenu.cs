@@ -50,7 +50,8 @@ namespace HotelSystem.Presentation
 
         private void btnOccupancyReport_Click(object sender, EventArgs e)
         {
-
+            OccupancyLevelReportForm reportForm = new OccupancyLevelReportForm();
+            reportForm.Show();
         }
     }
 }

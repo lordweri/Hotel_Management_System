@@ -20,16 +20,13 @@ namespace HotelSystem.Presentation
 
         private void ReportForm_Load(object sender, EventArgs e)
         {
-            
-            // TODO: This line of code loads data into the 'hotelDatabaseDataSet.Booking' table. You can move, or remove it, as needed.
-            this.bookingTableAdapter.Fill(this.hotelDatabaseDataSet.Booking);
-
-            this.bookingTableAdapter.Fill(this.hotelDatabaseDataSet.Guest);
-
-            // Set data sources for report viewer
-            // Assuming you're using a DataGridView to show report data
             dgvOccupancy.DataSource = hotelDatabaseDataSet.Booking;
             
+        }
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

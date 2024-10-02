@@ -33,21 +33,21 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dgvOccupancy = new System.Windows.Forms.DataGridView();
-            this.bookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.hotelDatabaseDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hotelDatabaseDataSet = new HotelSystem.HotelDatabaseDataSet();
+            this.bookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bookingTableAdapter = new HotelSystem.HotelDatabaseDataSetTableAdapters.BookingTableAdapter();
             this.paymentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.hotelDatabaseDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.chartOccupancyLevel = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnGeneerateReport = new System.Windows.Forms.Button();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOccupancy)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bookingBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookingBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartOccupancyLevel)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,22 +56,27 @@
             this.dgvOccupancy.AutoGenerateColumns = false;
             this.dgvOccupancy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOccupancy.DataSource = this.hotelDatabaseDataSetBindingSource;
-            this.dgvOccupancy.Location = new System.Drawing.Point(192, 87);
+            this.dgvOccupancy.Location = new System.Drawing.Point(310, 87);
             this.dgvOccupancy.Name = "dgvOccupancy";
             this.dgvOccupancy.RowHeadersWidth = 51;
             this.dgvOccupancy.RowTemplate.Height = 24;
             this.dgvOccupancy.Size = new System.Drawing.Size(681, 256);
             this.dgvOccupancy.TabIndex = 0;
             // 
-            // bookingBindingSource
+            // hotelDatabaseDataSetBindingSource
             // 
-            this.bookingBindingSource.DataMember = "Booking";
-            this.bookingBindingSource.DataSource = this.hotelDatabaseDataSet;
+            this.hotelDatabaseDataSetBindingSource.DataSource = this.hotelDatabaseDataSet;
+            this.hotelDatabaseDataSetBindingSource.Position = 0;
             // 
             // hotelDatabaseDataSet
             // 
             this.hotelDatabaseDataSet.DataSetName = "HotelDatabaseDataSet";
             this.hotelDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // bookingBindingSource
+            // 
+            this.bookingBindingSource.DataMember = "Booking";
+            this.bookingBindingSource.DataSource = this.hotelDatabaseDataSet;
             // 
             // bookingTableAdapter
             // 
@@ -81,11 +86,6 @@
             // 
             this.paymentBindingSource.DataMember = "Payment";
             this.paymentBindingSource.DataSource = this.hotelDatabaseDataSet;
-            // 
-            // hotelDatabaseDataSetBindingSource
-            // 
-            this.hotelDatabaseDataSetBindingSource.DataSource = this.hotelDatabaseDataSet;
-            this.hotelDatabaseDataSetBindingSource.Position = 0;
             // 
             // chartOccupancyLevel
             // 
@@ -111,17 +111,18 @@
             this.btnGeneerateReport.TabIndex = 2;
             this.btnGeneerateReport.Text = "Generate Report";
             this.btnGeneerateReport.UseVisualStyleBackColor = true;
+            this.btnGeneerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
             // dtpStartDate
             // 
-            this.dtpStartDate.Location = new System.Drawing.Point(192, 420);
+            this.dtpStartDate.Location = new System.Drawing.Point(332, 418);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(200, 22);
             this.dtpStartDate.TabIndex = 3;
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.Location = new System.Drawing.Point(192, 503);
+            this.dtpEndDate.Location = new System.Drawing.Point(332, 509);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(200, 22);
             this.dtpEndDate.TabIndex = 4;
@@ -130,7 +131,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(522, 27);
+            this.label1.Location = new System.Drawing.Point(504, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(309, 30);
             this.label1.TabIndex = 5;
@@ -151,10 +152,10 @@
             this.Text = "Occupancy Level Report";
             this.Load += new System.EventHandler(this.ReportForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOccupancy)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bookingBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookingBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartOccupancyLevel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
