@@ -13,7 +13,6 @@ namespace HotelSystem.Business
         private string guestID;
         private string email;
         private string telephone;
-        private Booking booking;
         private string text;
 
 
@@ -29,7 +28,7 @@ namespace HotelSystem.Business
         //This constructor will be used in BookingDB class to create a guest object from the database
         //when performming reading operation. It will also be used in GuestDB class to create a guest object
         //for each row in the database and added to the collection
-        public Guest(string guestID, string name, string Email, string phone,Booking boooking)
+        public Guest(string guestID, string name, string Email, string phone)
         {
             this.name = name;
             this.email = Email;
@@ -37,10 +36,6 @@ namespace HotelSystem.Business
             this.guestID = guestID;
         }
 
-        public Guest(string name, string Email, string phone, string text) : this(name, Email, phone)
-        {
-            this.text = text;
-        }
         #endregion
 
         #region utility methods
