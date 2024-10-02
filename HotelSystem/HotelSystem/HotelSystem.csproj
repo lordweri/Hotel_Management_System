@@ -81,12 +81,6 @@
     <Compile Include="Presentation\BookingChangedForm.Designer.cs">
       <DependentUpon>BookingChangedForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\BookingForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\BookingForm.Designer.cs">
-      <DependentUpon>BookingForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Business\Booking.cs" />
     <Compile Include="Business\BookingController.cs" />
     <Compile Include="Business\GuestController.cs" />
@@ -115,12 +109,6 @@
     </Compile>
     <Compile Include="Presentation\DateCheckForm.Designer.cs">
       <DependentUpon>DateCheckForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\EnquiryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\EnquiryForm.Designer.cs">
-      <DependentUpon>EnquiryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\MainMenu.cs">
       <SubType>Form</SubType>
@@ -177,9 +165,6 @@
     <EmbeddedResource Include="Presentation\BookingChangedForm.resx">
       <DependentUpon>BookingChangedForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\BookingForm.resx">
-      <DependentUpon>BookingForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\BookingGeneratedForm.resx">
       <DependentUpon>BookingGeneratedForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,9 +173,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\DateCheckForm.resx">
       <DependentUpon>DateCheckForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\EnquiryForm.resx">
-      <DependentUpon>EnquiryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
