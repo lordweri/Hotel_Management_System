@@ -2221,7 +2221,9 @@ namespace HotelSystem {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Booking_Room"]);
                 }
             }
-            
+
+            public decimal TotalRate { get; internal set; }
+
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public AccountRow[] GetAccountRows() {

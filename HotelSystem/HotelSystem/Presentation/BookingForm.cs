@@ -19,6 +19,7 @@ namespace HotelSystem.Presentation
         {
             InitializeComponent();
             
+
         }
 
         private void BookingForm_Load(object sender, EventArgs e)
@@ -166,6 +167,7 @@ namespace HotelSystem.Presentation
         }
 
         private void SaveBooking(int guestId, int roomNumber, DateTime checkIn, DateTime checkOut, decimal totalRate, decimal deposit, string referenceNumber)
+        
         {
             var newBooking = hotelDatabaseDataSet.Booking.NewBookingRow();
             newBooking.GuestID = guestId;
@@ -174,9 +176,14 @@ namespace HotelSystem.Presentation
             newBooking.CheckOutDate = checkOut;
             newBooking.TotalRate = totalRate; // Map to TotalRate field
             hotelDatabaseDataSet.Booking.AddBookingRow(newBooking);
-            bookingTableAdapter.Update(hotelDatabaseDataSet.Booking);
-            
+            newBooking = hotelDatabaseDataSet.Booking.NewBookingRow();
 
+            hotelDatabaseDataSet.Booking.AddBookingRow(newBooking);
+
+            // Use TableAdapterManager instead of bookingTableAdapter
+            TableAdapterManager tableAdapterManager = new TableAdapterManager();
+            tableAdapterManager.BookingTableAdapter = new BookingTableAdapter();
+            tableAdapterManager.UpdateAll(hotelDatabaseDataSet);
         }
 
         private void ShowError(string message)
