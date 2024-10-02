@@ -56,11 +56,11 @@
             this.dgvOccupancy.AutoGenerateColumns = false;
             this.dgvOccupancy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOccupancy.DataSource = this.hotelDatabaseDataSetBindingSource;
-            this.dgvOccupancy.Location = new System.Drawing.Point(310, 87);
+            this.dgvOccupancy.Location = new System.Drawing.Point(59, 87);
             this.dgvOccupancy.Name = "dgvOccupancy";
             this.dgvOccupancy.RowHeadersWidth = 51;
             this.dgvOccupancy.RowTemplate.Height = 24;
-            this.dgvOccupancy.Size = new System.Drawing.Size(681, 256);
+            this.dgvOccupancy.Size = new System.Drawing.Size(603, 256);
             this.dgvOccupancy.TabIndex = 0;
             // 
             // hotelDatabaseDataSetBindingSource
@@ -93,19 +93,19 @@
             this.chartOccupancyLevel.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartOccupancyLevel.Legends.Add(legend1);
-            this.chartOccupancyLevel.Location = new System.Drawing.Point(1016, 87);
+            this.chartOccupancyLevel.Location = new System.Drawing.Point(714, 87);
             this.chartOccupancyLevel.Name = "chartOccupancyLevel";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartOccupancyLevel.Series.Add(series1);
-            this.chartOccupancyLevel.Size = new System.Drawing.Size(300, 256);
+            this.chartOccupancyLevel.Size = new System.Drawing.Size(626, 256);
             this.chartOccupancyLevel.TabIndex = 1;
             this.chartOccupancyLevel.Text = "chart1";
             // 
             // btnGeneerateReport
             // 
-            this.btnGeneerateReport.Location = new System.Drawing.Point(548, 567);
+            this.btnGeneerateReport.Location = new System.Drawing.Point(578, 568);
             this.btnGeneerateReport.Name = "btnGeneerateReport";
             this.btnGeneerateReport.Size = new System.Drawing.Size(211, 92);
             this.btnGeneerateReport.TabIndex = 2;
@@ -115,14 +115,14 @@
             // 
             // dtpStartDate
             // 
-            this.dtpStartDate.Location = new System.Drawing.Point(332, 418);
+            this.dtpStartDate.Location = new System.Drawing.Point(589, 399);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(200, 22);
             this.dtpStartDate.TabIndex = 3;
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.Location = new System.Drawing.Point(332, 509);
+            this.dtpEndDate.Location = new System.Drawing.Point(589, 481);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(200, 22);
             this.dtpEndDate.TabIndex = 4;
