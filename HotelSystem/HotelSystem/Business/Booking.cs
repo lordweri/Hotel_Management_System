@@ -22,7 +22,8 @@ namespace HotelSystem.Business
         private decimal totalRate;
         private decimal deposit;
 
-        public Booking(string bookingID, Guest guest,RoomType roomType, Room room, DateTime start, DateTime end)
+        //Using this constructor in the data layer
+        public Booking(string bookingID, Guest guest,RoomType roomType, Room room, DateTime start, DateTime end, decimal totalRate, decimal deposit, BookingStatus status)
         {
             this.bookingID = bookingID;
             this.guest = guest;
@@ -30,6 +31,9 @@ namespace HotelSystem.Business
             this.roomType = roomType;
             this.range=new DateRange(start, end);
             this.status = BookingStatus.Pending;
+            this.totalRate = totalRate;
+            this.deposit = deposit;
+            this.status = status;
         }
 
         public Booking(string referenceNumber, Guest guest, RoomType roomType, object value, DateTime checkIn, DateTime checkOut, decimal totalRate, decimal deposit)
@@ -60,6 +64,11 @@ namespace HotelSystem.Business
         public void confirmBooking()
         {
             status=BookingStatus.Confirmed; 
+        }
+
+        public decimal getDeposit()
+        {
+            return deposit;
         }
     }
 }
