@@ -83,7 +83,7 @@ namespace HotelSystem.Presentation
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.Location = new System.Drawing.Point(1, -2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1009, 82);
+            this.panel1.Size = new System.Drawing.Size(784, 82);
             this.panel1.TabIndex = 6;
             // 
             // label1
