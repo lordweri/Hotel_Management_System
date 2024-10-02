@@ -62,14 +62,15 @@ namespace HotelSystem.Data
                     string roomNumber = Convert.ToString(bookingRow["RoomNumber"]);
                     DateTime start = Convert.ToDateTime(bookingRow["CheckInDate"]);
                     DateTime end = Convert.ToDateTime(bookingRow["CheckOutDate"]);
-                    double totalPrice = Convert.ToDouble(bookingRow["TotalPrice"]);
+                    decimal totalPrice = Convert.ToDecimal(bookingRow["TotalPrice"]);
+                    decimal deposit = Convert.ToDecimal(bookingRow["Deposit"]);
                     BookingStatus status = (BookingStatus)Enum.Parse(typeof(BookingStatus), bookingRow["Status"].ToString());
 
                     Guest guest = FindGuestByID(guestID);
                     Room room = FindRoomByNumber(roomNumber);
                     string roomType = room.getType();
 
-                    Booking booking = new Booking(bookingID, guest, room.roomType, room, start, end);
+                    Booking booking = new Booking(bookingID, guest, room.roomType, room, start, end, totalPrice, deposit, status);
                     bookings.Add(booking);
                 }
             }
@@ -84,32 +85,9 @@ namespace HotelSystem.Data
                 string name = Convert.ToString(guestRows[0]["Name"]);
                 string email = Convert.ToString(guestRows[0]["Email"]);
                 string telephone = Convert.ToString(guestRows[0]["Telephone"]);
-                Booking booking = FindBookingByID(guestID);
-                return new Guest(guestID, name, email, telephone, booking); //return guest object if found
+                return new Guest(guestID, name, email, telephone); //return guest object if found
             }
             return null; //return null if not found
-        }
-
-        //Find a booking in the database by booking ID and return a Booking object
-        public Booking FindBookingByID(string bookingID)
-        {
-            DataRow[] bookingRows = dsMain.Tables["Booking"].Select($"BookingID = '{bookingID}'");
-            if (bookingRows.Length > 0)
-            {
-                string guestID = Convert.ToString(bookingRows[0]["GuestID"]);
-                string roomNumber = Convert.ToString(bookingRows[0]["RoomNumber"]);
-                DateTime start = Convert.ToDateTime(bookingRows[0]["CheckInDate"]);
-                DateTime end = Convert.ToDateTime(bookingRows[0]["CheckOutDate"]);
-                double totalPrice = Convert.ToDouble(bookingRows[0]["TotalPrice"]);
-                BookingStatus status = (BookingStatus)Enum.Parse(typeof(BookingStatus), bookingRows[0]["Status"].ToString());
-
-                Guest guest = FindGuestByID(guestID);
-                Room room = FindRoomByNumber(roomNumber);
-                string roomType = room.getType();
-
-                return new Booking(bookingID, guest, room.roomType, room, start, end); //return booking object if found
-            }
-            return null; 
         }
 
         //Find a room in the database by room number and return a Room object
@@ -135,6 +113,7 @@ namespace HotelSystem.Data
                 aRow["CheckInDate"] = booking.range.Start;
                 aRow["CheckOutDate"] = booking.range.End;
                 aRow["TotalPrice"] = booking.totalPrice;
+                aRow["Deposit"] = booking.getDeposit();
                 aRow["Status"] = booking.status;
             }
         }
@@ -213,33 +192,47 @@ namespace HotelSystem.Data
 
             param = new SqlParameter("@TotalPrice", SqlDbType.Money, 8, "TotalPrice");
             daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Deposit", SqlDbType.Money, 8, "Deposit");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Status", SqlDbType.Money, 8, "Status");
+            daMain.InsertCommand.Parameters.Add(param);
         }
 
         private void Build_UPDATE_Parameters(Booking booking)
         {
             SqlParameter param = default(SqlParameter);
-            param = new SqlParameter("BookingID", SqlDbType.NVarChar, 50, "BookingID");
+            param = new SqlParameter("@BookingID", SqlDbType.NVarChar, 50, "BookingID");
             param.SourceVersion = DataRowVersion.Original;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("CheckInDate", SqlDbType.Date);
+            param = new SqlParameter("@CheckInDate", SqlDbType.Date);
             param.SourceColumn = "CheckInDate";
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("CheckOutDate", SqlDbType.Date);
+            param = new SqlParameter("@CheckOutDate", SqlDbType.Date);
             param.SourceColumn = "CheckOutDate";
             param.SourceVersion = DataRowVersion.Current;
 
-            param = new SqlParameter("GuestID", SqlDbType.NVarChar, 50, "GuestID");
+            param = new SqlParameter("@GuestID", SqlDbType.NVarChar, 50, "GuestID");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("RoomNumber", SqlDbType.NVarChar, 50, "RoomNumber");
+            param = new SqlParameter("@RoomNumber", SqlDbType.NVarChar, 50, "RoomNumber");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("TotalPrice", SqlDbType.Money, 8, "TotalPrice");
+            param = new SqlParameter("@TotalPrice", SqlDbType.Money, 8, "TotalPrice");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.UpdateCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Deposit", SqlDbType.Money, 8, "Deposit");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.UpdateCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Status", SqlDbType.Money, 8, "Status");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
         }
@@ -254,13 +247,13 @@ namespace HotelSystem.Data
         //Command that used to insert a booking in the database
         private void Create_INSERT_Command(Booking booking)
         {
-            daMain.InsertCommand = new SqlCommand("INSERT into Booking (BookingID, CheckInDate, CheckOutDate, GuestID, RoomNumber, TotalPrice) VALUES (@BookingID, @CheckInDate, @CheckOutDate, @GuestID, @RoomNumber, @TotalPrice)", cnMain);
+            daMain.InsertCommand = new SqlCommand("INSERT into Booking (BookingID, CheckInDate, CheckOutDate, GuestID, RoomNumber, TotalPrice, Deposit, Status) VALUES (@BookingID, @CheckInDate, @CheckOutDate, @GuestID, @RoomNumber, @TotalPrice, @Deposit, @Status)", cnMain);
             Build_INSERT_Parameters(booking);
         }
 
         private void Create_UPDATE_Command(Booking booking)
         {
-            daMain.UpdateCommand = new SqlCommand("UPDATE Booking SET CheckInDate = @CheckInDate, CheckOutDate = @CheckOutDate, GuestID = @GuestID, RoomNumber = @RoomNumber, TotalPrice = @TotalPrice WHERE BookingID = @BookingID", cnMain);
+            daMain.UpdateCommand = new SqlCommand("UPDATE Booking SET CheckInDate = @CheckInDate, CheckOutDate = @CheckOutDate, GuestID = @GuestID, RoomNumber = @RoomNumber, TotalPrice = @TotalPrice, Deposit = @Deposit, Status = @Status WHERE BookingID = @BookingID", cnMain);
             Build_UPDATE_Parameters(booking);
         }
 

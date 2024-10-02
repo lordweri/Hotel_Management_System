@@ -48,7 +48,6 @@ namespace HotelSystem.Data
         //Adds all guests from the database to guests collection
         private void Add2Collection(string table)
         {
-            DataRow myRow = null;
             foreach (DataRow row in dsMain.Tables[table].Rows)
             {
                 if (row.RowState != DataRowState.Deleted)
