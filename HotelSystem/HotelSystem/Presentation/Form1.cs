@@ -11,31 +11,44 @@ using HotelSystem.Business;
 
 namespace HotelSystem.Presentation
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
-        private void btnBooking_Click(object sender, EventArgs e)
+
+        private void btnMakeReservation_Click(object sender, EventArgs e)
         {
-            BookingForm bookingForm = new BookingForm();
-            bookingForm.Show();
+            // Add your logic here
         }
 
-        private void btnEnquiry_Click(object sender, EventArgs e)
+        private void btnChangeReservation_Click(object sender, EventArgs e)
         {
-            EnquiryForm enquiryForm = new EnquiryForm();
-            enquiryForm.Show();
+            // Add your logic here
         }
 
-        private void btnReport_Click(object sender, EventArgs e)
+        private void btnCancelReservation_Click(object sender, EventArgs e)
         {
-            ReportForm reportForm = new ReportForm();
-            reportForm.Show();
+            // Add your logic here
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void btnMonthlyReport_Click(object sender, EventArgs e)
+        {
+            // Add your logic here
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
