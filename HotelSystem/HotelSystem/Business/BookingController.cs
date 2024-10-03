@@ -119,10 +119,24 @@ namespace HotelSystem.Business
             // Sum up the total price of all bookings within the given date range
             return (decimal)bookings
                 .Where(b => b.range.Start >= startDate && b.range.End <= endDate)
-                .Sum(b => b.totalPrice);
+                .Sum(b => b.totalPrice);           
 
-            #endregion
         }
+        #endregion
+
+        // region to make payment methods-BRWCAL007
+        #region Card Payment Methods
+        public bool ProcessVisaPayment(string cardNumber, string expiryDate, string cvv)
+        {
+            // Logic to process Visa payment (e.g., integrate with a payment gateway)
+
+            // Return true if successful, false if not
+            return true; // For now, assume the payment is always successful
+        }
+
+
+        #endregion
     }
 }
+
         
