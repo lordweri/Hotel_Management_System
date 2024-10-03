@@ -24,6 +24,7 @@
             this.btnOccupancyReport = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRevenueForecast = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnMakeReservation
@@ -124,12 +125,31 @@
             this.panel1.TabIndex = 5;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // btnRevenueForecast
+            // 
+            this.btnRevenueForecast.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnRevenueForecast.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnRevenueForecast.Image = ((System.Drawing.Image)(resources.GetObject("btnRevenueForecast.Image")));
+            this.btnRevenueForecast.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnRevenueForecast.Location = new System.Drawing.Point(399, 495);
+            this.btnRevenueForecast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRevenueForecast.Name = "btnRevenueForecast";
+            this.btnRevenueForecast.Padding = new System.Windows.Forms.Padding(0, 25, 0, 12);
+            this.btnRevenueForecast.Size = new System.Drawing.Size(235, 119);
+            this.btnRevenueForecast.TabIndex = 6;
+            this.btnRevenueForecast.Text = "Revenue Forecast Report";
+            this.btnRevenueForecast.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRevenueForecast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRevenueForecast.UseVisualStyleBackColor = false;
+            this.btnRevenueForecast.Click += new System.EventHandler(this.btnRevenueForecast_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1045, 690);
+            this.Controls.Add(this.btnRevenueForecast);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnOccupancyReport);
@@ -152,6 +172,7 @@
         private System.Windows.Forms.Button btnOccupancyReport;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnRevenueForecast;
     }
 }
 

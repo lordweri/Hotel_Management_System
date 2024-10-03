@@ -1,6 +1,6 @@
 ﻿namespace HotelSystem.Presentation
 {
-    partial class SeasonalOccupancyTrendReport
+    partial class RevenueForecastReport
     {
         /// <summary>
         /// Required designer variable.

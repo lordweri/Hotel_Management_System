@@ -12,7 +12,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HotelSystem.Presentation
 {
-    public partial class SeasonalOccupancyTrendReport : Form
+    public partial class RevenueForecastReport : Form
     {
         private BookingController bookingController;
 
