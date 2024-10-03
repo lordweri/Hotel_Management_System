@@ -28,6 +28,8 @@ namespace HotelSystem.Presentation
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
@@ -39,7 +41,7 @@ namespace HotelSystem.Presentation
             this.txtUserId.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtUserId.ForeColor = System.Drawing.Color.Gray;
             this.txtUserId.Location = new System.Drawing.Point(273, 274);
-            this.txtUserId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUserId.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserId.Name = "txtUserId";
             this.txtUserId.Size = new System.Drawing.Size(210, 22);
             this.txtUserId.TabIndex = 0;
@@ -54,7 +56,7 @@ namespace HotelSystem.Presentation
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPassword.ForeColor = System.Drawing.Color.Gray;
             this.txtPassword.Location = new System.Drawing.Point(273, 323);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(210, 22);
             this.txtPassword.TabIndex = 1;
@@ -68,7 +70,7 @@ namespace HotelSystem.Presentation
             this.btnSignIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSignIn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnSignIn.Location = new System.Drawing.Point(318, 395);
-            this.btnSignIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSignIn.Margin = new System.Windows.Forms.Padding(2);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(112, 32);
             this.btnSignIn.TabIndex = 2;
@@ -116,12 +118,36 @@ namespace HotelSystem.Presentation
             this.pictureBox3.TabIndex = 10;
             this.pictureBox3.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Firebrick;
+            this.label2.Location = new System.Drawing.Point(274, 347);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Password is wrong";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Firebrick;
+            this.label3.Location = new System.Drawing.Point(270, 298);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(121, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "ID or Password is wrong";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label1);
@@ -129,7 +155,7 @@ namespace HotelSystem.Presentation
             this.Controls.Add(this.txtUserId);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.btnSignIn);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LoginForm";
             this.Text = "Sign In";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -149,5 +175,7 @@ namespace HotelSystem.Presentation
         private PictureBox pictureBox3;
         private System.Windows.Forms.Panel pnlUserID;
         private System.Windows.Forms.Label pnlPassword;
+        private Label label2;
+        private Label label3;
     }
 }
