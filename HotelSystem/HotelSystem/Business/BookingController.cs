@@ -97,5 +97,54 @@ namespace HotelSystem.Business
         }
 
         #endregion
+
+        //Use These methods to get data from the database for the Occupancy Level and Revenue Forecast Forms-BRWCAL007
+        #region Report Methods
+
+        // Occupancy Level Report
+        public Dictionary<string, double> GetOccupancyLevelByMonth()
+        {
+            var report = new Dictionary<string, double>();
+
+            foreach (var booking in bookings)
+            {
+                string month = booking.CheckIn.ToString("MMMM yyyy");
+                if (!report.ContainsKey(month))
+                    report[month] = 0;
+                
+                // Assume each booking is for a single room, you can adjust this calculation
+                report[month]++;
+            }
+
+            // Calculate occupancy rate by dividing the total bookings by the number of days in the month
+            foreach (var month in report.Keys.ToList())
+            {
+                int daysInMonth = DateTime.DaysInMonth(DateTime.Parse(month).Year, DateTime.Parse(month).Month);
+                report[month] = (report[month] / daysInMonth) * 100;  // Convert to percentage
+            }
+
+            return report;
+        }
+
+        // Revenue Forecast Report
+        public Dictionary<string, decimal> GetRevenueForecastByMonth()
+        {
+
+            var report = new Dictionary<string, decimal>();
+
+            foreach (var booking in bookings)
+            {
+                string month = booking.CheckIn.ToString("MMMM yyyy");
+                if (!report.ContainsKey(month))
+                    report[month] = 0;
+                
+                report[month] += (decimal)booking.totalPrice;  // Sum up the total prices of bookings for the given month
+            }
+
+            return report;
+        }
+
+        #endregion
     }
 }
+        

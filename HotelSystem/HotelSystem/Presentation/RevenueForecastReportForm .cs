@@ -16,7 +16,7 @@ namespace HotelSystem.Presentation
     {
         private BookingController bookingController;
 
-        public RevenueReportForm()
+        public RevenueForecastReport()
         {
             InitializeComponent();
             bookingController = new BookingController();
