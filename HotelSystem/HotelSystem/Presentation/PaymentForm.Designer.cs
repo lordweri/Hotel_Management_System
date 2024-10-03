@@ -25,13 +25,21 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnFinish = new System.Windows.Forms.Button();
+            this.txtCardNumber = new System.Windows.Forms.TextBox();
+            this.txtExpiryDate = new System.Windows.Forms.TextBox();
+            this.txtCardHolderName = new System.Windows.Forms.TextBox();
+            this.txtCVV = new System.Windows.Forms.TextBox();
+            this.lblCardNumber = new System.Windows.Forms.Label();
+            this.lblCardHolder = new System.Windows.Forms.Label();
+            this.lblExpiryDate = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnConfirmDeposit
             // 
             this.btnConfirmDeposit.BackColor = System.Drawing.Color.LightGreen;
             this.btnConfirmDeposit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnConfirmDeposit.Location = new System.Drawing.Point(363, 256);
+            this.btnConfirmDeposit.Location = new System.Drawing.Point(363, 160);
             this.btnConfirmDeposit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConfirmDeposit.Name = "btnConfirmDeposit";
             this.btnConfirmDeposit.Size = new System.Drawing.Size(300, 39);
@@ -44,7 +52,7 @@
             // 
             this.btnConfirmFullPayment.BackColor = System.Drawing.Color.LightGreen;
             this.btnConfirmFullPayment.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnConfirmFullPayment.Location = new System.Drawing.Point(363, 334);
+            this.btnConfirmFullPayment.Location = new System.Drawing.Point(363, 496);
             this.btnConfirmFullPayment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConfirmFullPayment.Name = "btnConfirmFullPayment";
             this.btnConfirmFullPayment.Size = new System.Drawing.Size(300, 39);
@@ -57,7 +65,7 @@
             // 
             this.btnConfirmNoPayment.BackColor = System.Drawing.Color.LightGray;
             this.btnConfirmNoPayment.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnConfirmNoPayment.Location = new System.Drawing.Point(363, 406);
+            this.btnConfirmNoPayment.Location = new System.Drawing.Point(363, 591);
             this.btnConfirmNoPayment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConfirmNoPayment.Name = "btnConfirmNoPayment";
             this.btnConfirmNoPayment.Size = new System.Drawing.Size(300, 39);
@@ -103,11 +111,83 @@
             this.btnFinish.UseVisualStyleBackColor = true;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // txtCardNumber
+            // 
+            this.txtCardNumber.Location = new System.Drawing.Point(453, 242);
+            this.txtCardNumber.Name = "txtCardNumber";
+            this.txtCardNumber.Size = new System.Drawing.Size(100, 22);
+            this.txtCardNumber.TabIndex = 9;
+            // 
+            // txtExpiryDate
+            // 
+            this.txtExpiryDate.Location = new System.Drawing.Point(453, 389);
+            this.txtExpiryDate.Name = "txtExpiryDate";
+            this.txtExpiryDate.Size = new System.Drawing.Size(100, 22);
+            this.txtExpiryDate.TabIndex = 10;
+            // 
+            // txtCardHolderName
+            // 
+            this.txtCardHolderName.Location = new System.Drawing.Point(453, 316);
+            this.txtCardHolderName.Name = "txtCardHolderName";
+            this.txtCardHolderName.Size = new System.Drawing.Size(100, 22);
+            this.txtCardHolderName.TabIndex = 11;
+            // 
+            // txtCVV
+            // 
+            this.txtCVV.Location = new System.Drawing.Point(453, 452);
+            this.txtCVV.Name = "txtCVV";
+            this.txtCVV.Size = new System.Drawing.Size(100, 22);
+            this.txtCVV.TabIndex = 12;
+            // 
+            // lblCardNumber
+            // 
+            this.lblCardNumber.AutoSize = true;
+            this.lblCardNumber.Location = new System.Drawing.Point(360, 248);
+            this.lblCardNumber.Name = "lblCardNumber";
+            this.lblCardNumber.Size = new System.Drawing.Size(90, 16);
+            this.lblCardNumber.TabIndex = 13;
+            this.lblCardNumber.Text = "Card Number:";
+            // 
+            // lblCardHolder
+            // 
+            this.lblCardHolder.AutoSize = true;
+            this.lblCardHolder.Location = new System.Drawing.Point(360, 322);
+            this.lblCardHolder.Name = "lblCardHolder";
+            this.lblCardHolder.Size = new System.Drawing.Size(83, 16);
+            this.lblCardHolder.TabIndex = 14;
+            this.lblCardHolder.Text = "Card Holder:";
+            // 
+            // lblExpiryDate
+            // 
+            this.lblExpiryDate.AutoSize = true;
+            this.lblExpiryDate.Location = new System.Drawing.Point(360, 395);
+            this.lblExpiryDate.Name = "lblExpiryDate";
+            this.lblExpiryDate.Size = new System.Drawing.Size(79, 16);
+            this.lblExpiryDate.TabIndex = 15;
+            this.lblExpiryDate.Text = "Expiry Date:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(386, 452);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 16);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "CVV:";
+            // 
             // PaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1045, 690);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblExpiryDate);
+            this.Controls.Add(this.lblCardHolder);
+            this.Controls.Add(this.lblCardNumber);
+            this.Controls.Add(this.txtCVV);
+            this.Controls.Add(this.txtCardHolderName);
+            this.Controls.Add(this.txtExpiryDate);
+            this.Controls.Add(this.txtCardNumber);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnBack);
@@ -118,6 +198,7 @@
             this.Name = "PaymentForm";
             this.Text = "Payment Confirmation";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -129,5 +210,13 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnFinish;
+        private System.Windows.Forms.TextBox txtCardNumber;
+        private System.Windows.Forms.TextBox txtExpiryDate;
+        private System.Windows.Forms.TextBox txtCardHolderName;
+        private System.Windows.Forms.TextBox txtCVV;
+        private System.Windows.Forms.Label lblCardNumber;
+        private System.Windows.Forms.Label lblCardHolder;
+        private System.Windows.Forms.Label lblExpiryDate;
+        private System.Windows.Forms.Label label4;
     }
 }
