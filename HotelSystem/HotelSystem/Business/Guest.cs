@@ -18,11 +18,12 @@ namespace HotelSystem.Business
 
 
         #region Constructors
-        public Guest(string name, string Email, string phone)
+        public Guest(string name, string Email, string phone, string address)
         {
             this.name = name;
             this.email = Email;
             this.telephone = phone;
+            this.address = address;
             this.guestID = GenerateGuestID(name);
         }
 
@@ -36,14 +37,6 @@ namespace HotelSystem.Business
             this.telephone = phone;
             this.guestID = guestID;
             this.address = address;
-        }
-
-        public Guest(string guestID, string name, string Email, string phone)
-        {
-            this.name = name;
-            this.email = Email;
-            this.telephone = phone;
-            this.guestID = guestID;
         }
 
         #endregion
