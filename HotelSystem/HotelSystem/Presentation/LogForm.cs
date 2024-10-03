@@ -73,7 +73,7 @@ namespace HotelSystem.Presentation
 
         private void pnlUserId_Paint(object sender, PaintEventArgs e)
         {
-            DrawRoundedRectangle(e.Graphics, pnlUserId.ClientRectangle, 20, Color.LightGray);
+            DrawRoundedRectangle(e.Graphics, pnlUserID.ClientRectangle, 20, Color.LightGray);
         }
 
         private void pnlPassword_Paint(object sender, PaintEventArgs e)

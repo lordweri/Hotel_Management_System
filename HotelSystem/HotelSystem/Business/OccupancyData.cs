@@ -15,6 +15,7 @@ namespace HotelSystem.Business
         // The occupancy percentage for that specific date
         public decimal OccupancyPercentage { get; set; }
 
+
         // Add a constructor if  want to initialize the data easily
         public OccupancyData(DateTime date, decimal occupancyPercentage)
         {

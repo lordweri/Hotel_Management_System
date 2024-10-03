@@ -52,7 +52,7 @@ namespace HotelSystem.Presentation
             }
             else
             {
-                // Handle the case when occupancyData is not a collection
+                // Handle the case when occupancyData is not a collectionh
                 // You can display an error message or take other appropriate actions
                 MessageBox.Show("Invalid occupancy data");
             }

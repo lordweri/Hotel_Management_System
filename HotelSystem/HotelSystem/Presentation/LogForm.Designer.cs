@@ -147,5 +147,7 @@ namespace HotelSystem.Presentation
         private Label label1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
+        private System.Windows.Forms.Panel pnlUserID;
+        private System.Windows.Forms.Label pnlPassword;
     }
 }
