@@ -33,6 +33,8 @@
             this.lblCardHolder = new System.Windows.Forms.Label();
             this.lblExpiryDate = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.pictureVisaLogo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureVisaLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnConfirmDeposit
@@ -175,11 +177,23 @@
             this.label4.TabIndex = 16;
             this.label4.Text = "CVV:";
             // 
+            // pictureVisaLogo
+            // 
+            this.pictureVisaLogo.Image = global::HotelSystem.Properties.Resources.Visa_Logo;
+            this.pictureVisaLogo.Location = new System.Drawing.Point(729, 235);
+            this.pictureVisaLogo.Name = "pictureVisaLogo";
+            this.pictureVisaLogo.Size = new System.Drawing.Size(100, 50);
+            this.pictureVisaLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureVisaLogo.TabIndex = 17;
+            this.pictureVisaLogo.TabStop = false;
+            this.pictureVisaLogo.Visible = false;
+            // 
             // PaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1045, 690);
+            this.Controls.Add(this.pictureVisaLogo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblExpiryDate);
             this.Controls.Add(this.lblCardHolder);
@@ -197,6 +211,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PaymentForm";
             this.Text = "Payment Confirmation";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureVisaLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,5 +233,6 @@
         private System.Windows.Forms.Label lblCardHolder;
         private System.Windows.Forms.Label lblExpiryDate;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureVisaLogo;
     }
 }
