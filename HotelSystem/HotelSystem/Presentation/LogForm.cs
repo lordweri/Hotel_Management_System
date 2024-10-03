@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -13,23 +14,38 @@ namespace HotelSystem.Presentation
 {
     public partial class LoginForm : Form
     {
+        private const string EmpID = "HTL013";
+        private const string password1 = "phumlaisthebest";
         public LoginForm()
         {
             InitializeComponent();
+            label2.Visible = false;
+            label3.Visible = false;
         }
-
         private void btnSignIn_Click(object sender, EventArgs e)
         {
+            label2.Visible = false;
+            label3.Visible = false;
             string userId = txtUserId.Text;
             string password = txtPassword.Text;
 
-            if (!string.IsNullOrEmpty(userId) && !string.IsNullOrEmpty(password))
+            if (userId == EmpID && password == password1)
             {
-                MessageBox.Show("Sign-in successful!");
+
+                MainForm mainForm = new MainForm(); 
+                mainForm.Show();
+                this.Hide(); 
+
+            }
+            else if(userId == EmpID && password != password1)
+            {
+                  label2.Visible = true;
+ 
             }
             else
             {
-                MessageBox.Show("Please enter your ID and password.");
+                label3.Visible = true;
+
             }
         }
 
@@ -105,6 +121,16 @@ namespace HotelSystem.Presentation
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
