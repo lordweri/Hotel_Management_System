@@ -20,22 +20,30 @@ namespace HotelSystem.Presentation
 
         private void btnMakeReservation_Click(object sender, EventArgs e)
         {
-            // Add your logic here
+            DateCheckForm dateForm = new DateCheckForm();
+            dateForm.Show();
+            this.Close();
         }
 
         private void btnChangeReservation_Click(object sender, EventArgs e)
         {
-            // Add your logic here
+            ChangeReserveForm changeReserveForm = new ChangeReserveForm();
+            changeReserveForm.Show();
+            this.Close();
         }
 
         private void btnCancelReservation_Click(object sender, EventArgs e)
         {
-            // Add your logic here
+            ChangeReserveForm newChangeReserveForm = new ChangeReserveForm();
+            newChangeReserveForm.Show();
+            this.Close();
         }
-     
+
         private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
