@@ -25,7 +25,6 @@ namespace HotelSystem.Presentation
         private void ReportForm_Load(object sender, EventArgs e)
         {
             dgvOccupancy.DataSource = hotelDatabaseDataSet.Booking;
-            
         }
 
         private void btnGenerateReport_Click(object sender, EventArgs e)
@@ -34,19 +33,29 @@ namespace HotelSystem.Presentation
             DateTime endDate = dtpEndDate.Value;
 
             // Fetch occupancy data from the BookingController
-            var occupancyData = bookingController.GetOccupancyReport(startDate, endDate);
+            var occupancyData = bookingController.GetOccupancyLevelReport(startDate, endDate);
 
-            // Display the data in DataGridView
-            dgvOccupancy.DataSource = occupancyData;
-
-            // Plot the data on the chart
-            chartOccupancyLevel.Series.Clear();
-            Series series = chartOccupancyLevel.Series.Add("Occupancy");
-            foreach (var data in occupancyData)
+            if (occupancyData is IEnumerable<OccupancyData> occupancyDataList)
             {
-                series.Points.AddXY(data.Date, data.OccupancyPercentage);
+                // Display the data in DataGridView
+                dgvOccupancy.DataSource = occupancyDataList;
+
+                // Plot the data on the chart
+                chartOccupancyLevel.Series.Clear();
+                Series series = chartOccupancyLevel.Series.Add("Occupancy");
+
+                // Iterate over the occupancyDataList
+                foreach (OccupancyData data in occupancyDataList)
+                {
+                    series.Points.AddXY(data.Date, data.OccupancyPercentage);
+                }
             }
-            
+            else
+            {
+                // Handle the case when occupancyData is not a collection
+                // You can display an error message or take other appropriate actions
+                MessageBox.Show("Invalid occupancy data");
+            }
         }
     }
 }
