@@ -36,7 +36,13 @@ namespace HotelSystem.Business
             bookings = bookingDB.AllBookings;    //bookingDB.AllBookings uses the get method of Booking class to get the bookings
         }
         #endregion
-        
+
+        public class RevenueData
+        {
+            public DateTime Date { get; set; }
+            public decimal TotalRevenue { get; set; }
+        }
+
         //Use these method change the availability of a room to True or False
         #region Database communication
         //This method updates booking DataSet(won't affect the database until FinalizeChanges() is called)
@@ -102,25 +108,41 @@ namespace HotelSystem.Business
         #region Report Methods
 
         // Occupancy Level Report-BRWCAL007
-        public decimal GetOccupancyLevelReport(DateTime startDate, DateTime endDate)
+        public List<OccupancyData> GetOccupancyLevelReport(DateTime startDate, DateTime endDate)
         {
-            // Get all bookings within the given date range-BRWCAL007
-            var totalRoomsBooked = bookings.Count(b => b.range.Start < endDate && b.range.End > startDate);
-            var totalRoomsAvailable = bookingDB.GetTotalRoomCount();  // Assuming bookingDB can return total rooms in the hotel
+            var occupancyDataList = new List<OccupancyData>();
+            int totalRoomsAvailable = bookingDB.GetTotalRoomCount(); // Assuming total rooms in the hotel
 
-            if (totalRoomsAvailable == 0) return 0;
+            if (totalRoomsAvailable == 0) return occupancyDataList; // Return an empty list if no rooms are available
 
-            return ((decimal)totalRoomsBooked / totalRoomsAvailable) * 100; // returns percentage occupancy level
+            // Iterate through each day in the date range
+            for (var date = startDate.Date; date <= endDate.Date; date = date.AddDays(1))
+            {
+                // Count bookings for the specific date
+                int roomsBookedForDay = bookings.Count(b => b.range.Start <= date && b.range.End >= date);
+
+                // Calculate occupancy percentage for that day
+                decimal occupancyPercentage = ((decimal)roomsBookedForDay / totalRoomsAvailable) * 100;
+
+                // Add the occupancy data to the list
+                occupancyDataList.Add(new OccupancyData(date, occupancyPercentage));
+            }
+
+            return occupancyDataList;
         }
 
         // Revenue Forecast Report-BRWCAL007
-        public decimal GetRevenueReport(DateTime startDate, DateTime endDate)
+        public List<RevenueData> GetRevenueReport(DateTime startDate, DateTime endDate)
         {
-            // Sum up the total price of all bookings within the given date range
-            return (decimal)bookings
+            return bookings
                 .Where(b => b.range.Start >= startDate && b.range.End <= endDate)
-                .Sum(b => b.totalPrice);           
-
+                .GroupBy(b => b.range.Start.Date) // Group by booking date (or adjust based on how you want to report)
+                .Select(group => new RevenueData
+                {
+                    Date = group.Key,
+                    TotalRevenue = group.Sum(b => (decimal)b.totalPrice)
+                })
+                .ToList();
         }
         #endregion
 

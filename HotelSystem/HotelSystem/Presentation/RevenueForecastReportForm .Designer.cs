@@ -161,5 +161,6 @@
         private HotelDatabaseDataSet hotelDatabaseDataSet;
         private System.Windows.Forms.ComboBox cmbReportType;
         private System.Windows.Forms.DateTimePicker dtpEndDate;
+        
     }
 }

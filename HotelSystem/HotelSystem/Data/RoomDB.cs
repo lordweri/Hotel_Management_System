@@ -72,7 +72,7 @@ namespace HotelSystem.Data
             {
                 aRow["RoomNumber"] = aRoom.getRoomNo();
                 aRow["Rate"] = aRoom.getRate();
-                aRow["Status"] = aRoom.getAvailability();
+                aRow["Status"] = aRoom.IsOccupied();
             }
         }
 
