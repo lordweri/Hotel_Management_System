@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelSystem.Business;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace HotelSystem.Presentation
 {
     public partial class PaymentForm : Form
     {
+        private PaymentController paymentController;
         public PaymentForm()
+            
         {
             InitializeComponent();
+            paymentController = new PaymentController();
         }
 
         // Event handler for Confirm Deposit button
