@@ -33,16 +33,18 @@
             this.lblCardHolder = new System.Windows.Forms.Label();
             this.lblExpiryDate = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.pictureVisaLogo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureVisaLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnConfirmDeposit
             // 
             this.btnConfirmDeposit.BackColor = System.Drawing.Color.LightGreen;
             this.btnConfirmDeposit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnConfirmDeposit.Location = new System.Drawing.Point(363, 160);
+            this.btnConfirmDeposit.Location = new System.Drawing.Point(334, 160);
             this.btnConfirmDeposit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConfirmDeposit.Name = "btnConfirmDeposit";
-            this.btnConfirmDeposit.Size = new System.Drawing.Size(300, 39);
+            this.btnConfirmDeposit.Size = new System.Drawing.Size(368, 39);
             this.btnConfirmDeposit.TabIndex = 0;
             this.btnConfirmDeposit.Text = "Confirm Deposit";
             this.btnConfirmDeposit.UseVisualStyleBackColor = false;
@@ -52,10 +54,10 @@
             // 
             this.btnConfirmFullPayment.BackColor = System.Drawing.Color.LightGreen;
             this.btnConfirmFullPayment.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnConfirmFullPayment.Location = new System.Drawing.Point(363, 496);
+            this.btnConfirmFullPayment.Location = new System.Drawing.Point(334, 496);
             this.btnConfirmFullPayment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConfirmFullPayment.Name = "btnConfirmFullPayment";
-            this.btnConfirmFullPayment.Size = new System.Drawing.Size(300, 39);
+            this.btnConfirmFullPayment.Size = new System.Drawing.Size(368, 39);
             this.btnConfirmFullPayment.TabIndex = 1;
             this.btnConfirmFullPayment.Text = "Confirm Full Payment";
             this.btnConfirmFullPayment.UseVisualStyleBackColor = false;
@@ -65,10 +67,10 @@
             // 
             this.btnConfirmNoPayment.BackColor = System.Drawing.Color.LightGray;
             this.btnConfirmNoPayment.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnConfirmNoPayment.Location = new System.Drawing.Point(363, 591);
+            this.btnConfirmNoPayment.Location = new System.Drawing.Point(334, 591);
             this.btnConfirmNoPayment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConfirmNoPayment.Name = "btnConfirmNoPayment";
-            this.btnConfirmNoPayment.Size = new System.Drawing.Size(300, 39);
+            this.btnConfirmNoPayment.Size = new System.Drawing.Size(368, 39);
             this.btnConfirmNoPayment.TabIndex = 2;
             this.btnConfirmNoPayment.Text = "Confirm No Payment";
             this.btnConfirmNoPayment.UseVisualStyleBackColor = false;
@@ -93,7 +95,7 @@
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.Location = new System.Drawing.Point(-1, 4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1045, 101);
             this.panel1.TabIndex = 7;
@@ -113,36 +115,36 @@
             // 
             // txtCardNumber
             // 
-            this.txtCardNumber.Location = new System.Drawing.Point(453, 242);
+            this.txtCardNumber.Location = new System.Drawing.Point(334, 246);
             this.txtCardNumber.Name = "txtCardNumber";
-            this.txtCardNumber.Size = new System.Drawing.Size(100, 22);
+            this.txtCardNumber.Size = new System.Drawing.Size(368, 22);
             this.txtCardNumber.TabIndex = 9;
             // 
             // txtExpiryDate
             // 
-            this.txtExpiryDate.Location = new System.Drawing.Point(453, 389);
+            this.txtExpiryDate.Location = new System.Drawing.Point(334, 393);
             this.txtExpiryDate.Name = "txtExpiryDate";
-            this.txtExpiryDate.Size = new System.Drawing.Size(100, 22);
+            this.txtExpiryDate.Size = new System.Drawing.Size(368, 22);
             this.txtExpiryDate.TabIndex = 10;
             // 
             // txtCardHolderName
             // 
-            this.txtCardHolderName.Location = new System.Drawing.Point(453, 316);
+            this.txtCardHolderName.Location = new System.Drawing.Point(334, 320);
             this.txtCardHolderName.Name = "txtCardHolderName";
-            this.txtCardHolderName.Size = new System.Drawing.Size(100, 22);
+            this.txtCardHolderName.Size = new System.Drawing.Size(368, 22);
             this.txtCardHolderName.TabIndex = 11;
             // 
             // txtCVV
             // 
-            this.txtCVV.Location = new System.Drawing.Point(453, 452);
+            this.txtCVV.Location = new System.Drawing.Point(334, 456);
             this.txtCVV.Name = "txtCVV";
-            this.txtCVV.Size = new System.Drawing.Size(100, 22);
+            this.txtCVV.Size = new System.Drawing.Size(368, 22);
             this.txtCVV.TabIndex = 12;
             // 
             // lblCardNumber
             // 
             this.lblCardNumber.AutoSize = true;
-            this.lblCardNumber.Location = new System.Drawing.Point(360, 248);
+            this.lblCardNumber.Location = new System.Drawing.Point(238, 249);
             this.lblCardNumber.Name = "lblCardNumber";
             this.lblCardNumber.Size = new System.Drawing.Size(90, 16);
             this.lblCardNumber.TabIndex = 13;
@@ -151,7 +153,7 @@
             // lblCardHolder
             // 
             this.lblCardHolder.AutoSize = true;
-            this.lblCardHolder.Location = new System.Drawing.Point(360, 322);
+            this.lblCardHolder.Location = new System.Drawing.Point(238, 323);
             this.lblCardHolder.Name = "lblCardHolder";
             this.lblCardHolder.Size = new System.Drawing.Size(83, 16);
             this.lblCardHolder.TabIndex = 14;
@@ -160,7 +162,7 @@
             // lblExpiryDate
             // 
             this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(360, 395);
+            this.lblExpiryDate.Location = new System.Drawing.Point(238, 396);
             this.lblExpiryDate.Name = "lblExpiryDate";
             this.lblExpiryDate.Size = new System.Drawing.Size(79, 16);
             this.lblExpiryDate.TabIndex = 15;
@@ -169,17 +171,29 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(386, 452);
+            this.label4.Location = new System.Drawing.Point(258, 459);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 16);
             this.label4.TabIndex = 16;
             this.label4.Text = "CVV:";
+            // 
+            // pictureVisaLogo
+            // 
+            this.pictureVisaLogo.Image = global::HotelSystem.Properties.Resources.Visa_Logo;
+            this.pictureVisaLogo.Location = new System.Drawing.Point(729, 235);
+            this.pictureVisaLogo.Name = "pictureVisaLogo";
+            this.pictureVisaLogo.Size = new System.Drawing.Size(100, 50);
+            this.pictureVisaLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureVisaLogo.TabIndex = 17;
+            this.pictureVisaLogo.TabStop = false;
+            this.pictureVisaLogo.Visible = false;
             // 
             // PaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1045, 690);
+            this.Controls.Add(this.pictureVisaLogo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblExpiryDate);
             this.Controls.Add(this.lblCardHolder);
@@ -197,6 +211,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PaymentForm";
             this.Text = "Payment Confirmation";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureVisaLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,5 +233,6 @@
         private System.Windows.Forms.Label lblCardHolder;
         private System.Windows.Forms.Label lblExpiryDate;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureVisaLogo;
     }
 }

@@ -249,6 +249,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>HotelDatabase.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Visa Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
