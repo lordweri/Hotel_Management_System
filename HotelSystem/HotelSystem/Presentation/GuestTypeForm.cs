@@ -31,12 +31,12 @@ namespace HotelSystem.Presentation
         private void btnNewGuest_Click(object sender, EventArgs e)
         {
             // Logic to handle new guest reservation
-            RegistrationForm registrationForm = new RegistrationForm();
+            RegistrationForm registrationForm = new RegistrationForm(guestController);
             registrationForm.Show();          // Show the registration form
             this.Close();                     // Close the current form
         }
 
-        //Check if the guest is existing, if existing, proceed to the reservation form(BookForm), if not, display an error message and do nothing
+        //Check if the guest is existing, if existing, proceed to the registration form, if not, display an error message and do nothing
         private void btnExistingGuest_Click(object sender, EventArgs e)
         {
             // Logic to handle existing guest reservation
@@ -49,9 +49,9 @@ namespace HotelSystem.Presentation
                     // Guest found
                     MessageBox.Show("Guest found!");
                     // You can call the form for an existing guest reservation here
-                    BookForm bookForm = new BookForm(guest);        // We found the guest, proceed to the reservation form
-                    bookForm.Show();                           // Show the reservation form
-                    this.Close();                              // Close the current form
+                    RegistrationForm registrationForm = new RegistrationForm(guestController, guest);        // We found the guest, proceed to registration form
+                    registrationForm.Show();                           // Show the reservation form
+                    this.Close();                              // Close the current form (Alternative approach: Hide the current form by making visible = false)
                     continue;
                 }
                 else
