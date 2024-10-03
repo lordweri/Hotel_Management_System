@@ -36,7 +36,7 @@ namespace HotelSystem.Business
             bookings = bookingDB.AllBookings;    //bookingDB.AllBookings uses the get method of Booking class to get the bookings
         }
         #endregion
-
+        
         //Use these method change the availability of a room to True or False
         #region Database communication
         //This method updates booking DataSet(won't affect the database until FinalizeChanges() is called)
@@ -101,50 +101,28 @@ namespace HotelSystem.Business
         //Use These methods to get data from the database for the Occupancy Level and Revenue Forecast Forms-BRWCAL007
         #region Report Methods
 
-        // Occupancy Level Report
-        public Dictionary<string, double> GetOccupancyLevelByMonth()
+        // Occupancy Level Report-BRWCAL007
+        public decimal GetOccupancyLevelReport(DateTime startDate, DateTime endDate)
         {
-            var report = new Dictionary<string, double>();
+            // Get all bookings within the given date range-BRWCAL007
+            var totalRoomsBooked = bookings.Count(b => b.range.Start < endDate && b.range.End > startDate);
+            var totalRoomsAvailable = bookingDB.GetTotalRoomCount();  // Assuming bookingDB can return total rooms in the hotel
 
-            foreach (var booking in bookings)
-            {
-                string month = booking.CheckIn.ToString("MMMM yyyy");
-                if (!report.ContainsKey(month))
-                    report[month] = 0;
-                
-                // Assume each booking is for a single room, you can adjust this calculation
-                report[month]++;
-            }
+            if (totalRoomsAvailable == 0) return 0;
 
-            // Calculate occupancy rate by dividing the total bookings by the number of days in the month
-            foreach (var month in report.Keys.ToList())
-            {
-                int daysInMonth = DateTime.DaysInMonth(DateTime.Parse(month).Year, DateTime.Parse(month).Month);
-                report[month] = (report[month] / daysInMonth) * 100;  // Convert to percentage
-            }
-
-            return report;
+            return ((decimal)totalRoomsBooked / totalRoomsAvailable) * 100; // returns percentage occupancy level
         }
 
-        // Revenue Forecast Report
-        public Dictionary<string, decimal> GetRevenueForecastByMonth()
+        // Revenue Forecast Report-BRWCAL007
+        public decimal GetRevenueReport(DateTime startDate, DateTime endDate)
         {
+            // Sum up the total price of all bookings within the given date range
+            return (decimal)bookings
+                .Where(b => b.range.Start >= startDate && b.range.End <= endDate)
+                .Sum(b => b.totalPrice);
 
-            var report = new Dictionary<string, decimal>();
-
-            foreach (var booking in bookings)
-            {
-                string month = booking.CheckIn.ToString("MMMM yyyy");
-                if (!report.ContainsKey(month))
-                    report[month] = 0;
-                
-                report[month] += (decimal)booking.totalPrice;  // Sum up the total prices of bookings for the given month
-            }
-
-            return report;
+            #endregion
         }
-
-        #endregion
     }
 }
         

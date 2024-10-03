@@ -34,6 +34,7 @@ namespace HotelSystem.Presentation
             dgvRevenue.DataSource = revenueData;
 
             // Plot the data on the chart
+
             chartRevenue.Series.Clear();
             Series series = chartRevenue.Series.Add("Revenue");
             foreach (var data in revenueData)
