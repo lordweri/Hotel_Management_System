@@ -61,5 +61,33 @@ namespace HotelSystem.Business
             paymentDB.UpdateDataSource(payment, operation);
         }
         #endregion
+
+        #region Search methods
+        public Payment FindPayment(string paymentID)
+        {
+            foreach (Payment payment in payments)
+            {
+                if (payment.PaymentID == paymentID)
+                {
+                    return payment;
+                }
+            }
+            return null;
+        }
+
+        private int FindIndex(Payment aPayment)
+        {
+            int index = 0;
+            foreach (Payment payment in payments)
+            {
+                if (payment.PaymentID == aPayment.PaymentID)
+                {
+                    return index;
+                }
+                index++;
+            }
+            return -1;
+        }
+        #endregion
     }
 }
