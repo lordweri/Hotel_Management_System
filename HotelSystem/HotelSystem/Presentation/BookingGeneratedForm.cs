@@ -19,14 +19,26 @@ namespace HotelSystem.Presentation
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            // Logic for Logout - Close this form and go to login screen or exit application
-            Application.Exit();
+            // Instantiate the LoginForm
+            LoginForm loginForm = new LoginForm();
+
+            // Show the LoginForm
+            loginForm.Show();
+
+            // Close the current form (BookingGeneratedForm)
+            this.Close();
         }
 
         private void btnBackToMainMenu_Click(object sender, EventArgs e)
         {
-            // Logic to go back to the main menu
-            this.Close(); // Close the current form
+            // Instantiate the MainForm
+            MainForm mainForm = new MainForm();
+
+            // Show the MainForm
+            mainForm.Show();
+
+            // Close the current BookingGeneratedForm
+            this.Close();
         }
 
         private void lblBookingSuccess_Click(object sender, EventArgs e)
