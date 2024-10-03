@@ -40,9 +40,25 @@ namespace HotelSystem.Presentation
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        // event handler to continue to the Bookings Changed form when the button is clicked-BRWCAL007
+        private void btnContinue_Click(object sender, EventArgs e)
         {
+            BookingChangedForm bookingChangedForm = new BookingChangedForm();
+            bookingChangedForm.Show();
+            this.Hide(); // Hide the current form
 
+        }
+        // event handler to go back to the Main Menu Form when the button is clicked-BRWCAL007
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            // Create an instance of the main menu form
+            MainForm mainForm = new MainForm();
+
+            // Show the main menu form
+            mainForm.Show();
+
+            // Close the current form (BookingChangedForm)
+            this.Close();
         }
     }
 }

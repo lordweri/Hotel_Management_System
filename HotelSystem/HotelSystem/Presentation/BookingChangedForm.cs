@@ -16,20 +16,14 @@ namespace HotelSystem.Presentation
         {
             InitializeComponent();
         }
-        // method to go back to main menu when the back button is clicked-BRWCAL007
+        // method to go back to the Mainform when the back button is clicked-BRWCAL007
         private void btnBackToMainMenu_Click(object sender, EventArgs e)
         {
             // Create an instance of the main menu form
-            Form mainMenuForm = new Form();
-            mainMenuForm.Menu = new MainMenu();
-
-            // Add menu items to the MainMenu
-            MenuItem fileMenuItem = new MenuItem("File");
-            fileMenuItem.MenuItems.Add(new MenuItem("Exit", (s, args) => Application.Exit()));
-            mainMenuForm.Menu.MenuItems.Add(fileMenuItem);
+            MainForm mainForm = new MainForm();
 
             // Show the main menu form
-            mainMenuForm.Show();
+            mainForm.Show();
 
             // Close the current form (BookingChangedForm)
             this.Close();
