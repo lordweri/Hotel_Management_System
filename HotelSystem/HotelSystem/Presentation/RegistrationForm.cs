@@ -9,14 +9,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ * IMPORTANT TO READ:
+* If the guest is existing in database, the text box will be auto-filled and will not be editable
+* If the guest is not existing in database, the text box will be editable and the guest will be added to the database
+*/
 namespace HotelSystem.Presentation
-{
+{   
     public partial class RegistrationForm : Form
     {
-        public RegistrationForm()
+        #region Data Members
+        private bool exitstingGuest = false;
+        private GuestController guestController;
+        #endregion
+
+        #region Constructors
+        //Constructor to use when the guest is not a existing guest
+        public RegistrationForm(GuestController guestController)
         {
             InitializeComponent();
+            this.guestController = guestController;
         }
+
+        //Constructor to use when the guest is a existing guest
+        public RegistrationForm(GuestController guestController, Guest guest)
+        {
+            InitializeComponent();
+            exitstingGuest = true;
+            this.guestController = guestController;
+        }
+        #endregion
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
