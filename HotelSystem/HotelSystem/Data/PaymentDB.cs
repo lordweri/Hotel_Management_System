@@ -155,7 +155,7 @@ namespace HotelSystem.Data
             daMain.UpdateCommand.Parameters.Add(param);
         }
 
-        private void Build_DELETE_Parameters()
+        private void Build_DELETE_Parameters(Payment payment)
         {
             SqlParameter param = default(SqlParameter);
             param = new SqlParameter("@PaymentID", SqlDbType.NVarChar, 50, "PaymentID");
@@ -174,13 +174,13 @@ namespace HotelSystem.Data
             Build_UPDATE_Parameters(aPayment);
         }
 
-        private void Create_DELETE_Command()
+        private void Create_DELETE_Command(Payment payment)
         {
             daMain.DeleteCommand = new SqlCommand("DELETE FROM Payment WHERE PaymentID = @PaymentID", cnMain);
-            Build_DELETE_Parameters();
+            Build_DELETE_Parameters(payment);
         }
 
-        private bool UpdateDataSource(PaymentDB payment, DB.DBOperation operation)
+        public bool UpdateDataSource(Payment payment, DB.DBOperation operation)
         {
             bool success = true;
             switch (operation)
@@ -192,7 +192,7 @@ namespace HotelSystem.Data
                     Create_UPDATE_Command(payment);
                     break;
                 case DBOperation.Delete:
-                    Create_DELETE_Command();
+                    Create_DELETE_Command(payment);
                     break;
             }
             success = UpdateDataSource(sqlLocal, table);
