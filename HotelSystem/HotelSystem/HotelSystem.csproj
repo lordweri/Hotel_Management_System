@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\OccupancyData.cs" />
+    <Compile Include="Business\Payment.cs" />
     <Compile Include="Business\PaymentController.cs" />
     <Compile Include="Data\PaymentDB.cs" />
     <Compile Include="Presentation\BookForm.cs">

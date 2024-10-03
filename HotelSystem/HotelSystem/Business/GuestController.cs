@@ -88,11 +88,11 @@ namespace HotelSystem.Business
             {
                 if (guest.getGuestID() == aGuest.getGuestID())
                 {
-                    break;
+                    return index;
                 }
                 index++;
             }
-            return index;
+            return -1;
         }
 
         internal Guest GetGuestByDetails(string text1, string text2)
