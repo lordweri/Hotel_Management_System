@@ -18,7 +18,7 @@ namespace HotelSystem.Presentation
         }
 
         // Event handler for Make Payment button
-        private void btnMakePayment_Click(object sender, EventArgs e)
+        private void BtnMakePayment_Click(object sender, EventArgs e)
         {
             // Create an instance of the PaymentForm
             PaymentForm paymentForm = new PaymentForm();
@@ -28,7 +28,7 @@ namespace HotelSystem.Presentation
         }
 
         // Event handler for back button
-        private void btnBack_Click(object sender, EventArgs e)
+        private void BtnBack_Click(object sender, EventArgs e)
         {
             // Create an instance of the MainForm
             MainForm mainMenu = new MainForm();
@@ -42,7 +42,7 @@ namespace HotelSystem.Presentation
 
 
         // Event handler for Cancel button
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
 
         }
