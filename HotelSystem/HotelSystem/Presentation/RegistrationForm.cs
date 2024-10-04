@@ -16,9 +16,10 @@ using System.Windows.Forms;
 * 3. If the room type is family room, the child options will be shown.
 * 4. A Guest object will be created with the details from the text boxes 
 * 5. A booking object will be created and passed to the next form(BookForm)
-* 6. Press "Generate Booking" to proceed to the next form(BookForm)
+* 6. Press "Generate Booking" add Guest to the Booking object and proceeds to the next form(BookForm)
 * NOTE:
-*  If the guest is not exist in database, the guest will be added to the database if booking is successful
+*  If the guest is not exist in database, the guest will be added to the database if booking is successful in payment form
+*  
 */
 namespace HotelSystem.Presentation
 {   
@@ -30,23 +31,27 @@ namespace HotelSystem.Presentation
 
         private GuestController guestController;         //controller to handle guest operations
         private Booking booking;                         //booking object to store the booking details, however it will only be added to database after booking is confirmed
+
+        RoomType roomType;                              //room type selected by the user
         #endregion
 
         #region Constructors
         //Constructor to use when the guest is NOT A EXISTING GUEST
-        public RegistrationForm(GuestController guestController,Booking Book)
+        public RegistrationForm(GuestController guestController,Booking Booking)
         {
             InitializeComponent();
             this.guestController = guestController;
+            this.booking = Booking;
         }
 
         //Constructor to use when the guest is a EXISTING GUEST
-        public RegistrationForm(GuestController guestController, Guest guest,Booking book)
+        public RegistrationForm(GuestController guestController, Guest guest,Booking booking)
         {
             InitializeComponent();
             exitstingGuest = true;
             this.guestController = guestController;
             this.guest = guest;                               //existing guest object
+            this.booking = booking;                           //booking object passed from the GuestTypeForm
 
             // Fill the form with the existing guest details
             txtGuestName.Text = guest.getName();
@@ -57,7 +62,7 @@ namespace HotelSystem.Presentation
         }
         #endregion
 
-        //"Generate Booking" button, proceed to the BookForm after pressed
+        //"Generate Booking" button, add Guest object to the Booking object and proceed to the BookForm after pressed
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             // Handle the form submission logic here.
@@ -65,23 +70,21 @@ namespace HotelSystem.Presentation
             string phoneNumber = txtPhoneNumber.Text;
             string address = txtAddress.Text;
             string email = txtEmail.Text;
-            string roomType = cbRoomType.SelectedItem.ToString();
             int numberOfChildren = (int)numChildren.Value;
             string child1Age = txtChild1Age.Text;
             string child2Age = txtChild2Age.Text;
 
             if (exitstingGuest)
             {
-                //Do nothing, because the guest is existing
+                booking.guest = guest;
             }
             else
             {
                 // Create a new guest object, GuestID will be generated automatically
                 guest = new Guest(guestName, email, phoneNumber, address);
+                booking.guest = guest;
             }
-
-            //TODO: Create a new booking object
-            //booking = new Booking(       
+            booking.roomType = roomType;
 
             //Proceed to the next form
             BookForm bookForm = new BookForm(booking, exitstingGuest);    //exitstingGuest flag is passed to the next form, if existingGuest is false, the guest will be added to the database if booking is successful
@@ -131,13 +134,35 @@ namespace HotelSystem.Presentation
         //Select type of room, show child options if family room is selected
         private void cbRoomType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbRoomType.SelectedItem.ToString() == "Family Room")
+            if (cbRoomType.SelectedItem.ToString() == "FamilyRoom")
             {
                 showChildOptions(true);
             }
             else
             {
                 showChildOptions(false);
+            }
+
+            //set roomType
+            if(cbRoomType.SelectedItem.ToString() == "FamilyRoom")
+            {
+                roomType = RoomType.FamilyRoom;
+            }
+            else if(cbRoomType.SelectedItem.ToString() == "Single")
+            {
+                roomType = RoomType.Single;
+            }
+            else if(cbRoomType.SelectedItem.ToString() == "CoupleSharingOneBed")
+            {
+                roomType = RoomType.CoupleSharingOneBed;
+            }
+            else if(cbRoomType.SelectedItem.ToString() == "TwoPeopleSeparateBeds")
+            {
+                roomType = RoomType.TwoPeopleSeparateBeds;
+            }
+            else if(cbRoomType.SelectedItem.ToString() == "Standard")
+            {
+                roomType = RoomType.Standard;
             }
         }
     }

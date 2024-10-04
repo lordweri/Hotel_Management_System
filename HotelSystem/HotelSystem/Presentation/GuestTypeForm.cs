@@ -18,11 +18,14 @@ namespace HotelSystem.Presentation
         GuestController guestController;
         Collection<Guest> guests;
         private Booking booking;
+
+        Room selectedRoom = null;              // The room selected in DateCheckForm
         #endregion
 
+        #region Constructor
         public GuestTypeForm(Booking book)
         {
-            booking = book;
+            booking = book;                  //Booking object passed from the DateCheckForm
             InitializeComponent();
             guestController = new GuestController();
             guests = new Collection<Guest>();
@@ -30,8 +33,8 @@ namespace HotelSystem.Presentation
             guestIDtextBox.Visible = false;
             continueButton.Visible = false;
         }
+        #endregion
 
-        
         //When this button is clicked, the user is taken to the form(Registration Form) to register a new guest
         private void btnNewGuest_Click(object sender, EventArgs e)
         {
@@ -63,7 +66,7 @@ namespace HotelSystem.Presentation
 
         }
 
-        //Continue button
+        //Continue button, proceeds to the Registration form
         private void continueButton_Click(object sender, EventArgs e)
         {
             string guestIdEntered = guestIDtextBox.Text;
@@ -86,6 +89,11 @@ namespace HotelSystem.Presentation
                     MessageBox.Show("Guest not found!");
                 }
             }
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
     }
