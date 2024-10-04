@@ -95,7 +95,7 @@ namespace HotelSystem.Presentation
                 booking.setRoom(selectedRoom);
                 booking.CheckIn = startDate;
                 booking.CheckOut = endDate;
-                GuestTypeForm form = new GuestTypeForm(booking);            //Open the GuestTypeForm
+                GuestTypeForm form = new GuestTypeForm(booking);            //Proceed to GuestTypeForm
                 form.Show();
                 this.Close();
             }
