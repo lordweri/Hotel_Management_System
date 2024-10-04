@@ -15,7 +15,7 @@ namespace HotelSystem.Business
         private Boolean check;
         public RoomType roomType;
 
-        public int RoomNumber { get; internal set; }
+        public string RoomNumber { get; internal set; }
 
         #region Constructors
         public Room(string number)
