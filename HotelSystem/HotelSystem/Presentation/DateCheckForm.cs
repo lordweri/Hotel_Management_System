@@ -39,7 +39,7 @@ namespace HotelSystem.Presentation
             bookingController = new BookingController();
             roomController = new RoomController();
             bookings = bookingController.AllBookings; 
-            label2.Visible = false;
+            label1.Visible = false;
         }
         #endregion
 
@@ -94,7 +94,7 @@ namespace HotelSystem.Presentation
              form.Show();
             this.Close();
             }else{
-                label2.Visible = true;
+                label1.Visible = true;
              }
         }
         // event handler to go back to the Main Menu Form when the button is clicked-BRWCAL007
@@ -167,6 +167,11 @@ namespace HotelSystem.Presentation
         #endregion
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
