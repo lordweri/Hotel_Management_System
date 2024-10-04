@@ -10,7 +10,7 @@ namespace HotelSystem.Business
     
     public class Room
     {
-        private string RoomNo;
+        private string roomNumber;
         private double rate;
         private Boolean check;
         public RoomType roomType;
@@ -20,7 +20,7 @@ namespace HotelSystem.Business
         #region Constructors
         public Room(string number)
         {
-            RoomNo = number;
+            RoomNumber = number;
             check = false;
         }
 
@@ -31,7 +31,7 @@ namespace HotelSystem.Business
 
         public Room(string number, double price, Boolean availability)
         {
-            RoomNo = number;
+            RoomNumber = number;
             rate = price;
             this.check = availability;
         }
@@ -40,7 +40,7 @@ namespace HotelSystem.Business
         public void checkin() { check= true; }
         public void checkout() { check = false; }
         public double getRate() { return rate; }
-        public string getRoomNo() { return RoomNo; }
+        public string getRoomNo() { return RoomNumber; }
         public void setRate(double rate) {  this.rate = rate; }
         public string getType() { return roomType.ToString(); }
         public bool IsOccupied() { return check; }

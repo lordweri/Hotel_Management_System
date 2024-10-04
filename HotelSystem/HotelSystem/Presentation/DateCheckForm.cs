@@ -60,9 +60,16 @@ namespace HotelSystem.Presentation
             //List all available rooms between the given dates in the list box    (This method relies on the Utility methods)
             roomsListBox.Items.Clear();
             availableRooms = SearchAvailableRooms(startDate, endDate);
-            foreach (Room room in availableRooms)
+            if (availableRooms.Count == 0)
             {
-                roomsListBox.Items.Add(room.RoomNumber);              //Show available rooms(Room number) into the list box
+                MessageBox.Show("There are no available rooms in the selected dates!");
+            }
+            else 
+            {
+                foreach (Room room in availableRooms)
+                {
+                    roomsListBox.Items.Add(room.RoomNumber);              //Show available rooms(Room number) into the list box
+                }
             }
         }
 
