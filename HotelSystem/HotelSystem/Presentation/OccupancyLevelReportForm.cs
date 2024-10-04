@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using HotelSystem.Business; 
+using HotelSystem.Business;
 
 namespace HotelSystem.Presentation
 {
@@ -27,35 +27,66 @@ namespace HotelSystem.Presentation
             dgvOccupancy.DataSource = hotelDatabaseDataSet.Booking;
         }
 
-        private void btnGenerateReport_Click(object sender, EventArgs e)
+        private async void btnGenerateReport_Click(object sender, EventArgs e)
         {
             DateTime startDate = dtpStartDate.Value;
             DateTime endDate = dtpEndDate.Value;
 
-            // Fetch occupancy data from the BookingController
-            var occupancyData = bookingController.GetOccupancyLevelReport(startDate, endDate);
-
-            if (occupancyData is IEnumerable<OccupancyData> occupancyDataList)
+            if (startDate > endDate)
             {
-                // Display the data in DataGridView
-                dgvOccupancy.DataSource = occupancyDataList;
+                MessageBox.Show("Start date must be before end date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                // Plot the data on the chart
-                chartOccupancyLevel.Series.Clear();
-                Series series = chartOccupancyLevel.Series.Add("Occupancy");
+            try
+            {
+                // Show loading indicator
+                UseWaitCursor = true;
 
-                // Iterate over the occupancyDataList
-                foreach (OccupancyData data in occupancyDataList)
+                // Fetch occupancy data from the BookingController asynchronously
+                var occupancyData = await Task.Run(() => bookingController.GetOccupancyLevelReport(startDate, endDate));
+
+                if (occupancyData is IEnumerable<OccupancyData> occupancyDataList && occupancyDataList.Any())
                 {
-                    series.Points.AddXY(data.Date, data.OccupancyPercentage);
+                    // Display the data in DataGridView
+                    dgvOccupancy.DataSource = occupancyDataList;
+
+                    // Plot the data on the chart
+                    UpdateChart(occupancyDataList);
+                }
+                else
+                {
+                    MessageBox.Show("No occupancy data available for the selected date range.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                // Handle the case when occupancyData is not a collectionh
-                // You can display an error message or take other appropriate actions
-                MessageBox.Show("Invalid occupancy data");
+                MessageBox.Show($"An error occurred while generating the report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                // Hide loading indicator
+                UseWaitCursor = false;
+            }
+        }
+
+        private void UpdateChart(IEnumerable<OccupancyData> occupancyDataList)
+        {
+            chartOccupancyLevel.Series.Clear();
+            Series series = chartOccupancyLevel.Series.Add("Occupancy");
+            series.ChartType = SeriesChartType.Line;
+
+            foreach (OccupancyData data in occupancyDataList)
+            {
+                series.Points.AddXY(data.Date, data.OccupancyPercentage);
+            }
+
+            // Customize chart appearance
+            chartOccupancyLevel.ChartAreas[0].AxisX.Title = "Date";
+            chartOccupancyLevel.ChartAreas[0].AxisY.Title = "Occupancy %";
+            chartOccupancyLevel.ChartAreas[0].AxisY.Minimum = 0;
+            chartOccupancyLevel.ChartAreas[0].AxisY.Maximum = 100;
+            chartOccupancyLevel.Titles.Add("Hotel Occupancy Level");
         }
     }
 }
