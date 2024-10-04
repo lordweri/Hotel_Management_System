@@ -15,18 +15,20 @@ namespace HotelSystem.Presentation
 {
     public partial class RevenueForecastReport : Form
     {
-        private readonly BookingController bookingController;
+        // Instance of the BookingController class to access its methods and properties.
 
+        private readonly BookingController bookingController;
+        // Constructor to initialize the form and the BookingController instance to access its methods and properties.
         public RevenueForecastReport()
         {
             InitializeComponent();
             bookingController = new BookingController();
         }
-        // Method to generate revenue report based on start and end date-BRWCAL007
+        // Method to generate revenue report based on start and end dates-BRWCAL007
         private void btnGenerateRevenueReport_Click(object sender, EventArgs e)
         {
-            DateTime startDate = dtpStartDate.Value.Date; // Ensure we use Date
-            DateTime endDate = dtpEndDate.Value.Date; // Ensure we use Date
+            DateTime startDate = dtpStartDate.Value.Date; // Get the start date from the date picker and ensure it's only the date (no time)
+            DateTime endDate = dtpEndDate.Value.Date; // Get the end date from the date picker and ensure it's only the date (no time)
 
             try
             {
@@ -37,7 +39,7 @@ namespace HotelSystem.Presentation
                 if (revenueData == null || revenueData.Count == 0)
                 {
                     MessageBox.Show("No revenue data found for the selected date range.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return; // Exit if no data
+                    return; // Exit if no data is found
                 }
 
                 // Display the revenue data in the data grid view
@@ -52,7 +54,7 @@ namespace HotelSystem.Presentation
                 MessageBox.Show($"An error occurred while generating the report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        // Method to plot the revenue data on the chart
         private void PlotRevenueDataOnChart(List<RevenueData> revenueData)
         {
             // Clear any existing series on the chart
@@ -60,7 +62,7 @@ namespace HotelSystem.Presentation
 
             // Create a new series for the revenue data
             Series series = chartRevenue.Series.Add("Revenue");
-            series.ChartType = SeriesChartType.Line;
+            series.ChartType = SeriesChartType.Line; // Set the chart type to line
 
             // Iterate through each data point and add it to the chart
             foreach (var data in revenueData)
@@ -69,16 +71,16 @@ namespace HotelSystem.Presentation
             }
 
             // Set the axis titles and minimum value for the chart
-            chartRevenue.ChartAreas[0].AxisX.Title = "Date";
-            chartRevenue.ChartAreas[0].AxisY.Title = "Total Revenue";
-            chartRevenue.ChartAreas[0].AxisY.Minimum = 0;
+            chartRevenue.ChartAreas[0].AxisX.Title = "Date"; // Set the X-axis title to "Date"
+            chartRevenue.ChartAreas[0].AxisY.Title = "Total Revenue"; // Set the Y-axis title to "Total Revenue"
+            chartRevenue.ChartAreas[0].AxisY.Minimum = 0; // Set the minimum value of the Y-axis to 0
 
             // Add a title to the chart
             chartRevenue.Titles.Clear(); // Clear previous titles
-            chartRevenue.Titles.Add("Revenue Forecast Report");
+            chartRevenue.Titles.Add("Revenue Forecast Report"); // Add a title to the chart
         }
 
-        // Method to close the form and navigate back to the MainForm-BRWCAL007
+        // Method to close the form and navigate back to the MainForm
         private void btnBack_Click(object sender, EventArgs e)
         {
             // Create an instance of the main form
