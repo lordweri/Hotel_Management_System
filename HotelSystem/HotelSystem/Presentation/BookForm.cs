@@ -20,8 +20,11 @@ namespace HotelSystem.Presentation
         // Event handler for Make Payment button
         private void btnMakePayment_Click(object sender, EventArgs e)
         {
-            // Logic to proceed with payment can be added here
-            MessageBox.Show("Proceed to Payment");           
+            // Create an instance of the PaymentForm
+            PaymentForm paymentForm = new PaymentForm();
+
+            // Show the PaymentForm
+            paymentForm.Show();
         }
 
         // Event handler for back button
