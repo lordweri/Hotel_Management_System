@@ -15,7 +15,8 @@ using System.Windows.Forms;
 * 2. If the guest is not existing in database, the text box will be editable and the guest will be added to the database.
 * 3. If the room type is family room, the child options will be shown.
 * 4. A Guest object will be created with the details from the text boxes 
-* 5. Click "Generate Booking" to proceed to the next form(BookForm)
+* 5. A booking object will be created and passed to the next form(BookForm)
+* 6. Press "Generate Booking" to proceed to the next form(BookForm)
 * NOTE:
 *  If the guest is not exist in database, the guest will be added to the database if booking is successful
 */
