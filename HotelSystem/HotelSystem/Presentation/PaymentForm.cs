@@ -10,16 +10,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ * 
+ */
 namespace HotelSystem.Presentation
 {
     public partial class PaymentForm : Form
     {
+        #region Data Members
+        //Controllers
         private PaymentController paymentController;
-        public PaymentForm()
-            
+        private GuestController guestController;          // Used to add a new guest to the database if guest is not existing
+
+        //Attributes
+        private Booking booking;
+        private bool guestIsExisting;                     // If this attribute is true, add the guest to the database if booking is successfully made
+        #endregion
+
+        #region Constructor
+        public PaymentForm(Booking booking, bool guestIsExsting)            
         {
             InitializeComponent();
             paymentController = new PaymentController();
+            guestController = new GuestController();
+
+            this.booking = booking;
+            this.guestIsExisting = guestIsExsting;
 
             // Hide the VISA logo initially
             pictureVisaLogo.Visible = false;
@@ -27,6 +43,7 @@ namespace HotelSystem.Presentation
             // Attach TextChanged event handler to txtCardNumber
             txtCardNumber.TextChanged += txtCardNumber_TextChanged;
         }
+        #endregion
 
         // Event handler for Confirm Deposit button-BRWCAL007
         private void btnConfirmDeposit_Click(object sender, EventArgs e)
