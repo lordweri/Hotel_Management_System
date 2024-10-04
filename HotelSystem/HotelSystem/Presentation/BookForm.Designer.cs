@@ -62,7 +62,7 @@
             this.btnMakePayment.TabIndex = 2;
             this.btnMakePayment.Text = "Make Payment";
             this.btnMakePayment.UseVisualStyleBackColor = false;
-            this.btnMakePayment.Click += new System.EventHandler(this.btnMakePayment_Click);
+            this.btnMakePayment.Click += new System.EventHandler(this.BtnMakePayment_Click);
             // 
             // btnBack
             // 
@@ -75,7 +75,7 @@
             this.btnBack.TabIndex = 3;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
             // panel1
             // 
@@ -99,7 +99,7 @@
             this.CancelButton.TabIndex = 7;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = false;
-            this.CancelButton.Click += new System.EventHandler(this.button1_Click);
+            this.CancelButton.Click += new System.EventHandler(this.Button1_Click);
             // 
             // BookForm
             // 

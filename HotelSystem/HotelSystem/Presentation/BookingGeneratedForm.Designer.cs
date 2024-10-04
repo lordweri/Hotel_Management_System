@@ -35,7 +35,7 @@
             this.lblBookingSuccess.TabIndex = 0;
             this.lblBookingSuccess.Text = "Booking Generated Successfully!";
             this.lblBookingSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblBookingSuccess.Click += new System.EventHandler(this.lblBookingSuccess_Click);
+            this.lblBookingSuccess.Click += new System.EventHandler(this.LblBookingSuccess_Click);
             // 
             // btnLogout
             // 
@@ -48,7 +48,7 @@
             this.btnLogout.TabIndex = 1;
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.btnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
             // 
             // btnBackToMainMenu
             // 
@@ -61,7 +61,7 @@
             this.btnBackToMainMenu.TabIndex = 2;
             this.btnBackToMainMenu.Text = "Back to Main Menu";
             this.btnBackToMainMenu.UseVisualStyleBackColor = false;
-            this.btnBackToMainMenu.Click += new System.EventHandler(this.btnBackToMainMenu_Click);
+            this.btnBackToMainMenu.Click += new System.EventHandler(this.BtnBackToMainMenu_Click);
             // 
             // panel1
             // 

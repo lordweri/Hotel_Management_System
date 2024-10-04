@@ -57,7 +57,7 @@
             this.btnBackToMainMenu.TabIndex = 3;
             this.btnBackToMainMenu.Text = "Back to Main Menu";
             this.btnBackToMainMenu.UseVisualStyleBackColor = false;
-            this.btnBackToMainMenu.Click += new System.EventHandler(this.btnBackToMainMenu_Click);
+            this.btnBackToMainMenu.Click += new System.EventHandler(this.BtnBackToMainMenu_Click);
             // 
             // btnLogout
             // 
@@ -70,7 +70,7 @@
             this.btnLogout.TabIndex = 4;
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.btnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
             // 
             // panel1
             // 
