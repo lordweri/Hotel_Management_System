@@ -60,11 +60,15 @@ namespace HotelSystem.Presentation
         {
             OccupancyLevelReportForm reportForm = new OccupancyLevelReportForm();
             reportForm.Show();
+            this.Close();
         }
-        // access to the Revenue Forecast Form from the main menu-BRWCAL007
+        // access to the Revenue Forecast Report from the main menu-BRWCAL007
         private void btnRevenueForecast_Click(object sender, EventArgs e)
         {
-
+            RevenueForecastReport reportForm = new RevenueForecastReport();
+            reportForm.Show();
+            this.Close();
         }
+       
     }
 }
