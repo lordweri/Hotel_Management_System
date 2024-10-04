@@ -84,7 +84,7 @@ namespace HotelSystem.Presentation
             //booking = new Booking(       
 
             //Proceed to the next form
-            BookForm bookForm = new BookForm(booking);
+            BookForm bookForm = new BookForm(booking, exitstingGuest);    //exitstingGuest flag is passed to the next form, if existingGuest is false, the guest will be added to the database if booking is successful
             bookForm.Show();
             this.Hide();
 
