@@ -59,7 +59,11 @@ namespace HotelSystem.Presentation
 
             // Show the BookingCancelledForm
             cancelForm.Show();
+
+            // Close the current form
+            this.Close();
         }
+
 
 
         private void lblBookingDetails_Click(object sender, EventArgs e)
