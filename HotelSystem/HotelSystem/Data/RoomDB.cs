@@ -58,7 +58,7 @@ namespace HotelSystem.Data
                 {
                     string roomID = Convert.ToString(myRow["RoomID"]).Trim();
                     double rate = Convert.ToDouble(myRow["Rate"]);
-                    Boolean availability = Convert.ToBoolean(myRow["Status"]);
+                    Boolean availability = Convert.ToBoolean(myRow["IsAvailable"]);
                     room = new Room(roomID, rate, availability);  
                     rooms.Add(room);
                 }
@@ -72,7 +72,7 @@ namespace HotelSystem.Data
             {
                 aRow["RoomNumber"] = aRoom.getRoomNo();
                 aRow["Rate"] = aRoom.getRate();
-                aRow["Status"] = aRoom.IsOccupied();
+                aRow["IsAvailable"] = aRoom.IsOccupied();
             }
         }
 
@@ -132,7 +132,7 @@ namespace HotelSystem.Data
             param = new SqlParameter("@Rate", SqlDbType.Money, 8, "Rate");
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Status", SqlDbType.Int, 10, "Status");
+            param = new SqlParameter("@IsAvailable", SqlDbType.Int, 10, "IsAvailable");
             daMain.InsertCommand.Parameters.Add(param);
         }
 
@@ -147,7 +147,7 @@ namespace HotelSystem.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Status", SqlDbType.Int, 10, "Status");
+            param = new SqlParameter("@IsAvailable", SqlDbType.Int, 10, "IsAvailable");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
         }
@@ -161,13 +161,13 @@ namespace HotelSystem.Data
 
         private void Create_INSERT_Command(Room aRoom)
         {
-            daMain.InsertCommand = new SqlCommand("INSERT into Room (RoomNumber, Rate, Status) VALUES (@RoomNumber, @Rate, @Status)", cnMain);
+            daMain.InsertCommand = new SqlCommand("INSERT into Room (RoomNumber, Rate, IsAvailable) VALUES (@RoomNumber, @Rate, @IsAvailable)", cnMain);
             Build_INSERT_Parameters(aRoom);
         }
 
         private void Create_UPDATE_Command(Room aRoom)
         {
-            daMain.UpdateCommand = new SqlCommand("UPDATE Room SET RoomNumber = @RoomNumber, Rate = @Rate, Status = @Status WHERE RoomNumber = @RoomNumber", cnMain);
+            daMain.UpdateCommand = new SqlCommand("UPDATE Room SET RoomNumber = @RoomNumber, Rate = @Rate, IsAvailable = @IsAvailable WHERE RoomNumber = @RoomNumber", cnMain);
             Build_UPDATE_Parameters(aRoom);
         }
 

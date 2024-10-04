@@ -17,7 +17,7 @@ namespace HotelSystem.Presentation
             InitializeComponent();
         }
         // method to go back to the Mainform when the back button is clicked-BRWCAL007
-        private void btnBackToMainMenu_Click(object sender, EventArgs e)
+        private void BtnBackToMainMenu_Click(object sender, EventArgs e)
         {
             // Create an instance of the main menu form
             MainForm mainForm = new MainForm();
@@ -29,7 +29,7 @@ namespace HotelSystem.Presentation
             this.Close();
         }
         // mehtod to logout from the application when the logout button is clicked-BRWCAL007
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void BtnLogout_Click(object sender, EventArgs e)
         {
             // Display a confirmation message box
             DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

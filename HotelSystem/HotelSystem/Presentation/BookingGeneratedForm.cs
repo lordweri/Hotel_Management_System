@@ -17,7 +17,7 @@ namespace HotelSystem.Presentation
             InitializeComponent();
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void BtnLogout_Click(object sender, EventArgs e)
         {
             // Instantiate the LoginForm
             LoginForm loginForm = new LoginForm();
@@ -29,7 +29,7 @@ namespace HotelSystem.Presentation
             this.Close();
         }
 
-        private void btnBackToMainMenu_Click(object sender, EventArgs e)
+        private void BtnBackToMainMenu_Click(object sender, EventArgs e)
         {
             // Instantiate the MainForm
             MainForm mainForm = new MainForm();
@@ -41,7 +41,7 @@ namespace HotelSystem.Presentation
             this.Close();
         }
 
-        private void lblBookingSuccess_Click(object sender, EventArgs e)
+        private void LblBookingSuccess_Click(object sender, EventArgs e)
         {
 
         }

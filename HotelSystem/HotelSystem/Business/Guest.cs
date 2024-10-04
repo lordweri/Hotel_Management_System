@@ -13,27 +13,30 @@ namespace HotelSystem.Business
         private string guestID;
         private string email;
         private string telephone;
+        private string address;
         private string text;
 
 
         #region Constructors
-        public Guest(string name, string Email, string phone)
+        public Guest(string name, string Email, string phone, string address)
         {
             this.name = name;
             this.email = Email;
             this.telephone = phone;
+            this.address = address;
             this.guestID = GenerateGuestID(name);
         }
 
         //This constructor will be used in BookingDB class to create a guest object from the database
         //when performming reading operation. It will also be used in GuestDB class to create a guest object
         //for each row in the database and added to the collection
-        public Guest(string guestID, string name, string Email, string phone)
+        public Guest(string guestID, string name, string Email, string phone, string address)
         {
             this.name = name;
             this.email = Email;
             this.telephone = phone;
             this.guestID = guestID;
+            this.address = address;
         }
 
         #endregion
@@ -81,6 +84,11 @@ namespace HotelSystem.Business
         public string getEmail()
         {
             return email;
+        }
+
+        public string getAddress()
+        {
+            return address;
         }
     }
 
