@@ -21,18 +21,19 @@ namespace HotelSystem.Presentation
         #region Data Members
         private bool exitstingGuest = false;             //flag to check if the guest is existing
         private GuestController guestController;         //controller to handle guest operations
+        private Booking book;
         #endregion
 
         #region Constructors
         //Constructor to use when the guest is not a existing guest
-        public RegistrationForm(GuestController guestController)
+        public RegistrationForm(GuestController guestController,Booking Book)
         {
             InitializeComponent();
             this.guestController = guestController;
         }
 
         //Constructor to use when the guest is a existing guest
-        public RegistrationForm(GuestController guestController, Guest guest)
+        public RegistrationForm(GuestController guestController, Guest guest,Booking book)
         {
             InitializeComponent();
             exitstingGuest = true;

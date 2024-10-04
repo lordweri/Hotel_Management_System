@@ -48,6 +48,12 @@ namespace HotelSystem.Business
             this.deposit = deposit;
         }
 
+        public Booking()
+        {
+            this.bookingID=GenerateBookingID();
+        }
+
+
         public DateTime CheckOut { get; internal set; }
         public DateTime CheckIn { get; internal set; }
 
@@ -69,6 +75,26 @@ namespace HotelSystem.Business
         public decimal getDeposit()
         {
             return deposit;
+        }
+
+        public void setRoom(Room r)
+        {
+            this.room = r;
+        }
+
+        private string GenerateBookingID()
+        {
+            Random random = new Random();
+
+            char letter1 = (char)random.Next('A', 'Z' + 1); 
+            char letter2 = (char)random.Next('A', 'Z' + 1); 
+
+
+            int number1 = random.Next(0, 10);
+            int number2 = random.Next(0, 10); 
+            int number3 = random.Next(0, 10); 
+
+            return $"BH{letter1}{letter2}{number1}{number2}{number3}"; 
         }
     }
 }

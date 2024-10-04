@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -37,7 +38,8 @@ namespace HotelSystem.Presentation
             InitializeComponent();
             bookingController = new BookingController();
             roomController = new RoomController();
-            bookings = bookingController.AllBookings;           
+            bookings = bookingController.AllBookings; 
+            label2.Visible = false;
         }
         #endregion
 
@@ -83,11 +85,17 @@ namespace HotelSystem.Presentation
 
         // event handler to continue to the Bookings Changed form when the button is clicked-BRWCAL007
         private void btnContinue_Click(object sender, EventArgs e)
-        {
-            BookingChangedForm bookingChangedForm = new BookingChangedForm();
-            bookingChangedForm.Show();
-            this.Hide(); // Hide the current form
 
+        {
+            if (selectedRoom != null) { 
+            Booking booking = new Booking();
+            booking.setRoom(selectedRoom);
+            GuestTypeForm form = new GuestTypeForm(booking);
+             form.Show();
+            this.Close();
+            }else{
+                label2.Visible = true;
+             }
         }
         // event handler to go back to the Main Menu Form when the button is clicked-BRWCAL007
         private void btnBack_Click(object sender, EventArgs e)
@@ -110,7 +118,7 @@ namespace HotelSystem.Presentation
 
             foreach (Room room in availableRooms)
             {
-                if (selectedRoomNumber == room.RoomNumber)
+                if (selectedRoomNumber.Equals(room.RoomNumber))
                 {
                     this.selectedRoom = room;
                 }
@@ -157,5 +165,10 @@ namespace HotelSystem.Presentation
         }
 
         #endregion
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
