@@ -70,7 +70,7 @@ namespace HotelSystem.Presentation
             {
                 foreach (Room room in availableRooms)
                 {
-                    roomsListBox.Items.Add(room.RoomNumber);              //Show available rooms(Room number) into the list box
+                    roomsListBox.Items.Add("Room number: " + room.RoomNumber);              //Show available rooms(Room number) into the list box
                 }
             }
         }
@@ -113,7 +113,7 @@ namespace HotelSystem.Presentation
         //After search, click on a room in the list box to choose the room to book
         private void roomsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedRoomNumber = roomsListBox.SelectedItem.ToString();
+            string selectedRoomNumber = roomsListBox.SelectedItem.ToString().Substring(13);
             MessageBox.Show("You selected room number: " + selectedRoomNumber);
 
             foreach (Room room in availableRooms)
