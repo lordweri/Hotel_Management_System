@@ -116,6 +116,7 @@
             this.Controls.Add(this.lblBookingDetails);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BookForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Booking Details";
             this.ResumeLayout(false);
             this.PerformLayout();
