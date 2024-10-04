@@ -17,7 +17,7 @@ using HotelSystem.Data;
  * 2. Press "Search" button to check the availability of rooms
  * 3. Available rooms will be displayed in the list box
  * 4. Select a room from the list box
- * 5. Press "Continue" button to go to the next form
+ * 5. Press "Continue" button to go to the next form(GuestTypeForm)
  */
 namespace HotelSystem.Presentation
 {
@@ -30,6 +30,8 @@ namespace HotelSystem.Presentation
 
         Collection<Room> availableRooms;            //available rooms of a given date range
         Room selectedRoom;                                  //The available room selected from the listBox
+        DateTime startDate;
+        DateTime endDate;
         #endregion
 
         #region Constructors
@@ -46,8 +48,8 @@ namespace HotelSystem.Presentation
         //search button
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            DateTime startDate = dateTimePickerStartDate.Value;        // Get the start date from the date picker
-            DateTime endDate = dateTimePickerEndDate.Value;            // Get the end date from the date picker
+            startDate = dateTimePickerStartDate.Value;        // Get the start date from the date picker
+            endDate = dateTimePickerEndDate.Value;            // Get the end date from the date picker
 
             // Validate dates
             if (startDate > endDate)
@@ -83,19 +85,24 @@ namespace HotelSystem.Presentation
             */
         }
 
-        // event handler to continue to the Bookings Changed form when the button is clicked-BRWCAL007
+        //"Continue" button, proceeds to the GuestTypeForm
         private void btnContinue_Click(object sender, EventArgs e)
 
         {
-            if (selectedRoom != null) { 
-            Booking booking = new Booking();
-            booking.setRoom(selectedRoom);
-            GuestTypeForm form = new GuestTypeForm(booking);
-             form.Show();
-            this.Close();
-            }else{
+            if (selectedRoom != null) 
+            { 
+                Booking booking = new Booking();                             //Create a new booking object, the bookingID is auto-generated
+                booking.setRoom(selectedRoom);
+                booking.CheckIn = startDate;
+                booking.CheckOut = endDate;
+                GuestTypeForm form = new GuestTypeForm(booking);            //Open the GuestTypeForm
+                form.Show();
+                this.Close();
+            }
+            else
+            {
                 label1.Visible = true;
-             }
+            }
         }
         // event handler to go back to the Main Menu Form when the button is clicked-BRWCAL007
         private void btnBack_Click(object sender, EventArgs e)
