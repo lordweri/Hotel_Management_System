@@ -143,6 +143,7 @@ namespace HotelSystem.Business
                     TotalRevenue = group.Sum(b => (decimal)b.totalPrice)
                 })
                 .ToList();
+
         }
         #endregion
 

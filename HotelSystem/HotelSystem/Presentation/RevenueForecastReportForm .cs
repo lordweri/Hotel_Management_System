@@ -22,16 +22,23 @@ namespace HotelSystem.Presentation
             InitializeComponent();
             bookingController = new BookingController();
         }
-        // method to generate revenue report based on start and end date-BRWCAL007
+        // Method to generate revenue report based on start and end date-BRWCAL007
         private void btnGenerateRevenueReport_Click(object sender, EventArgs e)
         {
-            DateTime startDate = dtpStartDate.Value;
-            DateTime endDate = dtpEndDate.Value;
+            DateTime startDate = dtpStartDate.Value.Date; // Ensure we use Date
+            DateTime endDate = dtpEndDate.Value.Date; // Ensure we use Date
 
             try
             {
                 // Get revenue report data between the specified start and end dates
                 var revenueData = bookingController.GetRevenueReport(startDate, endDate);
+
+                // Handle case where no revenue data is returned
+                if (revenueData == null || revenueData.Count == 0)
+                {
+                    MessageBox.Show("No revenue data found for the selected date range.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return; // Exit if no data
+                }
 
                 // Display the revenue data in the data grid view
                 dgvRevenue.DataSource = revenueData;
@@ -42,7 +49,7 @@ namespace HotelSystem.Presentation
             catch (Exception ex)
             {
                 // Display an error message if an exception occurs
-                MessageBox.Show($"An error occurred: {ex.Message}");
+                MessageBox.Show($"An error occurred while generating the report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -58,7 +65,7 @@ namespace HotelSystem.Presentation
             // Iterate through each data point and add it to the chart
             foreach (var data in revenueData)
             {
-                series.Points.AddXY(data.Date, data.TotalRevenue);
+                series.Points.AddXY(data.Date.ToShortDateString(), data.TotalRevenue); // Display date as short string
             }
 
             // Set the axis titles and minimum value for the chart
@@ -67,9 +74,11 @@ namespace HotelSystem.Presentation
             chartRevenue.ChartAreas[0].AxisY.Minimum = 0;
 
             // Add a title to the chart
+            chartRevenue.Titles.Clear(); // Clear previous titles
             chartRevenue.Titles.Add("Revenue Forecast Report");
         }
-        // method to close the form and navigate back to the MainForm-BRWCAL007
+
+        // Method to close the form and navigate back to the MainForm-BRWCAL007
         private void btnBack_Click(object sender, EventArgs e)
         {
             // Create an instance of the main form
