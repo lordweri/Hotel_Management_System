@@ -34,6 +34,8 @@
             this.lblExpiryDate = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureVisaLogo = new System.Windows.Forms.PictureBox();
+            this.lblAddress = new System.Windows.Forms.Label();
+            this.txtBillingAddress = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureVisaLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +56,7 @@
             // 
             this.btnConfirmFullPayment.BackColor = System.Drawing.Color.LightGreen;
             this.btnConfirmFullPayment.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnConfirmFullPayment.Location = new System.Drawing.Point(334, 496);
+            this.btnConfirmFullPayment.Location = new System.Drawing.Point(334, 590);
             this.btnConfirmFullPayment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConfirmFullPayment.Name = "btnConfirmFullPayment";
             this.btnConfirmFullPayment.Size = new System.Drawing.Size(368, 39);
@@ -67,7 +69,7 @@
             // 
             this.btnConfirmNoPayment.BackColor = System.Drawing.Color.LightGray;
             this.btnConfirmNoPayment.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnConfirmNoPayment.Location = new System.Drawing.Point(334, 591);
+            this.btnConfirmNoPayment.Location = new System.Drawing.Point(334, 633);
             this.btnConfirmNoPayment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConfirmNoPayment.Name = "btnConfirmNoPayment";
             this.btnConfirmNoPayment.Size = new System.Drawing.Size(368, 39);
@@ -188,11 +190,29 @@
             this.pictureVisaLogo.TabStop = false;
             this.pictureVisaLogo.Visible = false;
             // 
+            // lblAddress
+            // 
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Location = new System.Drawing.Point(228, 532);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(100, 16);
+            this.lblAddress.TabIndex = 18;
+            this.lblAddress.Text = "Billing Address:";
+            // 
+            // txtBillingAddress
+            // 
+            this.txtBillingAddress.Location = new System.Drawing.Point(334, 526);
+            this.txtBillingAddress.Name = "txtBillingAddress";
+            this.txtBillingAddress.Size = new System.Drawing.Size(368, 22);
+            this.txtBillingAddress.TabIndex = 19;
+            // 
             // PaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1045, 690);
+            this.Controls.Add(this.txtBillingAddress);
+            this.Controls.Add(this.lblAddress);
             this.Controls.Add(this.pictureVisaLogo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblExpiryDate);
@@ -234,5 +254,7 @@
         private System.Windows.Forms.Label lblExpiryDate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureVisaLogo;
+        private System.Windows.Forms.Label lblAddress;
+        private System.Windows.Forms.TextBox txtBillingAddress;
     }
 }

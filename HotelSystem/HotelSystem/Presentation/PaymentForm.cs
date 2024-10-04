@@ -95,13 +95,41 @@ namespace HotelSystem.Presentation
         // Method to validate card details-BRWCAL007
         private bool ValidateCardDetails()
         {
-            if (string.IsNullOrWhiteSpace(txtCardNumber.Text) ||
-                string.IsNullOrWhiteSpace(txtCardHolderName.Text) ||
-                string.IsNullOrWhiteSpace(txtExpiryDate.Text) ||
-                string.IsNullOrWhiteSpace(txtCVV.Text))
+            // Card Holder Name (mandatory, alphanumeric)
+            if (string.IsNullOrWhiteSpace(txtCardHolderName.Text) || !System.Text.RegularExpressions.Regex.IsMatch(txtCardHolderName.Text, @"^[a-zA-Z0-9\s]+$"))
             {
+                MessageBox.Show("Please enter a valid Card Holder Name (alphanumeric characters only).");
                 return false;
             }
+
+            // Credit Card Number (mandatory, numeric, 16 digits)
+            if (string.IsNullOrWhiteSpace(txtCardNumber.Text) || !System.Text.RegularExpressions.Regex.IsMatch(txtCardNumber.Text, @"^\d{16}$"))
+            {
+                MessageBox.Show("Please enter a valid 16-digit Credit Card Number.");
+                return false;
+            }
+
+            // Expiry Date (mandatory, month/year format)
+            if (string.IsNullOrWhiteSpace(txtExpiryDate.Text) || !System.Text.RegularExpressions.Regex.IsMatch(txtExpiryDate.Text, @"^(0[1-9]|1[0-2])\/\d{2}$"))
+            {
+                MessageBox.Show("Please enter a valid Expiry Date in MM/YY format.");
+                return false;
+            }
+
+            // CVV (mandatory, 3 digits)
+            if (string.IsNullOrWhiteSpace(txtCVV.Text) || !System.Text.RegularExpressions.Regex.IsMatch(txtCVV.Text, @"^\d{3}$"))
+            {
+                MessageBox.Show("Please enter a valid 3-digit CVV.");
+                return false;
+            }
+
+            // Billing Address (optional, alphanumeric) - Assuming you add a txtBillingAddress control
+            if (!string.IsNullOrWhiteSpace(txtBillingAddress.Text) && !System.Text.RegularExpressions.Regex.IsMatch(txtBillingAddress.Text, @"^[a-zA-Z0-9\s,.-]+$"))
+            {
+                MessageBox.Show("Please enter a valid Billing Address (alphanumeric characters, spaces, commas, periods, and hyphens allowed).");
+                return false;
+            }
+
             return true;
         }
 
