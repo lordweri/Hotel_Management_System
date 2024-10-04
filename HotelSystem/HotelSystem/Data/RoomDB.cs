@@ -56,7 +56,7 @@ namespace HotelSystem.Data
                 myRow = myRow_loopVariable;
                 if (!(myRow.RowState == DataRowState.Deleted))
                 {
-                    string roomID = Convert.ToString(myRow["RoomID"]).Trim();
+                    string roomID = Convert.ToString(myRow["RoomNumber"]).Trim();
                     double rate = Convert.ToDouble(myRow["Rate"]);
                     Boolean availability = Convert.ToBoolean(myRow["IsAvailable"]);
                     room = new Room(roomID, rate, availability);  
