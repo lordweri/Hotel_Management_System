@@ -69,9 +69,15 @@ namespace HotelSystem.Presentation
             // Add a title to the chart
             chartRevenue.Titles.Add("Revenue Forecast Report");
         }
-
+        // method to close the form and navigate back to the MainForm-BRWCAL007
         private void btnBack_Click(object sender, EventArgs e)
         {
+            // Create an instance of the main form
+            MainForm mainForm = new MainForm();
+
+            // Show the main form
+            mainForm.Show();
+
             // Close the form or navigate back to the main form
             this.Close();
         }
