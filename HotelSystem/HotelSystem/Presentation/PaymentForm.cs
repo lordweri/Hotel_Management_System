@@ -31,7 +31,7 @@ namespace HotelSystem.Presentation
         // Event handler for Confirm Deposit button-BRWCAL007
         private void btnConfirmDeposit_Click(object sender, EventArgs e)
         {
-            decimal depositAmount = GetDepositAmount(); // Implement a method to get the deposit amount
+            decimal depositAmount = GetDepositAmount(); // Implement a method to get a deposit amount
             ProcessPayment(depositAmount, "Deposit");
         }
 
@@ -49,7 +49,7 @@ namespace HotelSystem.Presentation
             }
         }
 
-        // Event handler for Confirm No Payment Made button
+        // Event handler for Confirm No Payment Made Button 
         private void btnConfirmNoPayment_Click(object sender, EventArgs e)
         {
             MessageBox.Show("No Payment Made");
