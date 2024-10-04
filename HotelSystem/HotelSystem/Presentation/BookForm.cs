@@ -24,10 +24,24 @@ namespace HotelSystem.Presentation
             MessageBox.Show("Proceed to Payment");           
         }
 
-        // Event handler for Back button
+        // Event handler for back button
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Close(); // Go back to the previous form
+            // Create an instance of the MainForm
+            MainForm mainMenu = new MainForm();
+
+            // Show the MainForm
+            mainMenu.Show();
+
+            // Close the current form
+            this.Close();
+        }
+
+
+        // Event handler for Cancel button
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
