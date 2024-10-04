@@ -52,11 +52,12 @@ namespace HotelSystem.Data
             {
                 if (row.RowState != DataRowState.Deleted)
                 {
-                    string name = row["Name"].ToString();
-                    string guestID = row["GuestID"].ToString();
-                    string telephone = row["Telephone"].ToString();
-                    string email = row["Email"].ToString();
-                    Guest guest = new Guest(guestID, name, email, telephone); 
+                    string name = row["Name"].ToString().Trim();
+                    string guestID = row["GuestID"].ToString().Trim();
+                    string ContactNumber = row["ContactNumber"].ToString().Trim();
+                    string email = row["Email"].ToString().Trim();
+                    string address = row["Address"].ToString().Trim();
+                    Guest guest = new Guest(guestID, name, email, ContactNumber, address); 
                     guests.Add(guest);
                 }
             }
@@ -70,8 +71,9 @@ namespace HotelSystem.Data
             {
                 row["Name"] = guest.getName();
                 row["GuestID"] = guest.getGuestID();
-                row["Telephone"] = guest.getPhone();
+                row["ContactNumber"] = guest.getPhone();
                 row["Email"] = guest.getEmail();
+                row["Address"] = guest.getAddress();
             }
         }
 
@@ -131,10 +133,13 @@ namespace HotelSystem.Data
             param = new SqlParameter("@Name", SqlDbType.NVarChar, 50, "Name");
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Telephone", SqlDbType.NVarChar, 50, "Telephone");
+            param = new SqlParameter("@ContactNumber", SqlDbType.NVarChar, 50, "ContactNumber");
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Email", SqlDbType.NVarChar, 50, "Email");
+            param = new SqlParameter("@Email", SqlDbType.NVarChar, 100, "Email");
+            daMain.InsertCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Address", SqlDbType.NVarChar, 50, "Address");
             daMain.InsertCommand.Parameters.Add(param);
         }
 
@@ -149,11 +154,15 @@ namespace HotelSystem.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Telephone", SqlDbType.NVarChar, 50, "Telephone");
+            param = new SqlParameter("@ContactNumber", SqlDbType.NVarChar, 50, "ContactNumber");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Email", SqlDbType.NVarChar, 50, "Email");
+            param = new SqlParameter("@Email", SqlDbType.NVarChar, 100, "Email");
+            param.SourceVersion = DataRowVersion.Current;
+            daMain.UpdateCommand.Parameters.Add(param);
+
+            param = new SqlParameter("@Address", SqlDbType.NVarChar, 100, "Email");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
         }
@@ -167,13 +176,13 @@ namespace HotelSystem.Data
 
         private void Create_INSERT_Command(Guest aGuest)
         {
-            daMain.InsertCommand = new SqlCommand("INSERT into Guest (GuestID, Name, Telephone, Email) VALUES (@GuestID, @Name, @Telephone, @Email)", cnMain);
+            daMain.InsertCommand = new SqlCommand("INSERT into Guest (GuestID, Name, ContactNumber, Email, Address) VALUES (@GuestID, @Name, @ContactNumber, @Email, @Address)", cnMain);
             Build_INSERT_Parameters(aGuest);
         }
 
         private void Create_UPDATE_Command(Guest aGuest)
         {
-            daMain.UpdateCommand = new SqlCommand("UPDATE Guest SET Name = @Name, Telephone = @Telephone, Email = @Email WHERE GuestID = @GuestID", cnMain);
+            daMain.UpdateCommand = new SqlCommand("UPDATE Guest SET Name = @Name, ContactNumber = @ContactNumber, Email = @Email, Address = @Address WHERE GuestID = @GuestID", cnMain);
             Build_UPDATE_Parameters(aGuest);
         }
 
