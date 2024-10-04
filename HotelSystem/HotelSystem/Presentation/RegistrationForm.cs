@@ -11,40 +11,48 @@ using System.Windows.Forms;
 
 /*
  * IMPORTANT TO READ:
-* If the guest is existing in database, the text box will be auto-filled and will not be editable
-* If the guest is not existing in database, the text box will be editable and the guest will be added to the database
+* 1. If the guest is existing in database, the text box will be auto-filled and will not be editable.
+* 2. If the guest is not existing in database, the text box will be editable and the guest will be added to the database.
+* 3. If the room type is family room, the child options will be shown.
+* 4. A Guest object will be created with the details from the text boxes 
+* 5. Click "Generate Booking" to proceed to the payment form
+* NOTE:
+*  If the guest is not exist in database, the guest will be added to the database if booking is successful
 */
 namespace HotelSystem.Presentation
 {   
     public partial class RegistrationForm : Form
     {
         #region Data Members
+        private Guest guest;                             //guest object to store the guest details
+
         private bool exitstingGuest = false;             //flag to check if the guest is existing
         private GuestController guestController;         //controller to handle guest operations
         private Booking book;
         #endregion
 
         #region Constructors
-        //Constructor to use when the guest is not a existing guest
+        //Constructor to use when the guest is NOT A EXISTING GUEST
         public RegistrationForm(GuestController guestController,Booking Book)
         {
             InitializeComponent();
             this.guestController = guestController;
         }
 
-        //Constructor to use when the guest is a existing guest
+        //Constructor to use when the guest is a EXISTING GUEST
         public RegistrationForm(GuestController guestController, Guest guest,Booking book)
         {
             InitializeComponent();
             exitstingGuest = true;
             this.guestController = guestController;
+            this.guest = guest;                               //existing guest object
 
             // Fill the form with the existing guest details
             txtGuestName.Text = guest.getName();
             txtPhoneNumber.Text = guest.getPhone();
             txtEmail.Text = guest.getEmail();
             txtAddress.Text = guest.getAddress();
-            ReadOnlyTextBox(true);                            //Make the first four text boxes read only, because the customer is exiting
+            ReadOnlyTextBox(true);                            //Make the first four text boxes read only, because the customer is existing
         }
         #endregion
 
@@ -61,9 +69,16 @@ namespace HotelSystem.Presentation
             string child1Age = txtChild1Age.Text;
             string child2Age = txtChild2Age.Text;
 
+            if (exitstingGuest)
+            {
+                //Do nothing, because the guest is existing
+            }
+            else
+            {
+                // Create a new guest object, GuestID will be generated automatically
+                guest = new Guest(guestName, email, phoneNumber, address);
+            }
 
-            // Create a new guest object, GuestID will be generated automatically
-            Guest guest = new Guest(guestName, email, phoneNumber, address);
 
             /*
             // Example of how to display the collected data
@@ -85,8 +100,37 @@ namespace HotelSystem.Presentation
             txtGuestName.ReadOnly = b;
             txtPhoneNumber.ReadOnly = b;
             txtAddress.ReadOnly = b;
-            cbRoomType.Enabled = b;
+            txtEmail.ReadOnly = b;
+        }
+
+        //Show or hide child options based on the room type selected
+        private void showChildOptions(bool b)
+        {
+            lblChildren.Visible = b;
+            numChildren.Visible = b;
+            lblChild1Age.Visible = b;
+            txtChild1Age.Visible = b;
+            lblChild2Age.Visible = b;
+            txtChild2Age.Visible = b;
         }
         #endregion
+
+        private void RegistrationForm_Load(object sender, EventArgs e)
+        {
+            showChildOptions(false);
+        }
+
+        //Select type of room, show child options if family room is selected
+        private void cbRoomType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbRoomType.SelectedItem.ToString() == "Family Room")
+            {
+                showChildOptions(true);
+            }
+            else
+            {
+                showChildOptions(false);
+            }
+        }
     }
 }
