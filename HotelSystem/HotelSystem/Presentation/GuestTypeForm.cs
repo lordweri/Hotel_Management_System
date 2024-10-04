@@ -24,6 +24,8 @@ namespace HotelSystem.Presentation
             InitializeComponent();
             guestController = new GuestController();
             guests = new Collection<Guest>();
+            label1.Visible = false;
+            guestIDtextBox.Visible = false;
         }
 
         
@@ -39,6 +41,8 @@ namespace HotelSystem.Presentation
         //Check if the guest is existing, if existing, proceed to the registration form, if not, display an error message and do nothing
         private void btnExistingGuest_Click(object sender, EventArgs e)
         {
+            label1.Visible = true;
+            guestIDtextBox.Visible = true;
             // Logic to handle existing guest reservation
 
             string guestIdEntered = guestIDtextBox.Text;
