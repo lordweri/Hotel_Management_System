@@ -30,6 +30,7 @@
             this.hotelDatabaseDataSet = new HotelSystem.HotelDatabaseDataSet();
             this.bookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bookingTableAdapter = new HotelSystem.HotelDatabaseDataSetTableAdapters.BookingTableAdapter();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookingBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -97,11 +98,11 @@
             // 
             this.roomsListBox.Font = new System.Drawing.Font("SimSun", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.roomsListBox.FormattingEnabled = true;
-            this.roomsListBox.ItemHeight = 18;
-            this.roomsListBox.Location = new System.Drawing.Point(327, 237);
+            this.roomsListBox.ItemHeight = 24;
+            this.roomsListBox.Location = new System.Drawing.Point(186, 204);
             this.roomsListBox.Margin = new System.Windows.Forms.Padding(4);
             this.roomsListBox.Name = "roomsListBox";
-            this.roomsListBox.Size = new System.Drawing.Size(344, 436);
+            this.roomsListBox.Size = new System.Drawing.Size(344, 268);
             this.roomsListBox.TabIndex = 8;
             this.roomsListBox.SelectedIndexChanged += new System.EventHandler(this.roomsListBox_SelectedIndexChanged);
             // 
@@ -131,12 +132,25 @@
             // 
             this.bookingTableAdapter.ClearBeforeFill = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.Color.IndianRed;
+            this.label1.Location = new System.Drawing.Point(205, 476);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(218, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Please select a room or choose another date";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // DateCheckForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1176, 777);
+            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnContinue);
             this.Controls.Add(this.roomsListBox);
             this.Controls.Add(this.btnBack);
@@ -168,5 +182,6 @@
         private HotelDatabaseDataSetTableAdapters.BookingTableAdapter bookingTableAdapter;
         private System.Windows.Forms.ListBox roomsListBox;
         private System.Windows.Forms.Button btnContinue;
+        private System.Windows.Forms.Label label1;
     }
 }
