@@ -26,6 +26,7 @@ namespace HotelSystem.Presentation
             guests = new Collection<Guest>();
             label1.Visible = false;
             guestIDtextBox.Visible = false;
+            continueButton.Visible = false;
         }
 
         
@@ -43,6 +44,7 @@ namespace HotelSystem.Presentation
         {
             label1.Visible = true;
             guestIDtextBox.Visible = true;
+            continueButton.Visible=true;
             // Logic to handle existing guest reservation
 
             string guestIdEntered = guestIDtextBox.Text;
