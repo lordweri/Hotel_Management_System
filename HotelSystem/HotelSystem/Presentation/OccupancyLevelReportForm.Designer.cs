@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dgvOccupancy = new System.Windows.Forms.DataGridView();
             this.hotelDatabaseDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hotelDatabaseDataSet = new HotelSystem.HotelDatabaseDataSet();
@@ -43,6 +43,7 @@
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOccupancy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).BeginInit();
@@ -89,23 +90,23 @@
             // 
             // chartOccupancyLevel
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartOccupancyLevel.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartOccupancyLevel.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chartOccupancyLevel.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartOccupancyLevel.Legends.Add(legend3);
             this.chartOccupancyLevel.Location = new System.Drawing.Point(714, 87);
             this.chartOccupancyLevel.Name = "chartOccupancyLevel";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartOccupancyLevel.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartOccupancyLevel.Series.Add(series3);
             this.chartOccupancyLevel.Size = new System.Drawing.Size(626, 256);
             this.chartOccupancyLevel.TabIndex = 1;
             this.chartOccupancyLevel.Text = "chart1";
             // 
             // btnGeneerateReport
             // 
-            this.btnGeneerateReport.Location = new System.Drawing.Point(578, 568);
+            this.btnGeneerateReport.Location = new System.Drawing.Point(589, 536);
             this.btnGeneerateReport.Name = "btnGeneerateReport";
             this.btnGeneerateReport.Size = new System.Drawing.Size(211, 92);
             this.btnGeneerateReport.TabIndex = 2;
@@ -122,7 +123,7 @@
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.Location = new System.Drawing.Point(589, 481);
+            this.dtpEndDate.Location = new System.Drawing.Point(589, 465);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(200, 22);
             this.dtpEndDate.TabIndex = 4;
@@ -137,11 +138,22 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Occupancy Level Report";
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(617, 642);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(159, 55);
+            this.btnBack.TabIndex = 6;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // OccupancyLevelReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1392, 709);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpEndDate);
             this.Controls.Add(this.dtpStartDate);
@@ -175,5 +187,6 @@
         private System.Windows.Forms.DateTimePicker dtpStartDate;
         private System.Windows.Forms.DateTimePicker dtpEndDate;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnBack;
     }
 }

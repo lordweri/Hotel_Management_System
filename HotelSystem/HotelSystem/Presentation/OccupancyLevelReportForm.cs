@@ -111,5 +111,18 @@ namespace HotelSystem.Presentation
             // Add a title to the chart
             chartOccupancyLevel.Titles.Add("Hotel Occupancy Level");
         }
+        // method to return to the MainForm when the back button is clicked-BRWCAL007
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            // Create an instance of the main menu calle MainForm
+            MainForm mainForm = new MainForm();
+            
+            // close the current form
+            this.Close();
+
+            // show the main menu form
+            mainForm.Show();
+            
+        }
     }
 }
