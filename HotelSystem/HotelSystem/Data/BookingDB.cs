@@ -39,13 +39,6 @@ namespace HotelSystem.Data
             Add2Collection(table);
 
         }
-
-        // Method to get the total number of rooms from the database-BRWCAL007
-        public int GetTotalRoomCount()
-        {
-            DataRow[] roomRows = dsMain.Tables["Room"].Select();
-            return roomRows.Length; // Return the total count of rooms
-        }
         #endregion
 
         #region Utility methods
@@ -149,6 +142,12 @@ namespace HotelSystem.Data
             return returnValue;
         }
 
+        // Method to get the total number of rooms from the database-BRWCAL007
+        public int GetTotalRoomCount()
+        {
+            DataRow[] roomRows = dsMain.Tables["Room"].Select();
+            return roomRows.Length; // Return the total count of rooms
+        }
         #endregion
 
         #region Database operations CRUD

@@ -11,6 +11,13 @@ using System.Windows.Forms;
 using HotelSystem.Business;
 using HotelSystem.Data;
 
+/* IMPOERTANT TO READ:
+ * 1. Select a start date and end date
+ * 2. Press "Search" button to check the availability of rooms
+ * 3. Available rooms will be displayed in the list box
+ * 4. Select a room from the list box
+ * 5. Press "Continue" button to go to the next form
+ */
 namespace HotelSystem.Presentation
 {
     public partial class DateCheckForm : Form
@@ -21,7 +28,7 @@ namespace HotelSystem.Presentation
         RoomController roomController;
 
         Collection<Room> availableRooms;            //available rooms of a given date range
-        Room room;                                  //The available room selected from the listBox
+        Room selectedRoom;                                  //The available room selected from the listBox
         #endregion
 
         #region Constructors
@@ -98,10 +105,11 @@ namespace HotelSystem.Presentation
             {
                 if (selectedRoomNumber == room.RoomNumber)
                 {
-                    this.room = room; 
+                    this.selectedRoom = room;
                 }
             }
         }
+
 
         #region Utility Methods
         //TODO: Might need to check for logic errors
@@ -140,8 +148,7 @@ namespace HotelSystem.Presentation
             }
             return availableRooms;
         }
+
         #endregion
-
-
     }
 }
