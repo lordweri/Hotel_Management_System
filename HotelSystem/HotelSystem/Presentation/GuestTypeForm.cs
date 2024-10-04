@@ -22,13 +22,13 @@ namespace HotelSystem.Presentation
 
         public GuestTypeForm(Booking book)
         {
-            booking = book;
             InitializeComponent();
             guestController = new GuestController();
             guests = new Collection<Guest>();
             label1.Visible = false;
             guestIDtextBox.Visible = false;
             continueButton.Visible = false;
+            booking = new Booking();            // Create a new booking object to store the booking details
         }
 
         
