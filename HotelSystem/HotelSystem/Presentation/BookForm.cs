@@ -25,7 +25,7 @@ namespace HotelSystem.Presentation
          */
         #region Data member
         Booking booking;              // Booking object passed from the RegistrationForm
-        bool guestIsExisting;
+        bool guestIsExisting;         // If this attribute is true, added the guest to the database if booking is successful in payment form
         #endregion
 
         #region Constructor
@@ -37,14 +37,17 @@ namespace HotelSystem.Presentation
         }
         #endregion
 
-        // Event handler for Make Payment button
+        // "Make Payment" button, proceed to the PaymentForm
         private void BtnMakePayment_Click(object sender, EventArgs e)
         {
             // Create an instance of the PaymentForm
-            PaymentForm paymentForm = new PaymentForm();
+            PaymentForm paymentForm = new PaymentForm(booking, guestIsExisting);
 
             // Show the PaymentForm
             paymentForm.Show();
+
+            // Hide the current form
+            this.Hide();
         }
 
         // Event handler for back button
