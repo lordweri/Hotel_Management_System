@@ -45,8 +45,26 @@ namespace HotelSystem.Presentation
             label1.Visible = true;
             guestIDtextBox.Visible = true;
             continueButton.Visible=true;
-            // Logic to handle existing guest reservation
 
+
+        }
+
+        //Back button
+        private void button1_Click(object sender, EventArgs e)
+        {
+             DateCheckForm dateCheckForm = new DateCheckForm();
+             dateCheckForm.Show();
+             this.Close();
+        }
+
+        private void GuestTypeForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        //Continue button
+        private void continueButton_Click(object sender, EventArgs e)
+        {
             string guestIdEntered = guestIDtextBox.Text;
             foreach (Guest guest in guests)
             {
@@ -64,26 +82,9 @@ namespace HotelSystem.Presentation
                 {
                     // Guest not found, display an error message and do nothing
                     // Reenter the guest ID or register as a new guest
-                    MessageBox.Show("Guest not found!");      
+                    MessageBox.Show("Guest not found!");
                 }
             }
-        }
-
-        //Back button
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GuestTypeForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        //Continue button
-        private void continueButton_Click(object sender, EventArgs e)
-        {
-
 
         }
     }
