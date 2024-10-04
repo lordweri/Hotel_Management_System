@@ -43,10 +43,10 @@
             // 
             this.btnConfirmDeposit.BackColor = System.Drawing.Color.LightGreen;
             this.btnConfirmDeposit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnConfirmDeposit.Location = new System.Drawing.Point(334, 160);
-            this.btnConfirmDeposit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnConfirmDeposit.Location = new System.Drawing.Point(250, 130);
+            this.btnConfirmDeposit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnConfirmDeposit.Name = "btnConfirmDeposit";
-            this.btnConfirmDeposit.Size = new System.Drawing.Size(368, 39);
+            this.btnConfirmDeposit.Size = new System.Drawing.Size(276, 32);
             this.btnConfirmDeposit.TabIndex = 0;
             this.btnConfirmDeposit.Text = "Confirm Deposit";
             this.btnConfirmDeposit.UseVisualStyleBackColor = false;
@@ -56,10 +56,10 @@
             // 
             this.btnConfirmFullPayment.BackColor = System.Drawing.Color.LightGreen;
             this.btnConfirmFullPayment.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnConfirmFullPayment.Location = new System.Drawing.Point(334, 590);
-            this.btnConfirmFullPayment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnConfirmFullPayment.Location = new System.Drawing.Point(250, 479);
+            this.btnConfirmFullPayment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnConfirmFullPayment.Name = "btnConfirmFullPayment";
-            this.btnConfirmFullPayment.Size = new System.Drawing.Size(368, 39);
+            this.btnConfirmFullPayment.Size = new System.Drawing.Size(276, 32);
             this.btnConfirmFullPayment.TabIndex = 1;
             this.btnConfirmFullPayment.Text = "Confirm Full Payment";
             this.btnConfirmFullPayment.UseVisualStyleBackColor = false;
@@ -69,10 +69,10 @@
             // 
             this.btnConfirmNoPayment.BackColor = System.Drawing.Color.LightGray;
             this.btnConfirmNoPayment.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnConfirmNoPayment.Location = new System.Drawing.Point(334, 633);
-            this.btnConfirmNoPayment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnConfirmNoPayment.Location = new System.Drawing.Point(250, 514);
+            this.btnConfirmNoPayment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnConfirmNoPayment.Name = "btnConfirmNoPayment";
-            this.btnConfirmNoPayment.Size = new System.Drawing.Size(368, 39);
+            this.btnConfirmNoPayment.Size = new System.Drawing.Size(276, 32);
             this.btnConfirmNoPayment.TabIndex = 2;
             this.btnConfirmNoPayment.Text = "Confirm No Payment";
             this.btnConfirmNoPayment.UseVisualStyleBackColor = false;
@@ -82,10 +82,10 @@
             // 
             this.btnBack.BackColor = System.Drawing.SystemColors.Control;
             this.btnBack.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnBack.Location = new System.Drawing.Point(-1, 660);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBack.Location = new System.Drawing.Point(-1, 536);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(149, 32);
+            this.btnBack.Size = new System.Drawing.Size(112, 26);
             this.btnBack.TabIndex = 3;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -96,20 +96,19 @@
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel1.Location = new System.Drawing.Point(-1, 4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(-1, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1045, 101);
+            this.panel1.Size = new System.Drawing.Size(784, 82);
             this.panel1.TabIndex = 7;
             // 
             // btnFinish
             // 
             this.btnFinish.BackColor = System.Drawing.SystemColors.Control;
             this.btnFinish.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnFinish.Location = new System.Drawing.Point(895, 660);
-            this.btnFinish.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnFinish.Location = new System.Drawing.Point(671, 536);
+            this.btnFinish.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Size = new System.Drawing.Size(149, 32);
+            this.btnFinish.Size = new System.Drawing.Size(112, 26);
             this.btnFinish.TabIndex = 8;
             this.btnFinish.Text = "Finish";
             this.btnFinish.UseVisualStyleBackColor = true;
@@ -117,74 +116,83 @@
             // 
             // txtCardNumber
             // 
-            this.txtCardNumber.Location = new System.Drawing.Point(334, 246);
+            this.txtCardNumber.Location = new System.Drawing.Point(250, 200);
+            this.txtCardNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCardNumber.Name = "txtCardNumber";
-            this.txtCardNumber.Size = new System.Drawing.Size(368, 22);
+            this.txtCardNumber.Size = new System.Drawing.Size(277, 20);
             this.txtCardNumber.TabIndex = 9;
             // 
             // txtExpiryDate
             // 
-            this.txtExpiryDate.Location = new System.Drawing.Point(334, 393);
+            this.txtExpiryDate.Location = new System.Drawing.Point(250, 319);
+            this.txtExpiryDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtExpiryDate.Name = "txtExpiryDate";
-            this.txtExpiryDate.Size = new System.Drawing.Size(368, 22);
+            this.txtExpiryDate.Size = new System.Drawing.Size(277, 20);
             this.txtExpiryDate.TabIndex = 10;
             // 
             // txtCardHolderName
             // 
-            this.txtCardHolderName.Location = new System.Drawing.Point(334, 320);
+            this.txtCardHolderName.Location = new System.Drawing.Point(250, 260);
+            this.txtCardHolderName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCardHolderName.Name = "txtCardHolderName";
-            this.txtCardHolderName.Size = new System.Drawing.Size(368, 22);
+            this.txtCardHolderName.Size = new System.Drawing.Size(277, 20);
             this.txtCardHolderName.TabIndex = 11;
             // 
             // txtCVV
             // 
-            this.txtCVV.Location = new System.Drawing.Point(334, 456);
+            this.txtCVV.Location = new System.Drawing.Point(250, 370);
+            this.txtCVV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCVV.Name = "txtCVV";
-            this.txtCVV.Size = new System.Drawing.Size(368, 22);
+            this.txtCVV.Size = new System.Drawing.Size(277, 20);
             this.txtCVV.TabIndex = 12;
             // 
             // lblCardNumber
             // 
             this.lblCardNumber.AutoSize = true;
-            this.lblCardNumber.Location = new System.Drawing.Point(238, 249);
+            this.lblCardNumber.Location = new System.Drawing.Point(178, 202);
+            this.lblCardNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCardNumber.Name = "lblCardNumber";
-            this.lblCardNumber.Size = new System.Drawing.Size(90, 16);
+            this.lblCardNumber.Size = new System.Drawing.Size(72, 13);
             this.lblCardNumber.TabIndex = 13;
             this.lblCardNumber.Text = "Card Number:";
             // 
             // lblCardHolder
             // 
             this.lblCardHolder.AutoSize = true;
-            this.lblCardHolder.Location = new System.Drawing.Point(238, 323);
+            this.lblCardHolder.Location = new System.Drawing.Point(178, 262);
+            this.lblCardHolder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCardHolder.Name = "lblCardHolder";
-            this.lblCardHolder.Size = new System.Drawing.Size(83, 16);
+            this.lblCardHolder.Size = new System.Drawing.Size(66, 13);
             this.lblCardHolder.TabIndex = 14;
             this.lblCardHolder.Text = "Card Holder:";
             // 
             // lblExpiryDate
             // 
             this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(238, 396);
+            this.lblExpiryDate.Location = new System.Drawing.Point(178, 322);
+            this.lblExpiryDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExpiryDate.Name = "lblExpiryDate";
-            this.lblExpiryDate.Size = new System.Drawing.Size(79, 16);
+            this.lblExpiryDate.Size = new System.Drawing.Size(64, 13);
             this.lblExpiryDate.TabIndex = 15;
             this.lblExpiryDate.Text = "Expiry Date:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(258, 459);
+            this.label4.Location = new System.Drawing.Point(194, 373);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 16);
+            this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 16;
             this.label4.Text = "CVV:";
             // 
             // pictureVisaLogo
             // 
             this.pictureVisaLogo.Image = global::HotelSystem.Properties.Resources.Visa_Logo;
-            this.pictureVisaLogo.Location = new System.Drawing.Point(729, 235);
+            this.pictureVisaLogo.Location = new System.Drawing.Point(547, 191);
+            this.pictureVisaLogo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureVisaLogo.Name = "pictureVisaLogo";
-            this.pictureVisaLogo.Size = new System.Drawing.Size(100, 50);
+            this.pictureVisaLogo.Size = new System.Drawing.Size(75, 41);
             this.pictureVisaLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureVisaLogo.TabIndex = 17;
             this.pictureVisaLogo.TabStop = false;
@@ -193,24 +201,26 @@
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(228, 532);
+            this.lblAddress.Location = new System.Drawing.Point(171, 432);
+            this.lblAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(100, 16);
+            this.lblAddress.Size = new System.Drawing.Size(78, 13);
             this.lblAddress.TabIndex = 18;
             this.lblAddress.Text = "Billing Address:";
             // 
             // txtBillingAddress
             // 
-            this.txtBillingAddress.Location = new System.Drawing.Point(334, 526);
+            this.txtBillingAddress.Location = new System.Drawing.Point(250, 427);
+            this.txtBillingAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBillingAddress.Name = "txtBillingAddress";
-            this.txtBillingAddress.Size = new System.Drawing.Size(368, 22);
+            this.txtBillingAddress.Size = new System.Drawing.Size(277, 20);
             this.txtBillingAddress.TabIndex = 19;
             // 
             // PaymentForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1045, 690);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.txtBillingAddress);
             this.Controls.Add(this.lblAddress);
             this.Controls.Add(this.pictureVisaLogo);
@@ -228,8 +238,9 @@
             this.Controls.Add(this.btnConfirmNoPayment);
             this.Controls.Add(this.btnConfirmFullPayment);
             this.Controls.Add(this.btnConfirmDeposit);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PaymentForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Payment Confirmation";
             ((System.ComponentModel.ISupportInitialize)(this.pictureVisaLogo)).EndInit();
             this.ResumeLayout(false);

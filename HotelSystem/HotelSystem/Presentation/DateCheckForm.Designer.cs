@@ -25,11 +25,11 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBack = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.btnContinue = new System.Windows.Forms.Button();
             this.hotelDatabaseDataSet = new HotelSystem.HotelDatabaseDataSet();
             this.bookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bookingTableAdapter = new HotelSystem.HotelDatabaseDataSetTableAdapters.BookingTableAdapter();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.btnContinue = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookingBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -38,38 +38,34 @@
             // 
             this.labelEndDate.AutoSize = true;
             this.labelEndDate.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.labelEndDate.Location = new System.Drawing.Point(197, 325);
-            this.labelEndDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelEndDate.Location = new System.Drawing.Point(148, 264);
             this.labelEndDate.Name = "labelEndDate";
-            this.labelEndDate.Size = new System.Drawing.Size(0, 28);
+            this.labelEndDate.Size = new System.Drawing.Size(0, 21);
             this.labelEndDate.TabIndex = 1;
             // 
             // dateTimePickerStartDate
             // 
             this.dateTimePickerStartDate.CalendarMonthBackground = System.Drawing.SystemColors.ButtonFace;
-            this.dateTimePickerStartDate.Location = new System.Drawing.Point(95, 144);
-            this.dateTimePickerStartDate.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePickerStartDate.Location = new System.Drawing.Point(71, 117);
             this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
-            this.dateTimePickerStartDate.Size = new System.Drawing.Size(292, 22);
+            this.dateTimePickerStartDate.Size = new System.Drawing.Size(220, 20);
             this.dateTimePickerStartDate.TabIndex = 2;
             // 
             // dateTimePickerEndDate
             // 
             this.dateTimePickerEndDate.CalendarMonthBackground = System.Drawing.SystemColors.ButtonFace;
-            this.dateTimePickerEndDate.Location = new System.Drawing.Point(515, 144);
-            this.dateTimePickerEndDate.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePickerEndDate.Location = new System.Drawing.Point(386, 117);
             this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
-            this.dateTimePickerEndDate.Size = new System.Drawing.Size(299, 22);
+            this.dateTimePickerEndDate.Size = new System.Drawing.Size(225, 20);
             this.dateTimePickerEndDate.TabIndex = 3;
             // 
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.Color.LightGreen;
             this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnSearch.Location = new System.Drawing.Point(877, 132);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearch.Location = new System.Drawing.Point(658, 107);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(133, 49);
+            this.btnSearch.Size = new System.Drawing.Size(100, 40);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -81,23 +77,41 @@
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.Location = new System.Drawing.Point(-1, 1);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1047, 95);
+            this.panel1.Size = new System.Drawing.Size(785, 77);
             this.panel1.TabIndex = 6;
             // 
             // btnBack
             // 
             this.btnBack.BackColor = System.Drawing.Color.LightGreen;
             this.btnBack.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnBack.Location = new System.Drawing.Point(-1, 657);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBack.Location = new System.Drawing.Point(-1, 534);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(129, 36);
+            this.btnBack.Size = new System.Drawing.Size(97, 29);
             this.btnBack.TabIndex = 7;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(218, 171);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(231, 316);
+            this.listBox1.TabIndex = 8;
+            // 
+            // btnContinue
+            // 
+            this.btnContinue.BackColor = System.Drawing.Color.LightGreen;
+            this.btnContinue.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnContinue.Location = new System.Drawing.Point(687, 534);
+            this.btnContinue.Name = "btnContinue";
+            this.btnContinue.Size = new System.Drawing.Size(97, 29);
+            this.btnContinue.TabIndex = 9;
+            this.btnContinue.Text = "Continue";
+            this.btnContinue.UseVisualStyleBackColor = false;
+            this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click);
             // 
             // hotelDatabaseDataSet
             // 
@@ -113,35 +127,12 @@
             // 
             this.bookingTableAdapter.ClearBeforeFill = true;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(291, 210);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(307, 388);
-            this.listBox1.TabIndex = 8;
-            // 
-            // btnContinue
-            // 
-            this.btnContinue.BackColor = System.Drawing.Color.LightGreen;
-            this.btnContinue.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnContinue.Location = new System.Drawing.Point(916, 657);
-            this.btnContinue.Margin = new System.Windows.Forms.Padding(4);
-            this.btnContinue.Name = "btnContinue";
-            this.btnContinue.Size = new System.Drawing.Size(129, 36);
-            this.btnContinue.TabIndex = 9;
-            this.btnContinue.Text = "Continue";
-            this.btnContinue.UseVisualStyleBackColor = false;
-            this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click);
-            // 
             // DateCheckForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1045, 690);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.btnContinue);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnBack);
@@ -150,8 +141,8 @@
             this.Controls.Add(this.dateTimePickerEndDate);
             this.Controls.Add(this.dateTimePickerStartDate);
             this.Controls.Add(this.labelEndDate);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DateCheckForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Check Room Availability";
             this.Load += new System.EventHandler(this.DateCheckForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.hotelDatabaseDataSet)).EndInit();

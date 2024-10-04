@@ -147,6 +147,7 @@ namespace HotelSystem.Presentation
             this.Controls.Add(this.btnSignIn);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ChangeReserveForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Search";
             this.ResumeLayout(false);
             this.PerformLayout();

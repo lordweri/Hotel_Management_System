@@ -42,7 +42,7 @@
             this.btnLogout.BackColor = System.Drawing.Color.LightGray;
             this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnLogout.Location = new System.Drawing.Point(0, 531);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(112, 32);
             this.btnLogout.TabIndex = 1;
@@ -55,7 +55,7 @@
             this.btnBackToMainMenu.BackColor = System.Drawing.Color.LightGreen;
             this.btnBackToMainMenu.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnBackToMainMenu.Location = new System.Drawing.Point(672, 531);
-            this.btnBackToMainMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBackToMainMenu.Margin = new System.Windows.Forms.Padding(2);
             this.btnBackToMainMenu.Name = "btnBackToMainMenu";
             this.btnBackToMainMenu.Size = new System.Drawing.Size(112, 32);
             this.btnBackToMainMenu.TabIndex = 2;
@@ -82,8 +82,9 @@
             this.Controls.Add(this.btnBackToMainMenu);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.lblBookingSuccess);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "BookingGeneratedForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Booking Confirmation";
             this.ResumeLayout(false);
             this.PerformLayout();

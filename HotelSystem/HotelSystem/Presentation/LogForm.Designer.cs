@@ -157,6 +157,7 @@ namespace HotelSystem.Presentation
             this.Controls.Add(this.btnSignIn);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sign In";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
