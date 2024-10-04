@@ -141,13 +141,61 @@ namespace HotelSystem.Data
             }
             return returnValue;
         }
+        // method to get all rooms from the database table-BRWCAL007
+        public DataRow[] GetRoomRows()
+        {
+            try
+            {
+                DataTable roomTable = dsMain.Tables["Room"];
+                if (roomTable == null)
+                {
+                    throw new Exception("Table 'Room' not found in the DataSet.");
+                }
+
+                DataRow[] roomRows = roomTable.Select();
+                if (roomRows == null || roomRows.Length == 0)
+                {
+                    throw new Exception("No rows found in table 'Room'.");
+                }
+
+                return roomRows;
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception or log the error
+                Console.WriteLine("An error occurred: " + ex.Message);
+                return null;
+            }
+        }
+
 
         // Method to get the total number of rooms from the database-BRWCAL007
+        public int GetTotalRoomCount(DataRow[] roomRows)
+        {
+            if (roomRows == null)
+            {
+                // Handle the case when roomRows is null
+                // You can return a default value or throw an exception, depending on your requirements
+                return 0;
+            }
+
+            return roomRows.Length;
+        }
         public int GetTotalRoomCount()
         {
             DataRow[] roomRows = dsMain.Tables["Room"].Select();
-            return roomRows.Length; // Return the total count of rooms
+            if (roomRows == null)
+            {
+                // Handle the case when roomRows is null
+                // You can return a default value or throw an exception, depending on your requirements
+                return 0;
+            }
+
+            return roomRows.Length;
         }
+
+
+
         #endregion
 
         #region Database operations CRUD

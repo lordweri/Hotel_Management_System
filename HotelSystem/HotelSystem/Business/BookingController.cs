@@ -111,7 +111,7 @@ namespace HotelSystem.Business
         public List<OccupancyData> GetOccupancyLevelReport(DateTime startDate, DateTime endDate)
         {
             var occupancyDataList = new List<OccupancyData>();
-            int totalRoomsAvailable = bookingDB.GetTotalRoomCount(); // Assuming total rooms in the hotel
+            int totalRoomsAvailable = bookingDB.GetTotalRoomCount(bookingDB.GetRoomRows()); // Assuming total rooms in the hotel
 
             if (totalRoomsAvailable == 0) return occupancyDataList; // Return an empty list if no rooms are available
 
