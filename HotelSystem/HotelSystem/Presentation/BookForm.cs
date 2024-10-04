@@ -8,11 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HotelSystem.Business;
-
+/*
+ * This class is responsible for displaying the booking details of the guest
+ * and allows the guest to make payment for the booking
+ */
 namespace HotelSystem.Presentation
 {
     public partial class BookForm : Form
     {
+        /* TODO: booking object still has the following attributes been null:
+         *  1. totalRate
+         *  2. deposit
+         *  3. status
+         *  Zhentao: All other attributes are set in the previous forms, exceps range, referenceNumeber and value,
+         *  Im not sure what those attributes does, so I will leave them been null.
+         */
         #region Data member
         Booking booking;              // Booking object passed from the RegistrationForm
         bool guestIsExisting;
