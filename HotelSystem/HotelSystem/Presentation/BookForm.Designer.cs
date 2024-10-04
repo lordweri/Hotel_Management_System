@@ -37,6 +37,7 @@
             this.lblBookingDetails.Size = new System.Drawing.Size(162, 28);
             this.lblBookingDetails.TabIndex = 0;
             this.lblBookingDetails.Text = "Booking Details";
+            this.lblBookingDetails.Click += new System.EventHandler(this.lblBookingDetails_Click);
             // 
             // txtBookingDetails
             // 
