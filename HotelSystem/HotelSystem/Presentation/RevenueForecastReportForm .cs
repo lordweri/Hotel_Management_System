@@ -15,35 +15,34 @@ namespace HotelSystem.Presentation
 {
     public partial class RevenueForecastReport : Form
     {
-        private BookingController bookingController;
+        private readonly BookingController bookingController;
 
         public RevenueForecastReport()
         {
             InitializeComponent();
             bookingController = new BookingController();
         }
-        // method to generate revenue report based on start and end dates-BRWCAL007
+        // method to generate revenue report based on start and end date-BRWCAL007
         private void btnGenerateRevenueReport_Click(object sender, EventArgs e)
         {
-            // Get the start and end dates from the date pickers
             DateTime startDate = dtpStartDate.Value;
             DateTime endDate = dtpEndDate.Value;
 
             try
             {
-                // Fetch revenue data from the BookingController
+                // Get revenue report data between the specified start and end dates
                 var revenueData = bookingController.GetRevenueReport(startDate, endDate);
 
-                // Display the data in DataGridView
+                // Display the revenue data in the data grid view
                 dgvRevenue.DataSource = revenueData;
 
-                // Plot the data on the chart
+                // Plot the revenue data on the chart
                 PlotRevenueDataOnChart(revenueData);
             }
             catch (Exception ex)
             {
-                // Handle any exceptions that occur during the process
-                MessageBox.Show(ex.Message);
+                // Display an error message if an exception occurs
+                MessageBox.Show($"An error occurred: {ex.Message}");
             }
         }
 
@@ -54,12 +53,27 @@ namespace HotelSystem.Presentation
 
             // Create a new series for the revenue data
             Series series = chartRevenue.Series.Add("Revenue");
+            series.ChartType = SeriesChartType.Line;
 
             // Iterate through each data point and add it to the chart
             foreach (var data in revenueData)
             {
                 series.Points.AddXY(data.Date, data.TotalRevenue);
             }
+
+            // Set the axis titles and minimum value for the chart
+            chartRevenue.ChartAreas[0].AxisX.Title = "Date";
+            chartRevenue.ChartAreas[0].AxisY.Title = "Total Revenue";
+            chartRevenue.ChartAreas[0].AxisY.Minimum = 0;
+
+            // Add a title to the chart
+            chartRevenue.Titles.Add("Revenue Forecast Report");
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            // Close the form or navigate back to the main form
+            this.Close();
         }
     }
 }
