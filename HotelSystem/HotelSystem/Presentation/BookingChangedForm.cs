@@ -16,35 +16,49 @@ namespace HotelSystem.Presentation
         {
             InitializeComponent();
         }
-        // method to go back to the Mainform when the back button is clicked-BRWCAL007
+        // Method to go back to the Mainform when the back button is clicked
         private void BtnBackToMainMenu_Click(object sender, EventArgs e)
         {
-            // Create an instance of the main menu form
-            MainForm mainForm = new MainForm();
+            try
+            {
+                // Create an instance of the main menu form
+                MainForm mainForm = new MainForm();
 
-            // Show the main menu form
-            mainForm.Show();
+                // Show the main menu form
+                mainForm.Show();
 
-            // Close the current form (BookingChangedForm)
-            this.Close();
+                // Close the current form (BookingChangedForm)
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while going back to the main menu: {ex.Message}");
+            }
         }
-        // mehtod to logout from the application when the logout button is clicked-BRWCAL007
+
+        // Method to logout from the application when the logout button is clicked
         private void BtnLogout_Click(object sender, EventArgs e)
         {
-            // Display a confirmation message box
-            DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            try
             {
-                // Create an instance of the login form
-                LoginForm loginForm = new LoginForm();
+                // Display a confirmation message box
+                DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                // Show the login form
-                loginForm.Show();
+                if (result == DialogResult.Yes)
+                {
+                    // Create an instance of the login form
+                    LoginForm loginForm = new LoginForm();
 
-                // Close the current form (BookingChangedForm) and all other forms
-                Application.OpenForms.Cast<Form>().ToList().ForEach(f => f.Close());
+                    // Show the login form
+                    loginForm.Show();
 
+                    // Close the current form (BookingChangedForm) and all other forms
+                    Application.OpenForms.Cast<Form>().ToList().ForEach(f => f.Close());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while logging out: {ex.Message}");
             }
         }
     }
