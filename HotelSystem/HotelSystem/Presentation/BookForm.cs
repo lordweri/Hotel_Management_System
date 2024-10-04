@@ -44,6 +44,16 @@ namespace HotelSystem.Presentation
         // Event handler for Cancel button
         private void Button1_Click(object sender, EventArgs e)
         {
+            // Create an instance of the BookingCancelledForm
+            BookingCancelledForm cancelForm = new BookingCancelledForm();
+
+            // Show the BookingCancelledForm
+            cancelForm.Show();
+        }
+
+
+        private void lblBookingDetails_Click(object sender, EventArgs e)
+        {
 
         }
     }

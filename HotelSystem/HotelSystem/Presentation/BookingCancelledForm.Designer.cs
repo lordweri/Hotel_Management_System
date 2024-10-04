@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookingCancelledForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblBookingSuccess = new System.Windows.Forms.Label();
-            this.btnLogout = new System.Windows.Forms.Button();
-            this.btnBackToMainMenu = new System.Windows.Forms.Button();
+            this.BtnLogout = new System.Windows.Forms.Button();
+            this.BtnBackToMainMenu = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel1
@@ -41,7 +41,7 @@
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.Location = new System.Drawing.Point(3, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1047, 95);
             this.panel1.TabIndex = 9;
@@ -57,40 +57,40 @@
             this.lblBookingSuccess.Text = "Booking Cancelled!";
             this.lblBookingSuccess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnLogout
+            // BtnLogout
             // 
-            this.btnLogout.BackColor = System.Drawing.Color.LightGray;
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnLogout.Location = new System.Drawing.Point(3, 651);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(149, 39);
-            this.btnLogout.TabIndex = 11;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = false;
+            this.BtnLogout.BackColor = System.Drawing.Color.LightGray;
+            this.BtnLogout.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.BtnLogout.Location = new System.Drawing.Point(3, 651);
+            this.BtnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnLogout.Name = "BtnLogout";
+            this.BtnLogout.Size = new System.Drawing.Size(149, 39);
+            this.BtnLogout.TabIndex = 11;
+            this.BtnLogout.Text = "Logout";
+            this.BtnLogout.UseVisualStyleBackColor = false;
             // 
-            // btnBackToMainMenu
+            // BtnBackToMainMenu
             // 
-            this.btnBackToMainMenu.BackColor = System.Drawing.Color.LightGreen;
-            this.btnBackToMainMenu.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnBackToMainMenu.Location = new System.Drawing.Point(900, 651);
-            this.btnBackToMainMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnBackToMainMenu.Name = "btnBackToMainMenu";
-            this.btnBackToMainMenu.Size = new System.Drawing.Size(149, 39);
-            this.btnBackToMainMenu.TabIndex = 12;
-            this.btnBackToMainMenu.Text = "Back to Main Menu";
-            this.btnBackToMainMenu.UseVisualStyleBackColor = false;
+            this.BtnBackToMainMenu.BackColor = System.Drawing.Color.LightGreen;
+            this.BtnBackToMainMenu.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.BtnBackToMainMenu.Location = new System.Drawing.Point(900, 651);
+            this.BtnBackToMainMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnBackToMainMenu.Name = "BtnBackToMainMenu";
+            this.BtnBackToMainMenu.Size = new System.Drawing.Size(149, 39);
+            this.BtnBackToMainMenu.TabIndex = 12;
+            this.BtnBackToMainMenu.Text = "Back to Main Menu";
+            this.BtnBackToMainMenu.UseVisualStyleBackColor = false;
             // 
             // BookingCancelledForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1045, 690);
-            this.Controls.Add(this.btnBackToMainMenu);
-            this.Controls.Add(this.btnLogout);
+            this.Controls.Add(this.BtnBackToMainMenu);
+            this.Controls.Add(this.BtnLogout);
             this.Controls.Add(this.lblBookingSuccess);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BookingCancelledForm";
             this.Text = "BookingCancelledForm";
             this.ResumeLayout(false);
@@ -102,7 +102,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblBookingSuccess;
-        private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Button btnBackToMainMenu;
+        private System.Windows.Forms.Button BtnLogout;
+        private System.Windows.Forms.Button BtnBackToMainMenu;
     }
 }
