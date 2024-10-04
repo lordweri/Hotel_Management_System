@@ -7,15 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HotelSystem.Business;
 
 namespace HotelSystem.Presentation
 {
     public partial class BookForm : Form
     {
-        public BookForm()
+        #region Data member
+        Booking booking;              // Booking object passed from the RegistrationForm
+        bool guestIsExisting;
+        #endregion
+
+        #region Constructor
+        public BookForm(Booking booking, bool guestIsExisting)
         {
             InitializeComponent();
+            this.booking = booking;
+            this.guestIsExisting = guestIsExisting;
         }
+        #endregion
 
         // Event handler for Make Payment button
         private void BtnMakePayment_Click(object sender, EventArgs e)
@@ -49,7 +59,11 @@ namespace HotelSystem.Presentation
 
             // Show the BookingCancelledForm
             cancelForm.Show();
+
+            // Close the current form
+            this.Close();
         }
+
 
 
         private void lblBookingDetails_Click(object sender, EventArgs e)

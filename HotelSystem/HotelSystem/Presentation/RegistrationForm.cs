@@ -15,7 +15,8 @@ using System.Windows.Forms;
 * 2. If the guest is not existing in database, the text box will be editable and the guest will be added to the database.
 * 3. If the room type is family room, the child options will be shown.
 * 4. A Guest object will be created with the details from the text boxes 
-* 5. Click "Generate Booking" to proceed to the payment form
+* 5. A booking object will be created and passed to the next form(BookForm)
+* 6. Press "Generate Booking" to proceed to the next form(BookForm)
 * NOTE:
 *  If the guest is not exist in database, the guest will be added to the database if booking is successful
 */
@@ -24,11 +25,11 @@ namespace HotelSystem.Presentation
     public partial class RegistrationForm : Form
     {
         #region Data Members
+        private bool exitstingGuest = false;             //flag to check if the guest is existing
         private Guest guest;                             //guest object to store the guest details
 
-        private bool exitstingGuest = false;             //flag to check if the guest is existing
         private GuestController guestController;         //controller to handle guest operations
-        private Booking book;
+        private Booking booking;                         //booking object to store the booking details, however it will only be added to database after booking is confirmed
         #endregion
 
         #region Constructors
@@ -56,7 +57,7 @@ namespace HotelSystem.Presentation
         }
         #endregion
 
-        //"Generate Booking" button click event
+        //"Generate Booking" button, proceed to the BookForm after pressed
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             // Handle the form submission logic here.
@@ -79,6 +80,13 @@ namespace HotelSystem.Presentation
                 guest = new Guest(guestName, email, phoneNumber, address);
             }
 
+            //TODO: Create a new booking object
+            //booking = new Booking(       
+
+            //Proceed to the next form
+            BookForm bookForm = new BookForm(booking, exitstingGuest);    //exitstingGuest flag is passed to the next form, if existingGuest is false, the guest will be added to the database if booking is successful
+            bookForm.Show();
+            this.Hide();
 
             /*
             // Example of how to display the collected data
