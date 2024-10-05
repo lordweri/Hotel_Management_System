@@ -101,23 +101,51 @@ namespace HotelSystem.Data
         #endregion
 
         #region Database operations CRUD
+        // with added error handling-BRWCAL007
         public void DataSetChange(Guest aGuest, DB.DBOperation operation)
         {
-            DataRow aRow = null;
-            switch (operation)
+            if (aGuest == null)
             {
-                case DB.DBOperation.Add:
-                    aRow = dsMain.Tables[table].NewRow();
-                    FillRow(aRow, aGuest, DB.DBOperation.Add);
-                    dsMain.Tables[table].Rows.Add(aRow);
-                    break;
-                case DB.DBOperation.Edit:
-                    aRow = dsMain.Tables[table].Rows[FindRow(aGuest)];
-                    FillRow(aRow, aGuest, DB.DBOperation.Edit);
-                    break;
-                case DB.DBOperation.Delete:
-                    dsMain.Tables[table].Rows[FindRow(aGuest)].Delete();
-                    break;
+                throw new ArgumentNullException(nameof(aGuest), "Guest cannot be null.");
+            }
+
+            try
+            {
+                DataRow aRow = null;
+                switch (operation)
+                {
+                    case DB.DBOperation.Add:
+                        aRow = dsMain.Tables[table].NewRow();
+                        FillRow(aRow, aGuest, DB.DBOperation.Add);
+                        dsMain.Tables[table].Rows.Add(aRow);
+                        break;
+                    case DB.DBOperation.Edit:
+                        int rowIndex = FindRow(aGuest);
+                        if (rowIndex == -1)
+                        {
+                            throw new InvalidOperationException($"Guest with ID {aGuest.getGuestID()} not found for editing.");
+                        }
+                        aRow = dsMain.Tables[table].Rows[rowIndex];
+                        FillRow(aRow, aGuest, DB.DBOperation.Edit);
+                        break;
+                    case DB.DBOperation.Delete:
+                        int deleteRowIndex = FindRow(aGuest);
+                        if (deleteRowIndex == -1)
+                        {
+                            throw new InvalidOperationException($"Guest with ID {aGuest.getGuestID()} not found for deletion.");
+                        }
+                        dsMain.Tables[table].Rows[deleteRowIndex].Delete();
+                        break;
+                    default:
+                        throw new ArgumentException($"Unsupported operation: {operation}", nameof(operation));
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Error in DataSetChange: {ex.Message}");
+                // Optionally, rethrow the exception if you want it to propagate
+                throw new Exception("An error occurred while modifying the guest data.", ex);
             }
         }
         #endregion
