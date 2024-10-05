@@ -30,14 +30,14 @@ namespace HotelSystem.Presentation
 
         private void btnChangeReservation_Click(object sender, EventArgs e)
         {
-            ChangeReserveForm changeReserveForm = new ChangeReserveForm();
+            ChangeReserveForm changeReserveForm = new ChangeReserveForm(bookingController);
             changeReserveForm.Show();
             this.Close();
         }
 
         private void btnCancelReservation_Click(object sender, EventArgs e)
         {
-            ChangeReserveForm newChangeReserveForm = new ChangeReserveForm();
+            ChangeReserveForm newChangeReserveForm = new ChangeReserveForm(bookingController);
             newChangeReserveForm.Show();
             this.Close();
         }

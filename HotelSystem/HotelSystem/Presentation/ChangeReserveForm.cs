@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,43 +10,70 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HotelSystem.Business;
 
 namespace HotelSystem.Presentation
 {
     public partial class ChangeReserveForm : Form
     {
+        BookingController bookingController;
+        Collection<Booking> bookings;
+        Booking booking;
 
-        public ChangeReserveForm()
+        public ChangeReserveForm(BookingController bookingController)
         {
             InitializeComponent();
+            this.bookingController = bookingController;
+            bookings = bookingController.AllBookings;
+
+            txtBookingIDSearch.ReadOnly = true;
+            txtGuestID.ReadOnly = true;
+            txtRoomNumber.ReadOnly = true;
         }
-        private void btnSignIn_Click(object sender, EventArgs e)
+
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-
-        }
-
-
-
-        private void txtPassword_Enter(object sender, EventArgs e)
-        {
-            if (txtPassword.Text == "BookingID")
+            foreach (Booking booking in bookings)
             {
-                txtPassword.Text = "";
-                txtPassword.ForeColor = Color.Black;
-                txtPassword.UseSystemPasswordChar = true;
+                if (booking.GetBookingID() == txtBookingIDSearch.Text)
+                {
+                    this.booking = booking;
+                    MessageBox.Show("Booking found!");
+                    txtBookingID.Text = booking.GetBookingID();
+                    txtCheckInDate.Text = booking.CheckIn.ToString();
+                    txtCheckOutDate.Text = booking.CheckOut.ToString();
+                    txtRoomNumber.Text = booking.GetRoom().getRoomNo();
+                    txtGuestID.Text = booking.GetGuest().getGuestID();
+                }
+                else
+                {
+                    MessageBox.Show("Booking not found!");
+                }
+            }
+        }
+
+            //"txtBookingID" textbox
+            private void txtPassword_Enter(object sender, EventArgs e)
+        {
+            if (txtBookingIDSearch.Text == "BookingID")
+            {
+                txtBookingIDSearch.Text = "";
+                txtBookingIDSearch.ForeColor = Color.Black;
+                txtBookingIDSearch.UseSystemPasswordChar = true;
             }
         }
 
         private void txtPassword_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtPassword.Text))
+            if (string.IsNullOrEmpty(txtBookingIDSearch.Text))
             {
-                txtPassword.UseSystemPasswordChar = false;
-                txtPassword.Text = "BookingID";
-                txtPassword.ForeColor = Color.Gray;
+                txtBookingIDSearch.UseSystemPasswordChar = false;
+                txtBookingIDSearch.Text = "BookingID";
+                txtBookingIDSearch.ForeColor = Color.Gray;
             }
         }
 
+        /*
         private void pnlUserId_Paint(object sender, PaintEventArgs e)
         {
             DrawRoundedRectangle(e.Graphics, pnlUserID.ClientRectangle, 20, Color.LightGray);
@@ -72,17 +100,13 @@ namespace HotelSystem.Presentation
                     g.DrawPath(pen, path);
                 }
             }
-        }
+        }*/
 
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -99,10 +123,6 @@ namespace HotelSystem.Presentation
 
         }
 
-        private void txtUserId_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -112,9 +132,11 @@ namespace HotelSystem.Presentation
             
         }
 
-        private void roomsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            bookingController.DataMaintenance(booking, Data.DB.DBOperation.Edit);
+            bookingController.FinalizeChanges(booking, Data.DB.DBOperation.Edit);
+            MessageBox.Show("Booking updated!");
         }
     }
 }
