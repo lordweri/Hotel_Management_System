@@ -10,7 +10,8 @@ using System.Windows.Forms;
 using HotelSystem.Business;
 /*
  * This class is responsible for displaying the booking details of the guest
- * and allows the guest to make payment for the booking
+ * 
+ * 
  */
 namespace HotelSystem.Presentation
 {
@@ -45,7 +46,7 @@ namespace HotelSystem.Presentation
         private void BtnMakePayment_Click(object sender, EventArgs e)
         {
             // Create an instance of the PaymentForm
-            PaymentForm paymentForm = new PaymentForm(booking, guestIsExisting);
+            PaymentForm paymentForm = new PaymentForm(booking, guestIsExisting, amountToPay);
 
             // Show the PaymentForm
             paymentForm.Show();
