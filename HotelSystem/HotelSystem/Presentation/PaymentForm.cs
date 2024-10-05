@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 /* TODO:
  * 1. Complete "Confirm Payment" button
@@ -56,6 +57,8 @@ namespace HotelSystem.Presentation
         // TODO: "Confirm Payment" button
         private void btnConfirmPayment_Click(object sender, EventArgs e)
         {
+            SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\MSXWER001\\Source\\Repos\\Hotel_Project\\HotelSystem\\HotelSystem\\HotelDatabase.mdf;Integrated Security=True");
+
             bookingController.DataMaintenance(booking, DB.DBOperation.Add); // Add booking to the dataset
             bookingController.FinalizeChanges(booking, DB.DBOperation.Add); // Update the database
             //Add guest to database if guest is not existing already
