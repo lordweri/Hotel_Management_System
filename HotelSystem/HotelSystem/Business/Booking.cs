@@ -77,6 +77,12 @@ namespace HotelSystem.Business
             return deposit;
         }
 
+        public decimal calculateDeposit()
+        {
+            deposit = totalRate * 0.1m;
+            return deposit;
+        }
+
         public void setRoom(Room r)
         {
             this.room = r;
