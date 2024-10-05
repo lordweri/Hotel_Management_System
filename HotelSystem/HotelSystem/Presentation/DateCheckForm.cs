@@ -132,7 +132,6 @@ namespace HotelSystem.Presentation
             }
         }
 
-
         #region Utility Methods
         //TODO: Might need to check for logic errors
         //Method to search available rooms for the given date range
