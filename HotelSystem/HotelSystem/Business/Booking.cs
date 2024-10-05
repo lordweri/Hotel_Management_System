@@ -56,6 +56,7 @@ namespace HotelSystem.Business
         public DateTime CheckOut { get; internal set; }
         public DateTime CheckIn { get; internal set; }
 
+        // method to calculate total price for a booking
         public decimal calculateTotalPrice()
         {
             return (decimal)room.getRate() * range.GetNumberOfDays();
