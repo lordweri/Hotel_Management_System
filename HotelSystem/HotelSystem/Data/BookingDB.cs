@@ -237,26 +237,58 @@ namespace HotelSystem.Data
 
         #region Database operations CRUD
         //Add, Edit or Delete a booking in the Booking DataSet
+        // with added error handling-BRWCAL007
         public void DataSetChange(Booking booking, DB.DBOperation operation)
         {
-            DataRow aRow = null;
-            switch (operation)
+            if (booking == null)
             {
-                //Added a booking row to the dataset
-                case DB.DBOperation.Add:
-                    aRow = dsMain.Tables[table].NewRow();
-                    FillRow(aRow, booking, DB.DBOperation.Add);
-                    dsMain.Tables[table].Rows.Add(aRow);
-                    break;
-                //Edit a existing booking row in the dataset
-                case DB.DBOperation.Edit:
-                    aRow = dsMain.Tables[table].Rows[FindRow(booking)];
-                    FillRow(aRow, booking, DB.DBOperation.Edit);
-                    break;
-                //Delete a booking row from the dataset
-                case DB.DBOperation.Delete:
-                    dsMain.Tables[table].Rows[FindRow(booking)].Delete();
-                    break;
+                throw new ArgumentNullException(nameof(booking), "Booking object cannot be null.");
+            }
+
+            try
+            {
+                DataRow aRow = null;
+                switch (operation)
+                {
+                    case DB.DBOperation.Add:
+                        if (dsMain.Tables[table] == null)
+                        {
+                            throw new InvalidOperationException($"Table '{table}' not found in the DataSet.");
+                        }
+                        aRow = dsMain.Tables[table].NewRow();
+                        FillRow(aRow, booking, DB.DBOperation.Add);
+                        dsMain.Tables[table].Rows.Add(aRow);
+                        break;
+
+                    case DB.DBOperation.Edit:
+                        int rowIndex = FindRow(booking);
+                        if (rowIndex == -1)
+                        {
+                            throw new InvalidOperationException($"Booking with ID {booking.GetBookingID()} not found in the DataSet.");
+                        }
+                        aRow = dsMain.Tables[table].Rows[rowIndex];
+                        FillRow(aRow, booking, DB.DBOperation.Edit);
+                        break;
+
+                    case DB.DBOperation.Delete:
+                        int deleteRowIndex = FindRow(booking);
+                        if (deleteRowIndex == -1)
+                        {
+                            throw new InvalidOperationException($"Booking with ID {booking.GetBookingID()} not found in the DataSet.");
+                        }
+                        dsMain.Tables[table].Rows[deleteRowIndex].Delete();
+                        break;
+
+                    default:
+                        throw new ArgumentException($"Unsupported database operation: {operation}", nameof(operation));
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"An error occurred in DataSetChange: {ex.Message}");
+                // Optionally, rethrow the exception if you want it to propagate
+                throw new Exception("An error occurred while modifying the booking data.", ex);
             }
         }
         #endregion
