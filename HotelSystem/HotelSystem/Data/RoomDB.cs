@@ -101,23 +101,51 @@ namespace HotelSystem.Data
         #endregion
 
         #region Database operations CRUD
+        // added error handling-BRWCAL007
         public void DataSetChange(Room aRoom, DB.DBOperation operation)
         {
-            DataRow aRow = null;
-            switch (operation)
+            if (aRoom == null)
             {
-                case DBOperation.Add:
-                    aRow = dsMain.Tables[table].NewRow();
-                    FillRow(aRow, aRoom, DBOperation.Add);
-                    dsMain.Tables[table].Rows.Add(aRow);
-                    break;
-                case DBOperation.Edit:
-                    aRow = dsMain.Tables[table].Rows[FindRow(aRoom)];
-                    FillRow(aRow, aRoom, DBOperation.Edit);
-                    break;
-                case DBOperation.Delete:
-                    dsMain.Tables[table].Rows[FindRow(aRoom)].Delete();
-                    break;
+                throw new ArgumentNullException(nameof(aRoom), "Room object cannot be null.");
+            }
+
+            try
+            {
+                DataRow aRow = null;
+                switch (operation)
+                {
+                    case DBOperation.Add:
+                        aRow = dsMain.Tables[table].NewRow();
+                        FillRow(aRow, aRoom, DBOperation.Add);
+                        dsMain.Tables[table].Rows.Add(aRow);
+                        break;
+                    case DBOperation.Edit:
+                        int rowIndex = FindRow(aRoom);
+                        if (rowIndex == -1)
+                        {
+                            throw new InvalidOperationException($"Room with number {aRoom.getRoomNo()} not found for editing.");
+                        }
+                        aRow = dsMain.Tables[table].Rows[rowIndex];
+                        FillRow(aRow, aRoom, DBOperation.Edit);
+                        break;
+                    case DBOperation.Delete:
+                        int deleteRowIndex = FindRow(aRoom);
+                        if (deleteRowIndex == -1)
+                        {
+                            throw new InvalidOperationException($"Room with number {aRoom.getRoomNo()} not found for deletion.");
+                        }
+                        dsMain.Tables[table].Rows[deleteRowIndex].Delete();
+                        break;
+                    default:
+                        throw new ArgumentException($"Unsupported database operation: {operation}", nameof(operation));
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Error in DataSetChange: {ex.Message}");
+                // Optionally, rethrow the exception if you want it to propagate
+                throw new Exception($"An error occurred while performing {operation} operation on the room.", ex);
             }
         }
         #endregion
