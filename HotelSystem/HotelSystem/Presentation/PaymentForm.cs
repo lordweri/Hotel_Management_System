@@ -56,14 +56,22 @@ namespace HotelSystem.Presentation
         // TODO: "Confirm Payment" button
         private void btnConfirmPayment_Click(object sender, EventArgs e)
         {
-
+            bookingController.DataMaintenance(booking, DB.DBOperation.Add); // Add booking to the dataset
+            bookingController.FinalizeChanges(booking, DB.DBOperation.Add); // Update the database
+            //Add guest to database if guest is not existing already
+            if (!guestIsExisting)
+            {
+                guestController.DataMaintenance(booking.guest, DB.DBOperation.Add); // Add guest to the dataset
+                guestController.FinalizeChanges(booking.guest, DB.DBOperation.Add); // Update the database
+            }
+            MessageBox.Show("Payment Confirmed!\nBooking is successfully made:\nRoom Number: " + booking.room.getRoomNo() + "\nFrom " + booking.CheckIn + " to " + booking.CheckOut);
         }
 
 
         // Event handler for Confirm No Payment Made Button 
         private void btnConfirmNoPayment_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("This button does nothing currently");
         }
 
         // Event handler for Back button
@@ -160,19 +168,19 @@ namespace HotelSystem.Presentation
         private decimal GetDepositAmount()
         {
             // Implement logic to retrieve the deposit amount
-            return 100.00m; // Example value
+            return booking.getDeposit();
         }
 
         private decimal GetFullAmount()
         {
             // Implement logic to retrieve the full payment amount
-            return 500.00m; // Example value
+            return booking.totalPrice; 
         }
 
         private string GetBookingID()
         {
             // Implement logic to retrieve the booking ID associated with the payment
-            return "BKG123456";
+            return booking.bookingID;
         }
 
         // Event handler for text change in Card Number field-BRWCAL007
