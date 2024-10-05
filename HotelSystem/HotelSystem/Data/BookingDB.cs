@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using HotelSystem.Business;
 
 namespace HotelSystem.Data
@@ -15,6 +17,12 @@ namespace HotelSystem.Data
         #region Data members
         private string table = "Booking";
         private string sqlLocal = "SELECT * FROM Booking";
+
+        private string table2 = "Room";
+        private string sqlLocal2 = "SELECT * FROM Room";
+
+        private string table3 = "Guest";
+        private string sqlLocal3 = "SELECT * FROM Guest";
 
         private Collection<Booking> bookings; //stores all bookings in a collection(Similar to our practical workshop, their have a collection in EmployeeDB.cs that stores all employees)
         #endregion
@@ -38,6 +46,11 @@ namespace HotelSystem.Data
             FillDataSet(sqlLocal, table);
             Add2Collection(table);
 
+            //Fill dataset with Room and Guest tables so that we can find a room and guest by ID
+            FillDataSet(sqlLocal2, table2);
+            FillDataSet(sqlLocal3, table3);
+
+            ShowAllTableNames(dsMain);
         }
         #endregion
 
@@ -63,9 +76,11 @@ namespace HotelSystem.Data
                     DateTime start = Convert.ToDateTime(bookingRow["CheckInDate"]);
                     DateTime end = Convert.ToDateTime(bookingRow["CheckOutDate"]);
                     decimal totalPrice = Convert.ToDecimal(bookingRow["TotalPrice"]);
-                    decimal deposit = Convert.ToDecimal(bookingRow["Deposit"]);
-                    BookingStatus status = (BookingStatus)Enum.Parse(typeof(BookingStatus), bookingRow["Status"].ToString());
-                    RoomType roomType = (RoomType)Enum.Parse(typeof(RoomType), bookingRow["RoomType"].ToString());
+                    decimal deposit = totalPrice * 0.1m;
+                    //BookingStatus status = (BookingStatus)Enum.Parse(typeof(BookingStatus), bookingRow["Status"].ToString());
+                    BookingStatus status = BookingStatus.Confirmed;    //hard coded for now
+                    //RoomType roomType = (RoomType)Enum.Parse(typeof(RoomType), bookingRow["RoomType"].ToString());
+                    RoomType roomType = RoomType.Single;               //hard coded for now
 
                     Guest guest = FindGuestByID(guestID);
                     Room room = FindRoomByNumber(roomNumber);
@@ -75,10 +90,33 @@ namespace HotelSystem.Data
                 }
             }
         }
-        
+
+        //Method for debugging
+        //Call this method to show all table in the dataset currently
+        private void ShowAllTableNames(DataSet ds)
+        {
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                string tableNames = "Tables in DataSet:\n";
+
+                foreach (DataTable table in ds.Tables)
+                {
+                    tableNames += table.TableName + "\n";
+                }
+
+                MessageBox.Show(tableNames, "DataSet Tables", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No tables found in the DataSet.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
         //Find a guest in the database by ID and return a Guest object
         private Guest FindGuestByID(string guestID)
         {
+            ShowAllTableNames(dsMain);
             DataRow[] guestRows = dsMain.Tables["Guest"].Select($"GuestID = '{guestID}'");
             if (guestRows.Length > 0)
             {
@@ -283,10 +321,6 @@ namespace HotelSystem.Data
             daMain.UpdateCommand.Parameters.Add(param);
 
             param = new SqlParameter("@TotalPrice", SqlDbType.Money, 8, "TotalPrice");
-            param.SourceVersion = DataRowVersion.Current;
-            daMain.UpdateCommand.Parameters.Add(param);
-
-            param = new SqlParameter("@Deposit", SqlDbType.Money, 8, "Deposit");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 

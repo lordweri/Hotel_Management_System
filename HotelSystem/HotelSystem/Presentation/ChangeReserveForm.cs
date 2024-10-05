@@ -24,23 +24,7 @@ namespace HotelSystem.Presentation
 
         }
 
-        private void txtUserId_Enter(object sender, EventArgs e)
-        {
-            if (txtUserId.Text == "GuestID")
-            {
-                txtUserId.Text = "";
-                txtUserId.ForeColor = Color.Black;
-            }
-        }
 
-        private void txtUserId_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtUserId.Text))
-            {
-                txtUserId.Text = "GuestID";
-                txtUserId.ForeColor = Color.Gray;
-            }
-        }
 
         private void txtPassword_Enter(object sender, EventArgs e)
         {
@@ -126,6 +110,11 @@ namespace HotelSystem.Presentation
             mainForm.Show();
             this.Close();
             
+        }
+
+        private void roomsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
