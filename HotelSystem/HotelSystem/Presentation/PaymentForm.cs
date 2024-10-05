@@ -10,8 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-/*
- * 
+/* TODO:
+ * 1. Complete "Confirm Payment" button
+ *     1.1   Booking will be confirmed and added to the databse
+ *     1.2   Payment will be processed and added to the database
+ *     1.3   Guest will be added to the database if guest is not existing
+ * 2. etc    
  */
 namespace HotelSystem.Presentation
 {
@@ -19,23 +23,27 @@ namespace HotelSystem.Presentation
     {
         #region Data Members
         //Controllers
-        private PaymentController paymentController;
+        private PaymentController paymentController;      // Used to add a new payment to the database
         private GuestController guestController;          // Used to add a new guest to the database if guest is not existing
+        private BookingController bookingController;      // Used to add a new booking to the database
 
         //Attributes
         private Booking booking;
         private bool guestIsExisting;                     // If this attribute is true, add the guest to the database if booking is successfully made
+        private decimal amountToPay;                      // The amount to pay (either deposit or full payment) NOTE: This value is passed from the previous form(BookForm)
         #endregion
 
         #region Constructor
-        public PaymentForm(Booking booking, bool guestIsExsting)            
+        public PaymentForm(Booking booking, bool guestIsExsting, decimal amountToPay)            
         {
             InitializeComponent();
             paymentController = new PaymentController();
             guestController = new GuestController();
+            bookingController = new BookingController();
 
             this.booking = booking;
             this.guestIsExisting = guestIsExsting;
+            this.amountToPay = amountToPay;
 
             // Hide the VISA logo initially
             pictureVisaLogo.Visible = false;
@@ -45,26 +53,12 @@ namespace HotelSystem.Presentation
         }
         #endregion
 
-        // Event handler for Confirm Deposit button-BRWCAL007
-        private void btnConfirmDeposit_Click(object sender, EventArgs e)
+        // TODO: "Confirm Payment" button
+        private void btnConfirmPayment_Click(object sender, EventArgs e)
         {
-            decimal depositAmount = GetDepositAmount(); // Implement a method to get a deposit amount
-            ProcessPayment(depositAmount, "Deposit");
+
         }
 
-        // Event handler for Confirm Full Payment button-BRWCAL007
-        private void btnConfirmFullPayment_Click(object sender, EventArgs e)
-        {
-            decimal fullAmount = GetFullAmount(); // Implement a method to get the full payment amount
-            if (ValidateCardDetails())
-            {
-                ProcessPayment(fullAmount, "Visa");
-            }
-            else
-            {
-                MessageBox.Show("Please enter valid card details.");
-            }
-        }
 
         // Event handler for Confirm No Payment Made Button 
         private void btnConfirmNoPayment_Click(object sender, EventArgs e)
@@ -196,6 +190,12 @@ namespace HotelSystem.Presentation
                 // Hide VISA image if card number does not start with 4
                 pictureVisaLogo.Visible = false;
             }
+        }
+
+        // Event handler for PaymentForm load event
+        private void PaymentForm_Load(object sender, EventArgs e)
+        {
+            txtAmount.Text = amountToPay.ToString();  // Display the amount to pay
         }
     }
 }
