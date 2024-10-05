@@ -16,14 +16,16 @@ namespace HotelSystem.Presentation
 {
     public partial class BookForm : Form
     {
-        /* TODO: booking object still has the following attributes been null:
+        /* 1. TODO: booking object still has the following attributes been null:
          *  1. status
-         *  Zhentao: All other attributes are set in the previous forms, exceps range, referenceNumeber and value,
+         *  Zhentao: All other attributes are set in the previous forms, exceps referenceNumeber and value,
          *  Im not sure what those attributes does, so I will leave them been null.
+         * 2. TODO: pass amountToPay to the next form(PaymentForm)
          */
         #region Data member
         Booking booking;              // Booking object passed from the RegistrationForm
         bool guestIsExisting;         // If this attribute is true, added the guest to the database if booking is successful in payment form
+        decimal amountToPay;          // The amount to pay (either deposit or full payment) NOTE: This value should be passed to the next form(PaymentForm)
         #endregion
 
         #region Constructor
@@ -84,6 +86,55 @@ namespace HotelSystem.Presentation
         private void lblBookingDetails_Click(object sender, EventArgs e)
         {
 
+        }
+
+        // Event handler for form load
+        private void BookForm_Load(object sender, EventArgs e)
+        {
+            // Make the text boxes read only
+            txtBookingID.ReadOnly = true;
+            txtRoomType.ReadOnly = true;
+            txtRoomNumber.ReadOnly = true;
+            txtCheckInDate.ReadOnly = true;
+            txtCheckOutDate.ReadOnly = true;
+            txtTotalPrice.ReadOnly = true;
+            txtDeposit.ReadOnly = true;
+            txtGuestID.ReadOnly = true;
+            txtGuestName.ReadOnly = true;
+            txtContact.ReadOnly = true;
+            txtEmail.ReadOnly = true;
+            txtAddress.ReadOnly = true;
+            txtAmountToPay.ReadOnly = true;
+
+
+            // Display the booking details in the form
+            txtBookingID.Text = booking.bookingID;
+            txtRoomType.Text = booking.roomType.ToString();
+            txtRoomNumber.Text = booking.room.getRoomNo();
+            txtCheckInDate.Text = booking.CheckIn.ToString("yyyy/MM/dd");
+            txtCheckOutDate.Text = booking.CheckOut.ToString("yyyy/MM/dd");
+            txtTotalPrice.Text = booking.totalPrice.ToString();
+            txtDeposit.Text = booking.getDeposit().ToString();
+
+            txtGuestID.Text = booking.guest.getName();
+            txtGuestName.Text = booking.guest.getName();
+            txtContact.Text = booking.guest.getPhone();
+            txtEmail.Text = booking.guest.getEmail();
+            txtAddress.Text = booking.guest.getAddress();
+        }
+
+        // Event handler for Pay Deposit radio button
+        private void rbtPayDeposit_CheckedChanged(object sender, EventArgs e)
+        {
+            txtAmountToPay.Text = booking.getDeposit().ToString();
+            amountToPay = booking.getDeposit();
+        }
+
+        // Event handler for Pay Full radio button
+        private void rbtPayFull_CheckedChanged(object sender, EventArgs e)
+        {
+            txtAmountToPay.Text = booking.totalPrice.ToString();
+            amountToPay = booking.calculateTotalPrice();
         }
     }
 }
