@@ -79,7 +79,7 @@ namespace HotelSystem.Business
         {
             foreach (Booking booking in bookings)
             {
-                if (booking.bookingID == bookingID)
+                if (booking.GetBookingID() == bookingID)
                 {
                     return booking;
                 }
@@ -93,7 +93,7 @@ namespace HotelSystem.Business
             int index = 0;
             foreach (Booking booking in bookings)
             {
-                if (booking.bookingID == aBooking.bookingID)
+                if (booking.GetBookingID() == aBooking.GetBookingID())
                 {
                     return index;
                 }
@@ -119,7 +119,7 @@ namespace HotelSystem.Business
             for (var date = startDate.Date; date <= endDate.Date; date = date.AddDays(1))
             {
                 // Count bookings for the specific date
-                int roomsBookedForDay = bookings.Count(b => b.range.GetStart() <= date && b.range.getEnd() >= date);
+                int roomsBookedForDay = bookings.Count(b => b.GetRange().GetStart() <= date && b.GetRange().getEnd() >= date);
 
                 // Calculate occupancy percentage for that day
                 decimal occupancyPercentage = ((decimal)roomsBookedForDay / totalRoomsAvailable) * 100;
@@ -135,8 +135,8 @@ namespace HotelSystem.Business
         public List<RevenueData> GetRevenueReport(DateTime startDate, DateTime endDate)
         {
             return bookings
-                .Where(b => b.range.GetStart() >= startDate && b.range.getEnd() <= endDate)
-                .GroupBy(b => b.range.GetStart().Date) // Group by booking date (or adjust based on how you want to report)
+                .Where(b => b.GetRange().GetStart() >= startDate && b.GetRange().getEnd() <= endDate)
+                .GroupBy(b => b.GetRange().GetStart().Date) // Group by booking date (or adjust based on how you want to report)
                 .Select(group => new RevenueData
                 {
                     Date = group.Key,

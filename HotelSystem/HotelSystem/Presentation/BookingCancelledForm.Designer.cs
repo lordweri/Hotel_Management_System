@@ -62,24 +62,26 @@
             this.BtnLogout.BackColor = System.Drawing.Color.LightGray;
             this.BtnLogout.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.BtnLogout.Location = new System.Drawing.Point(2, 529);
-            this.BtnLogout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnLogout.Margin = new System.Windows.Forms.Padding(2);
             this.BtnLogout.Name = "BtnLogout";
             this.BtnLogout.Size = new System.Drawing.Size(112, 32);
             this.BtnLogout.TabIndex = 11;
             this.BtnLogout.Text = "Logout";
             this.BtnLogout.UseVisualStyleBackColor = false;
+            this.BtnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
             // 
             // BtnBackToMainMenu
             // 
             this.BtnBackToMainMenu.BackColor = System.Drawing.Color.LightGreen;
             this.BtnBackToMainMenu.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.BtnBackToMainMenu.Location = new System.Drawing.Point(675, 529);
-            this.BtnBackToMainMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnBackToMainMenu.Margin = new System.Windows.Forms.Padding(2);
             this.BtnBackToMainMenu.Name = "BtnBackToMainMenu";
             this.BtnBackToMainMenu.Size = new System.Drawing.Size(112, 32);
             this.BtnBackToMainMenu.TabIndex = 12;
             this.BtnBackToMainMenu.Text = "Back to Main Menu";
             this.BtnBackToMainMenu.UseVisualStyleBackColor = false;
+            this.BtnBackToMainMenu.Click += new System.EventHandler(this.BtnBackToMainMenu_Click);
             // 
             // BookingCancelledForm
             // 

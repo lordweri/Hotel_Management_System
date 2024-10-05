@@ -8,18 +8,16 @@ namespace HotelSystem.Business
 {
     public class Booking
     {
-        public string bookingID;
-        public Guest guest;
-        public Room room;
-        public RoomType roomType;
-        public DateRange range;
-        public BookingStatus status;
-        private string referenceNumber;
-        private object value;
+        private string bookingID;
+        private Guest guest;
+        private Room room;
+        private RoomType roomType;
+        private DateRange range;
+        private BookingStatus status;
         private DateTime checkIn;
         private DateTime checkOut;
         public decimal totalPrice;
-        private decimal deposit;
+
 
         //Using this constructor in the data layer
         public Booking(string bookingID, Guest guest,RoomType roomType, Room room, DateTime start, DateTime end, decimal totalRate, decimal deposit, BookingStatus status)
@@ -31,20 +29,18 @@ namespace HotelSystem.Business
             this.range=new DateRange(start, end);
             this.status = BookingStatus.Pending;
             this.totalPrice = totalRate;
-            this.deposit = deposit;
             this.status = status;
         }
 
-        public Booking(string referenceNumber, Guest guest, RoomType roomType, object value, DateTime checkIn, DateTime checkOut, decimal totalRate, decimal deposit)
+        public Booking(string referenceNumber, Guest guest, RoomType roomType, DateTime checkIn, DateTime checkOut, decimal totalRate, decimal deposit)
         {
-            this.referenceNumber = referenceNumber;
+            this.bookingID = referenceNumber;
             this.guest = guest;
             this.roomType = roomType;
-            this.value = value;
             this.checkIn = checkIn;
             this.checkOut = checkOut;
             this.totalPrice = totalRate;
-            this.deposit = deposit;
+
         }
 
         public Booking()
@@ -64,7 +60,7 @@ namespace HotelSystem.Business
 
         public void cancelBooking()
         {
-            status = BookingStatus.Canceled;
+            status = BookingStatus.Refunded;
         }
 
         public void confirmBooking()
@@ -72,14 +68,10 @@ namespace HotelSystem.Business
             status=BookingStatus.Confirmed; 
         }
 
-        public decimal getDeposit()
-        {
-            return deposit;
-        }
 
         public decimal calculateDeposit()
         {
-            deposit = totalPrice * 0.1m;
+           decimal deposit = totalPrice * 0.1m;
             return deposit;
         }
 
@@ -116,6 +108,42 @@ namespace HotelSystem.Business
         public DateTime getCheckOut()
         {
             return this.range.getEnd();
+        }
+
+        public DateRange GetRange()
+        {
+            return this.range;
+        }
+
+        public string GetBookingID()
+        {
+            return this.bookingID;
+        }
+
+        public string GetStatus()
+        {
+            return status.ToString();
+        }
+
+        public Room GetRoom()
+        {
+            return room;
+        }
+
+        public Guest GetGuest()
+        {
+            return guest;
+        }
+
+        public void setGuest(Guest guest)
+        {
+            this.guest = guest;
+        }
+
+        public void setRoomType(RoomType roomType)
+        {
+            this.roomType = roomType;
+            this.room.setType(roomType);
         }
 
     }

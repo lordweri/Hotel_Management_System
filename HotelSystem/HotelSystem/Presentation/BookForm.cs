@@ -109,27 +109,27 @@ namespace HotelSystem.Presentation
 
 
             // Display the booking details in the form
-            txtBookingID.Text = booking.bookingID;
-            txtRoomType.Text = booking.roomType.ToString();
-            txtRoomNumber.Text = booking.room.getRoomNo();
+            txtBookingID.Text = booking.GetBookingID();
+            txtRoomType.Text = booking.GetRoom().getType();
+            txtRoomNumber.Text = booking.GetRoom().getRoomNo();
             txtCheckInDate.Text = booking.getCheckIn().ToString("yyyy/MM/dd");
             txtCheckOutDate.Text = booking.getCheckOut().ToString("yyyy/MM/dd");
             txtTotalPrice.Text = booking.totalPrice.ToString();
-            txtDeposit.Text = booking.getDeposit().ToString();
-            txtNumberOfDays.Text = booking.range.GetNumberOfDays()+"";
+            txtDeposit.Text = booking.calculateDeposit().ToString();
+            txtNumberOfDays.Text = booking.GetRange().GetNumberOfDays()+"";
 
-            txtGuestID.Text = booking.guest.getGuestID();
-            txtGuestName.Text = booking.guest.getName();
-            txtContact.Text = booking.guest.getPhone();
-            txtEmail.Text = booking.guest.getEmail();
-            txtAddress.Text = booking.guest.getAddress();
+            txtGuestID.Text = booking.GetGuest().getGuestID();
+            txtGuestName.Text = booking.GetGuest().getName();
+            txtContact.Text = booking.GetGuest().getPhone();
+            txtEmail.Text = booking.GetGuest().getEmail();
+            txtAddress.Text = booking.GetGuest().getAddress();
         }
 
         // Event handler for Pay Deposit radio button
         private void rbtPayDeposit_CheckedChanged(object sender, EventArgs e)
         {
-            txtAmountToPay.Text = booking.getDeposit().ToString();
-            amountToPay = booking.getDeposit();
+            txtAmountToPay.Text = booking.calculateDeposit().ToString();
+            amountToPay = booking.calculateDeposit();
         }
 
         // Event handler for Pay Full radio button

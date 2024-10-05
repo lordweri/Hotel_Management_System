@@ -14,7 +14,7 @@ namespace HotelSystem.Business
         private string email;
         private string telephone;
         private string address;
-        private string text;
+
 
 
         #region Constructors

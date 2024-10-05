@@ -108,15 +108,14 @@ namespace HotelSystem.Data
         {
             if (operation == DBOperation.Add)
             {
-                aRow["BookingID"] = booking.bookingID;
-                aRow["GuestID"] = booking.guest.getGuestID();
-                aRow["RoomNumber"] = booking.room.getRoomNo();
-                aRow["CheckInDate"] = booking.range.GetStart();
-                aRow["CheckOutDate"] = booking.range.GetStart();
+                aRow["BookingID"] = booking.GetBookingID();
+                aRow["GuestID"] = booking.GetGuest().getGuestID();
+                aRow["RoomNumber"] = booking.GetRoom().getRoomNo();
+                aRow["CheckInDate"] = booking.GetRange().GetStart();
+                aRow["CheckOutDate"] = booking.GetRange().GetStart();
                 aRow["TotalPrice"] = booking.totalPrice;
-                aRow["Deposit"] = booking.getDeposit();
-                aRow["Status"] = booking.status.ToString();
-                aRow["RoomType"] = booking.roomType.ToString();
+                aRow["Status"] = booking.GetType().ToString();
+                aRow["RoomType"] = booking.GetRoom().getType();
             }
         }
 
@@ -125,7 +124,7 @@ namespace HotelSystem.Data
             int rowIndex = 0;
             DataRow myRow = null;
             int returnValue = -1;
-            string bookingID = booking.bookingID;     //TODO: check later of variable name matchs with Booking class
+            string bookingID = booking.GetBookingID();     //TODO: check later of variable name matchs with Booking class
             foreach (DataRow myRow_loopVariable in dsMain.Tables[table].Rows)
             {
                 myRow = myRow_loopVariable;

@@ -78,15 +78,15 @@ namespace HotelSystem.Presentation
 
             if (exitstingGuest)
             {
-                booking.guest = guest;
+                booking.setGuest(guest);
             }
             else
             {
                 // Create a new guest object, GuestID will be generated automatically
                 guest = new Guest(guestName, email, phoneNumber, address);
-                booking.guest = guest;
+                booking.setGuest(guest);
             }
-            booking.roomType = roomType;
+            booking.setRoomType(roomType);
 
             //Proceed to the next form
             BookForm bookForm = new BookForm(booking, exitstingGuest);    //exitstingGuest flag is passed to the next form, if existingGuest is false, the guest will be added to the database if booking is successful

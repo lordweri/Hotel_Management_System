@@ -163,7 +163,7 @@ namespace HotelSystem.Presentation
                 // check if the room is booked already by other guest in a given date range
                 foreach (Booking booking in bookings)
                 {
-                    if (booking.room.RoomNumber == room.RoomNumber)
+                    if (booking.GetRoom().RoomNumber == room.RoomNumber)
                     {
                         if (booking.CheckIn < endDate && booking.CheckOut > startDate)
                         {

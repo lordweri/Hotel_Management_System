@@ -10,9 +10,8 @@ namespace HotelSystem.Business
     {
        Pending = 0,
        Confirmed =1,
-       Canceled = 2,
-       Completed = 3,
-       Refunded = 4
+       Completed = 2,
+       Refunded = 3
     }
 
 }

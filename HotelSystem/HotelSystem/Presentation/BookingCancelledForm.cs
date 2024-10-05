@@ -20,13 +20,9 @@ namespace HotelSystem.Presentation
         // Event handler for Logout button
         private void BtnLogout_Click(object sender, EventArgs e)
         {
-            // Instantiate the LoginForm
+
             LoginForm loginForm = new LoginForm();
-
-            // Show the LoginForm
             loginForm.Show();
-
-            // Close the current form (BookingCancelledForm)
             this.Close();
         }
 
