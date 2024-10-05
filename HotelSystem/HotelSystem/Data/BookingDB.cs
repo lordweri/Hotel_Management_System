@@ -291,7 +291,7 @@ namespace HotelSystem.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Status", SqlDbType.Money, 8, "Status");
+            param = new SqlParameter("@Status", SqlDbType.NVarChar, 50, "Status");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
