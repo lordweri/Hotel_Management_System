@@ -38,7 +38,7 @@ namespace HotelSystem.Presentation
         public PaymentForm(Booking booking, bool guestIsExsting, decimal amountToPay)            
         {
             InitializeComponent();
-            paymentController = new PaymentController();
+            //paymentController = new PaymentController();
             guestController = new GuestController();
             bookingController = new BookingController();
 
