@@ -51,7 +51,7 @@ namespace HotelSystem.Data
             {
                 daMain = new SqlDataAdapter(aSQLstring, cnMain);
                 cnMain.Open();
-                //dsMain.Clear();
+                dsMain.Clear();
                 daMain.Fill(dsMain, aTable);
                 cnMain.Close();
             }
