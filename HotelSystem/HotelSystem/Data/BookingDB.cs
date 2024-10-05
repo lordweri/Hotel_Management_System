@@ -50,7 +50,7 @@ namespace HotelSystem.Data
             FillDataSet(sqlLocal2, table2);
             FillDataSet(sqlLocal3, table3);
 
-            ShowAllTableNames(dsMain);
+            //ShowAllTableNames(dsMain);
         }
         #endregion
 
@@ -116,7 +116,7 @@ namespace HotelSystem.Data
         //Find a guest in the database by ID and return a Guest object
         private Guest FindGuestByID(string guestID)
         {
-            ShowAllTableNames(dsMain);
+            //ShowAllTableNames(dsMain);
             DataRow[] guestRows = dsMain.Tables["Guest"].Select($"GuestID = '{guestID}'");
             if (guestRows.Length > 0)
             {
