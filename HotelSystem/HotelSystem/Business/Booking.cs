@@ -14,8 +14,8 @@ namespace HotelSystem.Business
         private RoomType roomType;
         private DateRange range;
         private BookingStatus status;
-        public DateTime checkIn;
-        public DateTime checkOut;
+        private DateTime checkIn;
+        private DateTime checkOut;
         public decimal totalPrice;
 
 
