@@ -45,45 +45,102 @@ namespace HotelSystem.Data
 
         #region Update the DataSet
         //Fills the dataset with the data from the database for the given SQL string and table name
+        // added error handling-BRWCAL007
         public void FillDataSet(string aSQLstring, string aTable)
         {
+            if (string.IsNullOrEmpty(aSQLstring) || string.IsNullOrEmpty(aTable))
+            {
+                throw new ArgumentException("SQL string and table name must not be null or empty.");
+            }
+
             try
             {
-                daMain = new SqlDataAdapter(aSQLstring, cnMain);
-                cnMain.Open();
-                //dsMain.Clear();
-                daMain.Fill(dsMain, aTable);
-                cnMain.Close();
+                using (daMain = new SqlDataAdapter(aSQLstring, cnMain))
+                {
+                    cnMain.Open();
+                    //dsMain.Clear();
+                    daMain.Fill(dsMain, aTable);
+                }
             }
-            catch (Exception e)
+            catch (SqlException sqlEx)
             {
-                MessageBox.Show(e.Message + "  " + e.StackTrace);
+                LogError("SQL error occurred in FillDataSet", sqlEx);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                LogError("Unexpected error occurred in FillDataSet", ex);
+                throw;
+            }
+            finally
+            {
+                if (cnMain.State == ConnectionState.Open)
+                {
+                    cnMain.Close();
+                }
             }
         }
         #endregion
 
         #region Update the data source
         //Updates the database with the changes made to the dataset
+        //added error handling-BRWCAL007
         protected bool UpdateDataSource(string sqlLocal, string table)
         {
-            bool success;
+            if (string.IsNullOrEmpty(sqlLocal) || string.IsNullOrEmpty(table))
+            {
+                throw new ArgumentException("SQL string and table name must not be null or empty.");
+            }
+
+            bool success = false;
             try
             {
                 cnMain.Open();
                 daMain.Update(dsMain, table);
-                cnMain.Close();
-                FillDataSet(sqlLocal, table);
                 success = true;
             }
-            catch (Exception e)
+            catch (SqlException sqlEx)
             {
-                MessageBox.Show(e.Message + "  " + e.StackTrace);
-                success = false;
+                LogError($"SQL error occurred in UpdateDataSource for table {table}", sqlEx);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                LogError($"Unexpected error occurred in UpdateDataSource for table {table}", ex);
+                throw;
             }
             finally
-            { }
+            {
+                if (cnMain.State == ConnectionState.Open)
+                {
+                    cnMain.Close();
+                }
+
+                if (success)
+                {
+                    try
+                    {
+                        FillDataSet(sqlLocal, table);
+                    }
+                    catch (Exception fillEx)
+                    {
+                        LogError($"Error occurred while refreshing dataset for table {table}", fillEx);
+                        success = false;
+                    }
+                }
+            }
             return success;
+            #endregion
         }
-        #endregion
+        private void LogError(string message, Exception ex)
+        {
+            // Log the error to a file or database
+            string errorMessage = $"{DateTime.Now}: {message}. Error: {ex.Message}";
+            // TODO: Implement actual logging mechanism
+            Console.WriteLine(errorMessage); // Placeholder for actual logging
+
+            // Display a user-friendly message
+            MessageBox.Show("An error occurred. Please contact support if the problem persists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }
