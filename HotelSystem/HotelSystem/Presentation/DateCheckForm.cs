@@ -59,8 +59,7 @@ namespace HotelSystem.Presentation
             }
 
             // Your logic to check availability goes here
-            MessageBox.Show($"Searching availability from {startDate.ToShortDateString()} to {endDate.ToShortDateString()}.", "Searching", MessageBoxButtons.OK);
-
+            
             //List all available rooms between the given dates in the list box    (This method relies on the Utility methods)
             roomsListBox.Items.Clear();
             availableRooms = SearchAvailableRooms(startDate, endDate);
@@ -79,10 +78,16 @@ namespace HotelSystem.Presentation
 
         private void DateCheckForm_Load(object sender, EventArgs e)
         {
-            /*  COMMENTED OUT CODE BELOW BECAUSE I DONT KNOW WHAT IT DOES
-            // TODO: This line of code loads data into the 'hotelDatabaseDataSet.Booking' table. You can move, or remove it, as needed.
-            //this.bookingTableAdapter.Fill(this.hotelDatabaseDataSet.Booking);
-            */
+            DateTime minDate = new DateTime(2024, 12, 1); 
+            DateTime maxDate = new DateTime(2024, 12, 31); 
+
+            dateTimePickerStartDate.MinDate = minDate;
+            dateTimePickerStartDate.MaxDate = maxDate;
+            dateTimePickerStartDate.Value = minDate; 
+
+            dateTimePickerEndDate.MinDate = minDate;
+            dateTimePickerEndDate.MaxDate = maxDate;
+            dateTimePickerEndDate.Value = maxDate;
         }
 
         //"Continue" button, proceeds to the GuestTypeForm
@@ -92,9 +97,9 @@ namespace HotelSystem.Presentation
             if (selectedRoom != null) 
             { 
                 Booking booking = new Booking();                             //Create a new booking object, the bookingID is auto-generated
+                DateRange range = new DateRange(dateTimePickerStartDate.Value, dateTimePickerEndDate.Value);
                 booking.setRoom(selectedRoom);
-                booking.CheckIn = startDate;
-                booking.CheckOut = endDate;
+                booking.setRange(range);
                 GuestTypeForm form = new GuestTypeForm(booking);            //Proceed to GuestTypeForm
                 form.Show();
                 this.Close();
@@ -189,6 +194,11 @@ namespace HotelSystem.Presentation
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePickerStartDate_ValueChanged(object sender, EventArgs e)
         {
 
         }

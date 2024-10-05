@@ -102,6 +102,22 @@ namespace HotelSystem.Business
 
             return $"BH{letter1}{letter2}{number1}{number2}{number3}"; 
         }
+
+        public void setRange(DateRange range)
+        {
+            this.range = range;
+        }
+
+        public DateTime getCheckIn()
+        {
+            return this.range.GetStart();
+        }
+        
+        public DateTime getCheckOut()
+        {
+            return this.range.getEnd();
+        }
+
     }
 }
  

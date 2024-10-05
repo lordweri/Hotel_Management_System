@@ -112,12 +112,13 @@ namespace HotelSystem.Presentation
             txtBookingID.Text = booking.bookingID;
             txtRoomType.Text = booking.roomType.ToString();
             txtRoomNumber.Text = booking.room.getRoomNo();
-            txtCheckInDate.Text = booking.CheckIn.ToString("yyyy/MM/dd");
-            txtCheckOutDate.Text = booking.CheckOut.ToString("yyyy/MM/dd");
+            txtCheckInDate.Text = booking.getCheckIn().ToString("yyyy/MM/dd");
+            txtCheckOutDate.Text = booking.getCheckOut().ToString("yyyy/MM/dd");
             txtTotalPrice.Text = booking.totalPrice.ToString();
             txtDeposit.Text = booking.getDeposit().ToString();
+            txtNumberOfDays.Text = booking.range.GetNumberOfDays()+"";
 
-            txtGuestID.Text = booking.guest.getName();
+            txtGuestID.Text = booking.guest.getGuestID();
             txtGuestName.Text = booking.guest.getName();
             txtContact.Text = booking.guest.getPhone();
             txtEmail.Text = booking.guest.getEmail();
