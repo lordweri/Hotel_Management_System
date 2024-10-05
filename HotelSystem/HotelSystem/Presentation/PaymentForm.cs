@@ -81,8 +81,22 @@ namespace HotelSystem.Presentation
         // Event handler for Finish button
         private void btnFinish_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Process Finished");
-            this.Close();
+            try
+            {
+                // Create an instance of the BookingGeneratedForm
+                BookingGeneratedForm bookingGeneratedForm = new BookingGeneratedForm(booking);
+
+                bookingGeneratedForm.Show(); // Show the BookingGeneratedForm
+
+                MessageBox.Show("Process Finished");
+
+                this.Close(); // Close this form
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while opening the BookingGeneratedForm: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         // Method to process payment-BRWCAL007

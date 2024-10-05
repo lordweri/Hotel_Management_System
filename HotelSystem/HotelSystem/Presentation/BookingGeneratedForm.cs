@@ -12,7 +12,7 @@ namespace HotelSystem.Presentation
 {
     public partial class BookingGeneratedForm : Form
     {
-        public BookingGeneratedForm()
+        public BookingGeneratedForm(Business.Booking booking)
         {
             InitializeComponent();
         }
