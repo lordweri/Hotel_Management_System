@@ -17,9 +17,7 @@ namespace HotelSystem.Presentation
     public partial class BookForm : Form
     {
         /* TODO: booking object still has the following attributes been null:
-         *  1. totalRate
-         *  2. deposit
-         *  3. status
+         *  1. status
          *  Zhentao: All other attributes are set in the previous forms, exceps range, referenceNumeber and value,
          *  Im not sure what those attributes does, so I will leave them been null.
          */
@@ -34,6 +32,10 @@ namespace HotelSystem.Presentation
             InitializeComponent();
             this.booking = booking;
             this.guestIsExisting = guestIsExisting;
+
+            //Calculate the totalRate and deposit
+            booking.totalPrice = booking.calculateTotalPrice();
+            booking.calculateDeposit();
         }
         #endregion
 
