@@ -61,10 +61,10 @@ namespace HotelSystem.Presentation
             //Add guest to database if guest is not existing already
             if (!guestIsExisting)
             {
-                guestController.DataMaintenance(booking.guest, DB.DBOperation.Add); // Add guest to the dataset
-                guestController.FinalizeChanges(booking.guest, DB.DBOperation.Add); // Update the database
+                guestController.DataMaintenance(booking.GetGuest(), DB.DBOperation.Add); // Add guest to the dataset
+                guestController.FinalizeChanges(booking.GetGuest(), DB.DBOperation.Add); // Update the database
             }
-            MessageBox.Show("Payment Confirmed!\nBooking is successfully made:\nRoom Number: " + booking.room.getRoomNo() + "\nFrom " + booking.CheckIn + " to " + booking.CheckOut);
+            MessageBox.Show("Payment Confirmed!\nBooking is successfully made:\nRoom Number: " + booking.GetRoom().getRoomNo() + "\nFrom " + booking.CheckIn + " to " + booking.CheckOut);
         }
 
 
@@ -168,7 +168,7 @@ namespace HotelSystem.Presentation
         private decimal GetDepositAmount()
         {
             // Implement logic to retrieve the deposit amount
-            return booking.getDeposit();
+            return booking.calculateDeposit();
         }
 
         private decimal GetFullAmount()
@@ -180,7 +180,7 @@ namespace HotelSystem.Presentation
         private string GetBookingID()
         {
             // Implement logic to retrieve the booking ID associated with the payment
-            return booking.bookingID;
+            return booking.GetBookingID();
         }
 
         // Event handler for text change in Card Number field-BRWCAL007

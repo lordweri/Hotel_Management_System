@@ -56,6 +56,7 @@ namespace HotelSystem.Business
         public decimal calculateTotalPrice()
         {
             return (decimal)room.getRate() * range.GetNumberOfDays();
+            this.totalPrice = (decimal)room.getRate() * range.GetNumberOfDays();
         }
 
         public void cancelBooking()
