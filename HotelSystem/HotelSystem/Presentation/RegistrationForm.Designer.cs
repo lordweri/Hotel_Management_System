@@ -118,6 +118,7 @@
             this.cbRoomType.Name = "cbRoomType";
             this.cbRoomType.Size = new System.Drawing.Size(263, 21);
             this.cbRoomType.TabIndex = 7;
+            this.cbRoomType.SelectedIndexChanged += new System.EventHandler(this.cbRoomType_SelectedIndexChanged);
             // 
             // lblChildren
             // 
@@ -259,6 +260,7 @@
             this.Name = "RegistrationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Guest Registration";
+            this.Load += new System.EventHandler(this.RegistrationForm_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.numChildren)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

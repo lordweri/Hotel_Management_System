@@ -9,8 +9,8 @@ namespace HotelSystem.Business
 {
     public class DateRange
     {
-        public DateTime Start;
-        public DateTime End;
+        private DateTime Start;
+        private DateTime End;
 
 
         public DateRange(DateTime start, DateTime end)
@@ -22,6 +22,16 @@ namespace HotelSystem.Business
         public int GetNumberOfDays()
         {
             return (End - Start).Days;
+        }
+
+        public DateTime GetStart()
+        {
+            return Start;
+        }
+
+        public DateTime getEnd()
+        {
+            return End;
         }
     }
 }

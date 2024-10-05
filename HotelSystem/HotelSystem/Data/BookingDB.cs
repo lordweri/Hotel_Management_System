@@ -111,8 +111,8 @@ namespace HotelSystem.Data
                 aRow["BookingID"] = booking.bookingID;
                 aRow["GuestID"] = booking.guest.getGuestID();
                 aRow["RoomNumber"] = booking.room.getRoomNo();
-                aRow["CheckInDate"] = booking.range.Start;
-                aRow["CheckOutDate"] = booking.range.End;
+                aRow["CheckInDate"] = booking.range.GetStart();
+                aRow["CheckOutDate"] = booking.range.GetStart();
                 aRow["TotalPrice"] = booking.totalPrice;
                 aRow["Deposit"] = booking.getDeposit();
                 aRow["Status"] = booking.status.ToString();

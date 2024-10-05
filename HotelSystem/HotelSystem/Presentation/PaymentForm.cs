@@ -63,7 +63,7 @@ namespace HotelSystem.Presentation
         // Event handler for Confirm No Payment Made Button 
         private void btnConfirmNoPayment_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("No Payment Made");
+
         }
 
         // Event handler for Back button
@@ -81,8 +81,6 @@ namespace HotelSystem.Presentation
                 BookingGeneratedForm bookingGeneratedForm = new BookingGeneratedForm(booking);
 
                 bookingGeneratedForm.Show(); // Show the BookingGeneratedForm
-
-                MessageBox.Show("Process Finished");
 
                 this.Close(); // Close this form
             }

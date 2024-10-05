@@ -42,6 +42,7 @@ namespace HotelSystem.Presentation
             InitializeComponent();
             this.guestController = guestController;
             this.booking = Booking;
+            showChildOptions(false);
         }
 
         //Constructor to use when the guest is a EXISTING GUEST
@@ -52,6 +53,7 @@ namespace HotelSystem.Presentation
             this.guestController = guestController;
             this.guest = guest;                               //existing guest object
             this.booking = booking;                           //booking object passed from the GuestTypeForm
+
 
             // Fill the form with the existing guest details
             txtGuestName.Text = guest.getName();
@@ -115,20 +117,35 @@ namespace HotelSystem.Presentation
         }
 
         //Show or hide child options based on the room type selected
-        private void showChildOptions(bool b)
+        private void showChildOptions(bool show)
         {
-            lblChildren.Visible = b;
-            numChildren.Visible = b;
-            lblChild1Age.Visible = b;
-            txtChild1Age.Visible = b;
-            lblChild2Age.Visible = b;
-            txtChild2Age.Visible = b;
+            // Show or hide child-related labels and inputs based on the room selection
+            lblChildren.Visible = show;
+            numChildren.Visible = show;
+            lblChild1Age.Visible = show;
+            txtChild1Age.Visible = show;
+            lblChild2Age.Visible = show;
+            txtChild2Age.Visible = show;
+
+            // Reset values if hiding the options
+            if (!show)
+            {
+                numChildren.Value = 0; // Reset number of children to 0
+                txtChild1Age.Text = ""; // Clear age fields
+                txtChild2Age.Text = "";
+            }
         }
         #endregion
 
         private void RegistrationForm_Load(object sender, EventArgs e)
         {
+            cbRoomType.Items.Add("FamilyRoom");
+            cbRoomType.Items.Add("Single");
+            cbRoomType.Items.Add("CoupleSharingOneBed");
+            cbRoomType.Items.Add("TwoPeopleSeparateBeds");
+            cbRoomType.Items.Add("Standard");
             showChildOptions(false);
+
         }
 
         //Select type of room, show child options if family room is selected
@@ -143,10 +160,10 @@ namespace HotelSystem.Presentation
                 showChildOptions(false);
             }
 
-            //set roomType
             if(cbRoomType.SelectedItem.ToString() == "FamilyRoom")
             {
                 roomType = RoomType.FamilyRoom;
+ 
             }
             else if(cbRoomType.SelectedItem.ToString() == "Single")
             {
@@ -164,6 +181,11 @@ namespace HotelSystem.Presentation
             {
                 roomType = RoomType.Standard;
             }
+        }
+
+        private void RegistrationForm_Load_1(object sender, EventArgs e)
+        {
+            
         }
     }
 }
