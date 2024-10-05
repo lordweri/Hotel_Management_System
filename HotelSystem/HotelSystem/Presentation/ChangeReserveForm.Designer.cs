@@ -279,6 +279,7 @@ namespace HotelSystem.Presentation
             this.Name = "ChangeReserveForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Search";
+            this.Load += new System.EventHandler(this.ChangeReserveForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

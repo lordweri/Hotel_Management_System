@@ -26,7 +26,7 @@ namespace HotelSystem.Presentation
             this.bookingController = bookingController;
             bookings = bookingController.AllBookings;
 
-            txtBookingIDSearch.ReadOnly = true;
+            txtBookingID.ReadOnly = true;
             txtGuestID.ReadOnly = true;
             txtRoomNumber.ReadOnly = true;
         }
@@ -137,6 +137,11 @@ namespace HotelSystem.Presentation
             bookingController.DataMaintenance(booking, Data.DB.DBOperation.Edit);
             bookingController.FinalizeChanges(booking, Data.DB.DBOperation.Edit);
             MessageBox.Show("Booking updated!");
+        }
+
+        private void ChangeReserveForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
