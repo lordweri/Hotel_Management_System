@@ -55,8 +55,8 @@ namespace HotelSystem.Business
         // method to calculate total price for a booking
         public decimal calculateTotalPrice()
         {
-            return (decimal)room.getRate() * range.GetNumberOfDays();
             this.totalPrice = (decimal)room.getRate() * range.GetNumberOfDays();
+            return (decimal)room.getRate() * range.GetNumberOfDays();
         }
 
         public void cancelBooking()
