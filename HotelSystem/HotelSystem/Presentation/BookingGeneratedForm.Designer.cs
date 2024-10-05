@@ -2,8 +2,16 @@
 {
     partial class BookingGeneratedForm
     {
-        // Required designer variable
         private System.ComponentModel.IContainer components = null;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
         #region Windows Form Designer generated code
 
@@ -80,6 +88,7 @@
             this.Text = "Booking Confirmation";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
