@@ -44,11 +44,12 @@ namespace HotelSystem.Data
         {
             bookings = new Collection<Booking>();
             FillDataSet(sqlLocal, table);
-            Add2Collection(table);
 
             //Fill dataset with Room and Guest tables so that we can find a room and guest by ID
             FillDataSet(sqlLocal2, table2);
             FillDataSet(sqlLocal3, table3);
+
+            Add2Collection(table);
 
             //ShowAllTableNames(dsMain);
         }
