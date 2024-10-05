@@ -97,23 +97,49 @@ namespace HotelSystem.Data
         #endregion
 
         #region Database operations
+        // added error handling-BRWCAL007
         public void DataSetChange(Payment aPayment, DB.DBOperation operation)
         {
-            DataRow row = null;
-            switch (operation)
+            if (aPayment == null)
             {
-                case DB.DBOperation.Add:
-                    row = dsMain.Tables[table].NewRow();
-                    FillRow(row, aPayment, operation);
-                    dsMain.Tables[table].Rows.Add(row);
-                    break;
-                case DB.DBOperation.Edit:
-                    row = dsMain.Tables[table].Rows[FindRow(aPayment)];
-                    FillRow(row, aPayment, operation);
-                    break;
-                case DB.DBOperation.Delete:
-                    dsMain.Tables[table].Rows[FindRow(aPayment)].Delete();
-                    break;
+                throw new ArgumentNullException(nameof(aPayment), "Payment object cannot be null.");
+            }
+
+            try
+            {
+                DataRow row = null;
+                switch (operation)
+                {
+                    case DB.DBOperation.Add:
+                        row = dsMain.Tables[table].NewRow();
+                        FillRow(row, aPayment, operation);
+                        dsMain.Tables[table].Rows.Add(row);
+                        break;
+                    case DB.DBOperation.Edit:
+                        int rowIndex = FindRow(aPayment);
+                        if (rowIndex == -1)
+                        {
+                            throw new InvalidOperationException($"Payment with ID {aPayment.PaymentID} not found for editing.");
+                        }
+                        row = dsMain.Tables[table].Rows[rowIndex];
+                        FillRow(row, aPayment, operation);
+                        break;
+                    case DB.DBOperation.Delete:
+                        int deleteRowIndex = FindRow(aPayment);
+                        if (deleteRowIndex == -1)
+                        {
+                            throw new InvalidOperationException($"Payment with ID {aPayment.PaymentID} not found for deletion.");
+                        }
+                        dsMain.Tables[table].Rows[deleteRowIndex].Delete();
+                        break;
+                    default:
+                        throw new ArgumentException($"Unsupported database operation: {operation}", nameof(operation));
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it as per your application's requirements
+                throw new ApplicationException($"Error performing {operation} operation on Payment: {ex.Message}", ex);
             }
         }
         #endregion
