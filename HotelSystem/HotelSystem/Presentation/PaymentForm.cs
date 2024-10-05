@@ -67,7 +67,7 @@ namespace HotelSystem.Presentation
                 guestController.DataMaintenance(booking.GetGuest(), DB.DBOperation.Add); // Add guest to the dataset
                 guestController.FinalizeChanges(booking.GetGuest(), DB.DBOperation.Add); // Update the database
             }
-            MessageBox.Show("Payment Confirmed!\nBooking is successfully made:\nRoom Number: " + booking.GetRoom().getRoomNo() + "\nFrom " + booking.CheckIn + " to " + booking.CheckOut);
+            MessageBox.Show("Payment Confirmed!\nBooking is successfully made:\nBooking Number: " + booking.GetBookingID() + "\nRoom Number: " + booking.GetRoom().getRoomNo() + "\nFrom " + booking.CheckIn + " to " + booking.CheckOut);
         }
 
 
