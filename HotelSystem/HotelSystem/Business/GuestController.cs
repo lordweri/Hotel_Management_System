@@ -49,7 +49,7 @@ namespace HotelSystem.Business
                     break;
                 case DB.DBOperation.Edit:
                     index = FindIndex(aGuest);
-                    aGuest = guests[index];     //update a guest in the Collection, i.e. replace a old guest object with a new object (NOTE: guestID should remain the same)
+                    guests[index] = aGuest;     //update a guest in the Collection, i.e. replace a old guest object with a new object (NOTE: guestID should remain the same)
                     break;
                 case DB.DBOperation.Delete:      //delete a guest from the dataset
                     index = FindIndex(aGuest);

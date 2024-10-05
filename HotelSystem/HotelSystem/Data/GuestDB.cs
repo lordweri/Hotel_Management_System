@@ -139,7 +139,7 @@ namespace HotelSystem.Data
             param = new SqlParameter("@Email", SqlDbType.NVarChar, 100, "Email");
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Address", SqlDbType.NVarChar, 50, "Address");
+            param = new SqlParameter("@Address", SqlDbType.NVarChar, 100, "Address");
             daMain.InsertCommand.Parameters.Add(param);
         }
 
@@ -162,7 +162,7 @@ namespace HotelSystem.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Address", SqlDbType.NVarChar, 100, "Email");
+            param = new SqlParameter("@Address", SqlDbType.NVarChar, 100, "Address");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
         }
