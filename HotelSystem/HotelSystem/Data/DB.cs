@@ -45,97 +45,43 @@ namespace HotelSystem.Data
 
         #region Update the DataSet
         //Fills the dataset with the data from the database for the given SQL string and table name
-        //added error handling-BRWCAL007
         public void FillDataSet(string aSQLstring, string aTable)
         {
-            if (string.IsNullOrWhiteSpace(aSQLstring) || string.IsNullOrWhiteSpace(aTable))
-            {
-                throw new ArgumentException("SQL string and table name must not be empty.");
-            }
-
             try
             {
-                using (daMain = new SqlDataAdapter(aSQLstring, cnMain))
-                {
-                    cnMain.Open();
-                    //dsMain.Clear();
-                    daMain.Fill(dsMain, aTable);
-                }
+                daMain = new SqlDataAdapter(aSQLstring, cnMain);
+                cnMain.Open();
+                //dsMain.Clear();
+                daMain.Fill(dsMain, aTable);
+                cnMain.Close();
             }
-            catch (SqlException sqlEx)
+            catch (Exception e)
             {
-                MessageBox.Show($"SQL Error: {sqlEx.Message}\nError Code: {sqlEx.Number}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Log the error or perform additional error handling as needed
-            }
-            catch (InvalidOperationException ioEx)
-            {
-                MessageBox.Show($"Invalid Operation: {ioEx.Message}", "Operation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (cnMain.State == ConnectionState.Open)
-                {
-                    cnMain.Close();
-                }
+                MessageBox.Show(e.Message + "  " + e.StackTrace);
             }
         }
         #endregion
 
         #region Update the data source
         //Updates the database with the changes made to the dataset
-        //added error handling-BRWCAL007
         protected bool UpdateDataSource(string sqlLocal, string table)
         {
-            if (string.IsNullOrWhiteSpace(sqlLocal) || string.IsNullOrWhiteSpace(table))
-            {
-                throw new ArgumentException("SQL string and table name must not be empty.");
-            }
-
-            bool success = false;
+            bool success;
             try
             {
                 cnMain.Open();
                 daMain.Update(dsMain, table);
+                cnMain.Close();
+                FillDataSet(sqlLocal, table);
                 success = true;
             }
-            catch (SqlException sqlEx)
+            catch (Exception e)
             {
-                MessageBox.Show($"SQL Error: {sqlEx.Message}\nError Code: {sqlEx.Number}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Log the error or perform additional error handling as needed
-            }
-            catch (DBConcurrencyException concurrencyEx)
-            {
-                MessageBox.Show($"Concurrency Error: {concurrencyEx.Message}", "Concurrency Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                // Handle concurrency issues, possibly by refreshing data
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message + "  " + e.StackTrace);
+                success = false;
             }
             finally
-            {
-                if (cnMain.State == ConnectionState.Open)
-                {
-                    cnMain.Close();
-                }
-
-                if (success)
-                {
-                    try
-                    {
-                        FillDataSet(sqlLocal, table);
-                    }
-                    catch (Exception fillEx)
-                    {
-                        MessageBox.Show($"Error refreshing data: {fillEx.Message}", "Refresh Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        success = false;
-                    }
-                }
-            }
+            { }
             return success;
         }
         #endregion
