@@ -15,6 +15,7 @@ namespace HotelSystem.Presentation
     public partial class GuestTypeForm : Form
     {
         #region Data Members
+        BookingController bookingController;
         GuestController guestController;
         Collection<Guest> guests;
         private Booking booking;
@@ -23,7 +24,7 @@ namespace HotelSystem.Presentation
         #endregion
 
         #region Constructor
-        public GuestTypeForm(Booking book)
+        public GuestTypeForm(BookingController bookingController, Booking book)
         {
             booking = book;                  //Booking object passed from the DateCheckForm
             InitializeComponent();
@@ -39,7 +40,7 @@ namespace HotelSystem.Presentation
         private void btnNewGuest_Click(object sender, EventArgs e)
         {
             // Logic to handle new guest reservation
-            RegistrationForm registrationForm = new RegistrationForm(guestController,booking);
+            RegistrationForm registrationForm = new RegistrationForm(bookingController, guestController,booking);
             registrationForm.Show();          // Show the registration form
             this.Close();                     // Close the current form
         }
@@ -56,7 +57,7 @@ namespace HotelSystem.Presentation
         //Back button
         private void button1_Click(object sender, EventArgs e)
         {
-             DateCheckForm dateCheckForm = new DateCheckForm();
+             DateCheckForm dateCheckForm = new DateCheckForm(bookingController);
              dateCheckForm.Show();
              this.Close();
         }
@@ -77,7 +78,7 @@ namespace HotelSystem.Presentation
                     // Guest found
                     MessageBox.Show("Guest found!");
                     // You can call the form for an existing guest reservation here
-                    RegistrationForm registrationForm = new RegistrationForm(guestController, guest,booking);        // We found the guest, proceed to registration form
+                    RegistrationForm registrationForm = new RegistrationForm(bookingController, guestController, guest,booking);        // We found the guest, proceed to registration form
                     registrationForm.Show();                           // Show the reservation form
                     this.Close();                              // Close the current form (Alternative approach: Hide the current form by making visible = false)
                     continue;

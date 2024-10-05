@@ -13,14 +13,17 @@ namespace HotelSystem.Presentation
 {
     public partial class MainForm : Form
     {
+        BookingController bookingController;
+
         public MainForm()
         {
             InitializeComponent();
+            bookingController = new BookingController();
         }
 
         private void btnMakeReservation_Click(object sender, EventArgs e)
         {
-            DateCheckForm dateForm = new DateCheckForm();
+            DateCheckForm dateForm = new DateCheckForm(bookingController);
             dateForm.Show();
             this.Close();
         }

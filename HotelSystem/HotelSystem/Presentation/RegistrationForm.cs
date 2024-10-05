@@ -30,6 +30,7 @@ namespace HotelSystem.Presentation
         private Guest guest;                             //guest object to store the guest details
 
         private GuestController guestController;         //controller to handle guest operations
+        private BookingController bookingController;     //controller to handle booking operations
         private Booking booking;                         //booking object to store the booking details, however it will only be added to database after booking is confirmed
 
         RoomType roomType;                              //room type selected by the user
@@ -37,20 +38,24 @@ namespace HotelSystem.Presentation
 
         #region Constructors
         //Constructor to use when the guest is NOT A EXISTING GUEST
-        public RegistrationForm(GuestController guestController,Booking Booking)
+        public RegistrationForm(BookingController bookingController, GuestController guestController,Booking Booking)
         {
             InitializeComponent();
             this.guestController = guestController;
+            this.bookingController = bookingController;
+
             this.booking = Booking;
             showChildOptions(false);
         }
 
         //Constructor to use when the guest is a EXISTING GUEST
-        public RegistrationForm(GuestController guestController, Guest guest,Booking booking)
+        public RegistrationForm(BookingController bookingController, GuestController guestController, Guest guest,Booking booking)
         {
             InitializeComponent();
             exitstingGuest = true;
             this.guestController = guestController;
+            this.bookingController = bookingController;
+
             this.guest = guest;                               //existing guest object
             this.booking = booking;                           //booking object passed from the GuestTypeForm
 
@@ -190,7 +195,7 @@ namespace HotelSystem.Presentation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GuestTypeForm dateCheckForm = new GuestTypeForm(booking);
+            GuestTypeForm dateCheckForm = new GuestTypeForm(bookingController, booking);
             dateCheckForm.Show();
             this.Close();
         }

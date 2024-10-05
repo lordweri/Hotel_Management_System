@@ -35,7 +35,7 @@ namespace HotelSystem.Presentation
         #endregion
 
         #region Constructors
-        public DateCheckForm()
+        public DateCheckForm(BookingController bookingController)
         {
             InitializeComponent();
             bookingController = new BookingController();
@@ -100,7 +100,7 @@ namespace HotelSystem.Presentation
                 DateRange range = new DateRange(dateTimePickerStartDate.Value, dateTimePickerEndDate.Value);
                 booking.setRoom(selectedRoom);
                 booking.setRange(range);
-                GuestTypeForm form = new GuestTypeForm(booking);            //Proceed to GuestTypeForm
+                GuestTypeForm form = new GuestTypeForm(bookingController, booking);            //Proceed to GuestTypeForm
                 form.Show();
                 this.Close();
             }

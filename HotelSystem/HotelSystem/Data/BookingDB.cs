@@ -63,9 +63,11 @@ namespace HotelSystem.Data
                     DateTime start = Convert.ToDateTime(bookingRow["CheckInDate"]);
                     DateTime end = Convert.ToDateTime(bookingRow["CheckOutDate"]);
                     decimal totalPrice = Convert.ToDecimal(bookingRow["TotalPrice"]);
-                    decimal deposit = Convert.ToDecimal(bookingRow["Deposit"]);
-                    BookingStatus status = (BookingStatus)Enum.Parse(typeof(BookingStatus), bookingRow["Status"].ToString());
-                    RoomType roomType = (RoomType)Enum.Parse(typeof(RoomType), bookingRow["RoomType"].ToString());
+                    decimal deposit = totalPrice * 0.1m;
+                    //BookingStatus status = (BookingStatus)Enum.Parse(typeof(BookingStatus), bookingRow["Status"].ToString());
+                    BookingStatus status = BookingStatus.Confirmed;    //hard coded for now
+                    //RoomType roomType = (RoomType)Enum.Parse(typeof(RoomType), bookingRow["RoomType"].ToString());
+                    RoomType roomType = RoomType.Single;               //hard coded for now
 
                     Guest guest = FindGuestByID(guestID);
                     Room room = FindRoomByNumber(roomNumber);
