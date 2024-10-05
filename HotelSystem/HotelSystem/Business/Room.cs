@@ -10,7 +10,6 @@ namespace HotelSystem.Business
     
     public class Room
     {
-        private string roomNumber;
         private double rate;
         private Boolean check;
         public RoomType roomType;

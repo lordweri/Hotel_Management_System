@@ -187,5 +187,12 @@ namespace HotelSystem.Presentation
         {
             
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GuestTypeForm dateCheckForm = new GuestTypeForm(booking);
+            dateCheckForm.Show();
+            this.Close();
+        }
     }
 }
