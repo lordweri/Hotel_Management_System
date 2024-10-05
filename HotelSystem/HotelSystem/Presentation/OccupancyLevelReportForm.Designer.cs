@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dgvOccupancy = new System.Windows.Forms.DataGridView();
             this.hotelDatabaseDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hotelDatabaseDataSet = new HotelSystem.HotelDatabaseDataSet();
@@ -39,7 +39,7 @@
             this.bookingTableAdapter = new HotelSystem.HotelDatabaseDataSetTableAdapters.BookingTableAdapter();
             this.paymentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.chartOccupancyLevel = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btnGeneerateReport = new System.Windows.Forms.Button();
+            this.btnGenerateReport = new System.Windows.Forms.Button();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -90,29 +90,29 @@
             // 
             // chartOccupancyLevel
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chartOccupancyLevel.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartOccupancyLevel.Legends.Add(legend3);
+            chartArea2.Name = "ChartArea1";
+            this.chartOccupancyLevel.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartOccupancyLevel.Legends.Add(legend2);
             this.chartOccupancyLevel.Location = new System.Drawing.Point(714, 87);
             this.chartOccupancyLevel.Name = "chartOccupancyLevel";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chartOccupancyLevel.Series.Add(series3);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartOccupancyLevel.Series.Add(series2);
             this.chartOccupancyLevel.Size = new System.Drawing.Size(626, 256);
             this.chartOccupancyLevel.TabIndex = 1;
             this.chartOccupancyLevel.Text = "chart1";
             // 
-            // btnGeneerateReport
+            // btnGenerateReport
             // 
-            this.btnGeneerateReport.Location = new System.Drawing.Point(589, 536);
-            this.btnGeneerateReport.Name = "btnGeneerateReport";
-            this.btnGeneerateReport.Size = new System.Drawing.Size(211, 92);
-            this.btnGeneerateReport.TabIndex = 2;
-            this.btnGeneerateReport.Text = "Generate Report";
-            this.btnGeneerateReport.UseVisualStyleBackColor = true;
-            this.btnGeneerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
+            this.btnGenerateReport.Location = new System.Drawing.Point(589, 536);
+            this.btnGenerateReport.Name = "btnGenerateReport";
+            this.btnGenerateReport.Size = new System.Drawing.Size(211, 92);
+            this.btnGenerateReport.TabIndex = 2;
+            this.btnGenerateReport.Text = "Generate Report";
+            this.btnGenerateReport.UseVisualStyleBackColor = true;
+            this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
             // dtpStartDate
             // 
@@ -157,7 +157,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpEndDate);
             this.Controls.Add(this.dtpStartDate);
-            this.Controls.Add(this.btnGeneerateReport);
+            this.Controls.Add(this.btnGenerateReport);
             this.Controls.Add(this.chartOccupancyLevel);
             this.Controls.Add(this.dgvOccupancy);
             this.Name = "OccupancyLevelReportForm";
@@ -183,7 +183,7 @@
         private System.Windows.Forms.BindingSource paymentBindingSource;
         private System.Windows.Forms.BindingSource hotelDatabaseDataSetBindingSource;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartOccupancyLevel;
-        private System.Windows.Forms.Button btnGeneerateReport;
+        private System.Windows.Forms.Button btnGenerateReport;
         private System.Windows.Forms.DateTimePicker dtpStartDate;
         private System.Windows.Forms.DateTimePicker dtpEndDate;
         private System.Windows.Forms.Label label1;

@@ -112,14 +112,25 @@ namespace HotelSystem.Presentation
         // event handler to go back to the Main Menu Form when the button is clicked-BRWCAL007
         private void btnBack_Click(object sender, EventArgs e)
         {
-            // Create an instance of the main menu form
-            MainForm mainForm = new MainForm();
+            try
+            {
+                // Create an instance of the main menu form
+                MainForm mainForm = new MainForm();
 
-            // Show the main menu form
-            mainForm.Show();
+                // Show the main menu form
+                mainForm.Show();
 
-            // Close the current form (BookingChangedForm)
-            this.Close();
+                // Close the current form (BookingChangedForm)
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                System.Diagnostics.EventLog.WriteEntry("Application", ex.ToString(), System.Diagnostics.EventLogEntryType.Error);
+
+                // Display an error message to the user
+                MessageBox.Show("An error occurred while attempting to go back to the main menu. Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         //After search, click on a room in the list box to choose the room to book
