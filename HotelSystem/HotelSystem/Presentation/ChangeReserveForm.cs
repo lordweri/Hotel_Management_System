@@ -44,63 +44,15 @@ namespace HotelSystem.Presentation
                     txtCheckOutDate.Text = booking.CheckOut.ToString();
                     txtRoomNumber.Text = booking.GetRoom().getRoomNo();
                     txtGuestID.Text = booking.GetGuest().getGuestID();
+                    break;
                 }
                 else
                 {
                     MessageBox.Show("Booking not found!");
+                    break;
                 }
             }
         }
-
-            //"txtBookingID" textbox
-            private void txtPassword_Enter(object sender, EventArgs e)
-        {
-            if (txtBookingIDSearch.Text == "BookingID")
-            {
-                txtBookingIDSearch.Text = "";
-                txtBookingIDSearch.ForeColor = Color.Black;
-                txtBookingIDSearch.UseSystemPasswordChar = true;
-            }
-        }
-
-        private void txtPassword_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtBookingIDSearch.Text))
-            {
-                txtBookingIDSearch.UseSystemPasswordChar = false;
-                txtBookingIDSearch.Text = "BookingID";
-                txtBookingIDSearch.ForeColor = Color.Gray;
-            }
-        }
-
-        /*
-        private void pnlUserId_Paint(object sender, PaintEventArgs e)
-        {
-            DrawRoundedRectangle(e.Graphics, pnlUserID.ClientRectangle, 20, Color.LightGray);
-        }
-
-        private void pnlPassword_Paint(object sender, PaintEventArgs e)
-        {
-            DrawRoundedRectangle(e.Graphics, pnlPassword.ClientRectangle, 20, Color.LightGray);
-        }
-
-        private void DrawRoundedRectangle(Graphics g, Rectangle r, int d, Color color)
-        {
-            using (GraphicsPath path = new GraphicsPath())
-            {
-                path.AddArc(r.X, r.Y, d, d, 180, 90);
-                path.AddArc(r.Right - d, r.Y, d, d, 270, 90);
-                path.AddArc(r.Right - d, r.Bottom - d, d, d, 0, 90);
-                path.AddArc(r.X, r.Bottom - d, d, d, 90, 90);
-                path.CloseFigure();
-
-                using (Pen pen = new Pen(color, 1))
-                {
-                    g.SmoothingMode = SmoothingMode.AntiAlias;
-                    g.DrawPath(pen, path);
-                }
-            }
-        }*/
 
         private void label1_Click(object sender, EventArgs e)
         {

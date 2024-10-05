@@ -42,6 +42,7 @@ namespace HotelSystem.Presentation
             this.lblBookingDetails = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtBookingIDSearch
@@ -50,14 +51,11 @@ namespace HotelSystem.Presentation
             this.txtBookingIDSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBookingIDSearch.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtBookingIDSearch.ForeColor = System.Drawing.Color.Gray;
-            this.txtBookingIDSearch.Location = new System.Drawing.Point(118, 137);
+            this.txtBookingIDSearch.Location = new System.Drawing.Point(118, 188);
             this.txtBookingIDSearch.Name = "txtBookingIDSearch";
             this.txtBookingIDSearch.Size = new System.Drawing.Size(322, 32);
             this.txtBookingIDSearch.TabIndex = 1;
-            this.txtBookingIDSearch.Text = "BookingID";
             this.txtBookingIDSearch.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
-            this.txtBookingIDSearch.Enter += new System.EventHandler(this.txtPassword_Enter);
-            this.txtBookingIDSearch.Leave += new System.EventHandler(this.txtPassword_Leave);
             // 
             // panel1
             // 
@@ -74,7 +72,7 @@ namespace HotelSystem.Presentation
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(343, 178);
+            this.label1.Location = new System.Drawing.Point(343, 229);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 64);
@@ -85,7 +83,7 @@ namespace HotelSystem.Presentation
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.Firebrick;
-            this.label2.Location = new System.Drawing.Point(314, 448);
+            this.label2.Location = new System.Drawing.Point(314, 499);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 18);
@@ -96,7 +94,7 @@ namespace HotelSystem.Presentation
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Firebrick;
-            this.label3.Location = new System.Drawing.Point(308, 381);
+            this.label3.Location = new System.Drawing.Point(308, 432);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 18);
@@ -121,7 +119,7 @@ namespace HotelSystem.Presentation
             this.btnSearch.BackColor = System.Drawing.Color.LightGreen;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnSearch.Location = new System.Drawing.Point(527, 131);
+            this.btnSearch.Location = new System.Drawing.Point(527, 182);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(168, 44);
             this.btnSearch.TabIndex = 16;
@@ -131,35 +129,35 @@ namespace HotelSystem.Presentation
             // 
             // txtCheckOutDate
             // 
-            this.txtCheckOutDate.Location = new System.Drawing.Point(292, 432);
+            this.txtCheckOutDate.Location = new System.Drawing.Point(292, 483);
             this.txtCheckOutDate.Name = "txtCheckOutDate";
             this.txtCheckOutDate.Size = new System.Drawing.Size(142, 28);
             this.txtCheckOutDate.TabIndex = 47;
             // 
             // txtCheckInDate
             // 
-            this.txtCheckInDate.Location = new System.Drawing.Point(292, 387);
+            this.txtCheckInDate.Location = new System.Drawing.Point(292, 438);
             this.txtCheckInDate.Name = "txtCheckInDate";
             this.txtCheckInDate.Size = new System.Drawing.Size(142, 28);
             this.txtCheckInDate.TabIndex = 46;
             // 
             // txtRoomNumber
             // 
-            this.txtRoomNumber.Location = new System.Drawing.Point(292, 340);
+            this.txtRoomNumber.Location = new System.Drawing.Point(292, 391);
             this.txtRoomNumber.Name = "txtRoomNumber";
             this.txtRoomNumber.Size = new System.Drawing.Size(142, 28);
             this.txtRoomNumber.TabIndex = 45;
             // 
             // txtGuestID
             // 
-            this.txtGuestID.Location = new System.Drawing.Point(678, 261);
+            this.txtGuestID.Location = new System.Drawing.Point(678, 312);
             this.txtGuestID.Name = "txtGuestID";
             this.txtGuestID.Size = new System.Drawing.Size(193, 28);
             this.txtGuestID.TabIndex = 43;
             // 
             // txtBookingID
             // 
-            this.txtBookingID.Location = new System.Drawing.Point(292, 261);
+            this.txtBookingID.Location = new System.Drawing.Point(292, 312);
             this.txtBookingID.Name = "txtBookingID";
             this.txtBookingID.Size = new System.Drawing.Size(142, 28);
             this.txtBookingID.TabIndex = 42;
@@ -167,7 +165,7 @@ namespace HotelSystem.Presentation
             // lblCheckOutDate
             // 
             this.lblCheckOutDate.AutoSize = true;
-            this.lblCheckOutDate.Location = new System.Drawing.Point(156, 443);
+            this.lblCheckOutDate.Location = new System.Drawing.Point(156, 494);
             this.lblCheckOutDate.Name = "lblCheckOutDate";
             this.lblCheckOutDate.Size = new System.Drawing.Size(143, 18);
             this.lblCheckOutDate.TabIndex = 40;
@@ -176,7 +174,7 @@ namespace HotelSystem.Presentation
             // lblCheckInDate
             // 
             this.lblCheckInDate.AutoSize = true;
-            this.lblCheckInDate.Location = new System.Drawing.Point(156, 398);
+            this.lblCheckInDate.Location = new System.Drawing.Point(156, 449);
             this.lblCheckInDate.Name = "lblCheckInDate";
             this.lblCheckInDate.Size = new System.Drawing.Size(134, 18);
             this.lblCheckInDate.TabIndex = 39;
@@ -185,7 +183,7 @@ namespace HotelSystem.Presentation
             // lblRoomNumber
             // 
             this.lblRoomNumber.AutoSize = true;
-            this.lblRoomNumber.Location = new System.Drawing.Point(156, 351);
+            this.lblRoomNumber.Location = new System.Drawing.Point(156, 402);
             this.lblRoomNumber.Name = "lblRoomNumber";
             this.lblRoomNumber.Size = new System.Drawing.Size(116, 18);
             this.lblRoomNumber.TabIndex = 38;
@@ -194,7 +192,7 @@ namespace HotelSystem.Presentation
             // lblRoomType
             // 
             this.lblRoomType.AutoSize = true;
-            this.lblRoomType.Location = new System.Drawing.Point(156, 307);
+            this.lblRoomType.Location = new System.Drawing.Point(156, 358);
             this.lblRoomType.Name = "lblRoomType";
             this.lblRoomType.Size = new System.Drawing.Size(89, 18);
             this.lblRoomType.TabIndex = 37;
@@ -203,7 +201,7 @@ namespace HotelSystem.Presentation
             // lblGuestID
             // 
             this.lblGuestID.AutoSize = true;
-            this.lblGuestID.Location = new System.Drawing.Point(528, 271);
+            this.lblGuestID.Location = new System.Drawing.Point(528, 322);
             this.lblGuestID.Name = "lblGuestID";
             this.lblGuestID.Size = new System.Drawing.Size(80, 18);
             this.lblGuestID.TabIndex = 36;
@@ -212,7 +210,7 @@ namespace HotelSystem.Presentation
             // lblBookingID
             // 
             this.lblBookingID.AutoSize = true;
-            this.lblBookingID.Location = new System.Drawing.Point(156, 272);
+            this.lblBookingID.Location = new System.Drawing.Point(156, 323);
             this.lblBookingID.Name = "lblBookingID";
             this.lblBookingID.Size = new System.Drawing.Size(98, 18);
             this.lblBookingID.TabIndex = 35;
@@ -222,7 +220,7 @@ namespace HotelSystem.Presentation
             // 
             this.lblBookingDetails.AutoSize = true;
             this.lblBookingDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblBookingDetails.Location = new System.Drawing.Point(112, 207);
+            this.lblBookingDetails.Location = new System.Drawing.Point(112, 258);
             this.lblBookingDetails.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBookingDetails.Name = "lblBookingDetails";
             this.lblBookingDetails.Size = new System.Drawing.Size(194, 32);
@@ -244,10 +242,19 @@ namespace HotelSystem.Presentation
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(292, 297);
+            this.textBox2.Location = new System.Drawing.Point(292, 348);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(142, 28);
             this.textBox2.TabIndex = 58;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(115, 156);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(287, 18);
+            this.label4.TabIndex = 59;
+            this.label4.Text = "Enter the Booking ID to search:";
             // 
             // ChangeReserveForm
             // 
@@ -255,6 +262,7 @@ namespace HotelSystem.Presentation
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1176, 777);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.txtCheckOutDate);
@@ -309,5 +317,6 @@ namespace HotelSystem.Presentation
         private Label lblBookingDetails;
         private Button btnUpdate;
         private TextBox textBox2;
+        private Label label4;
     }
 }
