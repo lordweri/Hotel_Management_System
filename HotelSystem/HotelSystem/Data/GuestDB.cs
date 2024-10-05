@@ -35,8 +35,16 @@ namespace HotelSystem.Data
         {
             guests = new Collection<Guest>();
             FillDataSet(sqlLocal, table);
+
+            // Check if the Guest table is loaded into dsMain
+            if (!dsMain.Tables.Contains("Guest"))
+            {
+                throw new Exception("Guest table not loaded into DataSet.");
+            }
+
             Add2Collection(table);
         }
+
         #endregion
 
         #region Utility methods
