@@ -34,7 +34,7 @@ namespace HotelSystem.Presentation
         {
             // When the form loads, set the DataGridView's data source
             // This populates the grid with initial booking data
-            dgvOccupancy.DataSource = hotelDatabaseDataSet.Booking;
+            dgvOccupancy.DataSource = bookingController.AllBookings.ToList(); // Ensure data is loaded
         }
         // This method generates the occupancy level report for the selected date range-BRWCAL007
         private async void btnGenerateReport_Click(object sender, EventArgs e)
@@ -54,8 +54,8 @@ namespace HotelSystem.Presentation
         private bool ValidateDateRange()
         {
             // Get the start and end dates from the date time pickers
-            DateTime startDate = dtpStartDate.Value;
-            DateTime endDate = dtpEndDate.Value;
+            DateTime startDate = dtpStartDate.Value.Date;
+            DateTime endDate = dtpEndDate.Value.Date;
 
             // Check if the start date is after the end date
             if (startDate > endDate)
@@ -78,8 +78,8 @@ namespace HotelSystem.Presentation
                 SetFormState(false);
 
                 // Get the selected date range
-                DateTime startDate = dtpStartDate.Value;
-                DateTime endDate = dtpEndDate.Value;
+                DateTime startDate = dtpStartDate.Value.Date;
+                DateTime endDate = dtpEndDate.Value.Date.AddDays(1).AddSeconds(-1); // Include the end date fully
 
                 // Use Task.Run to run the synchronous method asynchronously
                 // This prevents UI freezing for long-running operations
@@ -89,7 +89,7 @@ namespace HotelSystem.Presentation
                 if (occupancyData != null && occupancyData.Any())
                 {
                     // Update the DataGridView with the new data
-                    dgvOccupancy.DataSource = occupancyData;
+                    dgvOccupancy.DataSource = occupancyData.ToList();
                     // Update the chart with the new data
                     UpdateChart(occupancyData);
                 }
@@ -97,6 +97,8 @@ namespace HotelSystem.Presentation
                 {
                     // If no data is available, inform the user
                     MessageBox.Show("No occupancy data available for the selected date range.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dgvOccupancy.DataSource = null;
+                    chartOccupancyLevel.Series.Clear();
                 }
             }
             catch (Exception ex)
@@ -124,9 +126,9 @@ namespace HotelSystem.Presentation
             series.ChartType = SeriesChartType.Line;
 
             // Iterate through the occupancy data and add each point to the chart
-            foreach (OccupancyData data in occupancyDataList)
+            foreach (var data in occupancyDataList)
             {
-                series.Points.AddXY(data.Date, data.OccupancyPercentage);
+                series.Points.AddXY(data.Date.ToShortDateString(), data.OccupancyPercentage);
             }
 
             // Customize chart appearance for better readability
@@ -166,24 +168,30 @@ namespace HotelSystem.Presentation
             btnGenerateReport.Enabled = enabled;
             dtpStartDate.Enabled = enabled;
             dtpEndDate.Enabled = enabled;
-            // Set the wait cursor to indicate processing (inverse of 'enabled')
-            UseWaitCursor = !enabled;
+
         }
         // This method logs an error to a log file and displays an error message to the user-BRWCAL007
         private void LogError(Exception ex)
         {
-            // Determine the path for the error log file
-            string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "error.log");
-
-            // Append the error details to the log file
-            using (StreamWriter writer = File.AppendText(logPath))
+            try
             {
-                // Write the current date and time along with the error message
-                writer.WriteLine($"[{DateTime.Now}] Error: {ex.Message}");
-                // Write the full stack trace for debugging purposes
-                writer.WriteLine($"StackTrace: {ex.StackTrace}");
-                // Add a separator line for readability between log entries
-                writer.WriteLine(new string('-', 50));
+                // Determine the path for the error log file
+                string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "error.log");
+
+                // Append the error details to the log file
+                using (StreamWriter writer = new StreamWriter(logPath, true))
+                {
+                    // Write the current date and time along with the error message
+                    writer.WriteLine($"[{DateTime.Now}] Error: {ex.Message}");
+                    // Write the full stack trace for debugging purposes
+                    writer.WriteLine($"StackTrace: {ex.StackTrace}");
+                    // Add a separator line for readability between log entries
+                    writer.WriteLine(new string('-', 50));
+                }
+            }
+            catch
+            {
+                // If logging fails, there's not much we can do.
             }
         }
     }
