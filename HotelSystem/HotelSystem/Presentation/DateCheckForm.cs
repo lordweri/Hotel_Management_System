@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using HotelSystem.Business;
 using HotelSystem.Data;
 
@@ -27,7 +28,7 @@ namespace HotelSystem.Presentation
         BookingController bookingController;
         Collection<Booking> bookings;               //stores all bookings that is in database into a collection
         RoomController roomController;
-
+        Booking booking;
         Collection<Room> availableRooms;            //available rooms of a given date range
         Room selectedRoom;                                  //The available room selected from the listBox
         DateTime startDate;
@@ -38,6 +39,7 @@ namespace HotelSystem.Presentation
         public DateCheckForm(BookingController bookingController)
         {
             InitializeComponent();
+            booking = new Booking();                             //Create a new booking object, the bookingID is auto-generatedbooking = new Booking();                             //Create a new booking object, the bookingID is auto-generated
             bookingController = new BookingController();
             roomController = new RoomController();
             bookings = bookingController.AllBookings; 
@@ -50,6 +52,8 @@ namespace HotelSystem.Presentation
         {
             startDate = dateTimePickerStartDate.Value;        // Get the start date from the date picker
             endDate = dateTimePickerEndDate.Value;            // Get the end date from the date picker
+            DateRange range = new DateRange(dateTimePickerStartDate.Value, dateTimePickerEndDate.Value);
+            booking.setRange(range);
 
             // Validate dates
             if (startDate > endDate)
@@ -78,7 +82,7 @@ namespace HotelSystem.Presentation
 
         private void DateCheckForm_Load(object sender, EventArgs e)
         {
-            DateTime minDate = new DateTime(2024, 12, 1); 
+            DateTime minDate = new DateTime(2024, 10, 1); 
             DateTime maxDate = new DateTime(2024, 12, 31); 
 
             dateTimePickerStartDate.MinDate = minDate;
@@ -96,10 +100,10 @@ namespace HotelSystem.Presentation
         {
             if (selectedRoom != null) 
             { 
-                Booking booking = new Booking();                             //Create a new booking object, the bookingID is auto-generated
-                DateRange range = new DateRange(dateTimePickerStartDate.Value, dateTimePickerEndDate.Value);
+                
+                
                 booking.setRoom(selectedRoom);
-                booking.setRange(range);
+                
                 GuestTypeForm form = new GuestTypeForm(bookingController, booking);            //Proceed to GuestTypeForm
                 form.Show();
                 this.Close();

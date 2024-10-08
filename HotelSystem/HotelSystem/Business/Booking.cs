@@ -99,6 +99,8 @@ namespace HotelSystem.Business
         public void setRange(DateRange range)
         {
             this.range = range;
+            this.checkIn = range.GetStart();
+            this.checkOut = range.getEnd();
         }
 
         public DateTime getCheckIn()
